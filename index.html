@@ -166,97 +166,21 @@
       <div data-type="list">
         <ul>
           <li>
-            <a id="btn-stations" href="#">
+            <a href="javascript:showstations()">
+			  <aside class='icon comms-icon contacts-sms'></aside>
               <p>Estaciones principales</p>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:showfavoritestations()">
+			  <aside class='icon comms-icon contacts-sms'></aside>
+              <p>Estaciones favoritas</p>
             </a>
           </li>
         </ul>
       </div>
     </article>
   </section> <!-- end index -->
-
-  <!--···························· Buttons ····························-->
-  <section id="buttons" data-position="right">
-    <section role="region">
-      <header class="fixed">
-        <a id="btn-buttons-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Buttons</h1>
-      </header>
-
-      <article class="content scrollable header">
-        <header><h2>Normal</h2></header>
-        <div>
-          <button>Default</button>
-          <button class="recommend">Recommend</button>
-          <button class="danger">Danger</button>
-         </div>
-
-        <header><h2>Disabled</h2></header>
-        <div>
-          <button disabled>Default</button>
-          <a href="#" role="button" aria-disabled="true" class="recommend">Recommend</a>
-          <button disabled class="danger">Danger</button>
-        </div>
-
-        <header><h2>Disabled with dark background</h2></header>
-        <div>
-          <button disabled>Default</button>
-          <a href="#" role="button" aria-disabled="true" class="recommend">Recommend</a>
-          <button disabled class="danger">Danger</button>
-        </div>
-
-        <header><h2>Button List</h2></header>
-        <div>
-          <ul>
-            <li>
-              <button>Default</button>
-            </li>
-            <li>
-              <button disabled="disabled">Disabled</button>
-            </li>
-            <li>
-              <button class="icon icon-view">
-                View Name
-              </button>
-            </li>
-            <li>
-              <button disabled="disabled" class="icon icon-view">
-                View Name
-              </button>
-            </li>
-            <li>
-              <a role="button" class="icon icon-dialog">
-                Tuesday September 18, 2012
-              </a>
-            </li>
-            <li>
-              <a role="button" aria-disabled="true" class="icon icon-dialog">
-                Tuesday September 18, 2012
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <header><h2>Button List (compact mode)</h2></header>
-        <div>
-          <ul class="compact">
-            <li>
-              <label>Description</label>
-              <button class="icon icon-dialog">Action 1</button>
-            </li>
-            <li>
-              <label>Description</label>
-              <button class="icon icon-dialog">Action 2</button>
-            </li>
-            <li>
-              <label>This is a large description for this action</label>
-              <button class="icon icon-dialog" disabled >Action 3 (disabled)</button>
-            </li>
-          </ul>
-        </div>
-      </article>
-    </section>
-  </section>
 
   <!--····························· Stations ·····························-->
   <section id="stations" data-position="right">
@@ -272,29 +196,43 @@
     </section>
   </section>
 
-  <!--····························· Station Details ·····························-->
-  <section id="station" data-position="right">
+  <!--·························· Remove all favorite stations ··························-->
+  <section id="remove-favorite-stations" data-position="back" class="fullscreen">
+    <form role="dialog" data-type="confirm">
+      <section>
+        <h1>Confirmación</h1><!-- this heading is optional -->
+        <p>¿Está seguro de eliminar sus estaciones favoritas?</p>
+      </section>
+      <menu>
+        <button>Cancelar</button>
+        <button class="danger" formaction="javascript:localStorage.removeItem('myfavoritestations');">Borrar todo</button>
+      </menu>
+    </form>
+  </section>
+
+  <!--····························· Favorite Stations ·····························-->
+  <section id="favorite-stations" data-position="right">
      <section role="region">
       <header class="fixed">
-        <a id="btn-station-back" href="#"><span class="icon icon-close">close</span></a>
-        <h1>Datos de estación</h1>
+        <a id="btn-favorite-back" href="#"><span class="icon icon-back">back</span></a>
+        <h1>Estaciones Favoritas</h1>
       </header>
       <article class="content scrollable header">
-        <section data-type="list" id="station-details">
+        <section data-type="list" id="list-of-favorite-stations">
         </section>
       </article>
     </section>
   </section>
 
-  <!--····························· Routes ·····························-->
-  <section id="routes" data-position="right">
+  <!--····························· Station Details ·····························-->
+  <section id="station" data-position="right">
      <section role="region">
       <header class="fixed">
-        <a id="btn-routes-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Rutas</h1>
+        <a id="btn-station-back" href="#"><span class="icon icon-back">back</span></a>
+        <h1>Datos de estación</h1>
       </header>
       <article class="content scrollable header">
-        <section data-type="list" id="list-of-routes">
+        <section data-type="list" id="station-details">
         </section>
       </article>
     </section>
@@ -368,29 +306,57 @@ var transportationData = {
 };
 
     //stations
-    var htmlstations = "";
-    htmlstations = "<header>Title</header><ul>";
-    var numberstations = transportationData.stations.items.length;
-    for (var i=0; i<numberstations; i++)
-    {
-		htmlstations += "<li><a href='javascript:showstation("+i+",transportationData)'><p>"+transportationData.stations.items[i].name+"</p></a></li>";
-	}
-	htmlstations += "</ul>";
-    
-    document.querySelector('#list-of-stations').innerHTML = htmlstations;
-    
-    document.querySelector('#btn-stations').addEventListener ('click', function () {
-      document.querySelector('#stations').className = 'current';
-    });
-    document.querySelector('#btn-stations-back').addEventListener ('click', function () {
+      document.querySelector('#btn-stations-back').addEventListener ('click', function () {
       document.querySelector('#stations').className = 'right';
-    });
+      document.querySelector('[data-position="current"]').className = 'current';
+    });	
     
+      document.querySelector('#btn-station-back').addEventListener ('click', function () {
+        document.querySelector('#station').className = 'right';
+        document.querySelector('[data-position="current"]').className = 'current';
+      });
+      
+		document.querySelector('#remove-favorite-stations').addEventListener ('click', function () {
+        this.className = 'fade-out';
+		});
+		
+      document.querySelector('#btn-favorite-back').addEventListener ('click', function () {
+      document.querySelector('#favorite-stations').className = 'right';
+      document.querySelector('[data-position="current"]').className = 'current';
+      });
+    
+    function showstations()
+    {
+      var htmlstations = "";
+      htmlstations = "<header>Ruta troncal</header><ul>";
+      var numberstations = transportationData.stations.items.length;
+      for (var i=0; i<numberstations; i++)
+      {
+        htmlstations += "<li><a href='javascript:showstation("+i+",transportationData)'>";
+        htmlstations += "<aside class='icon comms-icon contacts-location'></aside>";
+        htmlstations += "<p>"+transportationData.stations.items[i].name+"</p></a></li>";
+      }
+      htmlstations += "</ul>";
+      document.querySelector('#list-of-stations').innerHTML = htmlstations;
+      
+      document.querySelector('#stations').className = 'current';/*
+      document.querySelector('#btn-stations-back').addEventListener ('click', function () {
+      document.querySelector('#stations').className = 'right';
+    });*/
+	}
+	
     function showstation(stationselected,transportationData)
     {
 	  var htmlstation = "";
-      htmlstation += "<header>"+transportationData.stations.items[stationselected].name+"</header>";
-      htmlstation += "<li><p>"+transportationData.stations.items[stationselected].address+"</p></li>";
+      // htmlstation += "<header>"+transportationData.stations.items[stationselected].name+"</header>";
+      htmlstation += "<ul><li><aside class='icon comms-icon contacts-location'></aside>";
+      htmlstation += "<p>"+transportationData.stations.items[stationselected].name+"</p>";
+      htmlstation += "<p>"+transportationData.stations.items[stationselected].address+"</p>";
+      htmlstation += "</li></ul>";
+      if (stationselected == localStorage.getItem("myfavoritestations"))
+			htmlstation += "<div id='favoritebutton'><a role='button' href='javascript:removefavoritestation("+stationselected+",transportationData)'>Quitar de favoritos</a></div>";
+      else
+            htmlstation += "<div id='favoritebutton'><a role='button' href='javascript:addfavoritestation("+stationselected+",transportationData)'>Añadir a favoritos</a></div>";
       var today = new Date();
       var dayname = "";
       switch (today.getDay()) {
@@ -408,7 +374,7 @@ var transportationData = {
       {
 		if ( (transportationData.routes.items[i].days.indexOf(today.getDay())!==-1)
 		 && (transportationData.routes.items[i].stations.indexOf(stationselected)!==-1) )
-		{ htmlstation += "<li><p>"+transportationData.routes.items[i].name+"</p><p>";
+		{ htmlstation += "<li><aside class='icon comms-icon contacts-link'></aside><p>"+transportationData.routes.items[i].name+"</p><p>";
 		  var numbertimes = transportationData.routes.items[i].times.length;
 		  for (var j=0; j<numbertimes; j++)
 		  { if (j===0)
@@ -424,10 +390,60 @@ var transportationData = {
 	  htmlstation += "</ul>";
       document.querySelector('#station-details').innerHTML = htmlstation;
 	  document.querySelector('#station').className = 'current';
+	  document.querySelector('[data-position="current"]').className = 'left';
+      //if (document.querySelector('#favorite-stations').className == 'current') document.querySelector('#favorite-stations').className = '';
+      /*
       document.querySelector('#btn-station-back').addEventListener ('click', function () {
         document.querySelector('#station').className = 'right';
-      });
+      });*/
     }
+    
+    function addfavoritestation(stationselected,transportationData)
+    {
+      localStorage.setItem("myfavoritestations",stationselected);
+      var htmlbutton = "<a role='button' href='javascript:removefavoritestation("+stationselected+",transportationData)'>Quitar de favoritos</a>";
+      document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
+    }
+    
+    function removefavoritestation(stationselected,transportationData)
+    {
+      localStorage.removeItem("myfavoritestations");
+      var htmlbutton = "<a role='button' href='javascript:addfavoritestation("+stationselected+",transportationData)'>Añadir a favoritos</a>";
+      document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
+    }
+    
+    function showfavoritestations()
+    { 
+      var favoritestation = localStorage.getItem("myfavoritestations");
+      var htmlfavoritestations = "";
+      if (favoritestation)
+      { htmlfavoritestations = "<header>Ruta troncal</header><ul>";
+        htmlfavoritestations += "<li><a href='javascript:showstation("+favoritestation+",transportationData)'>";
+        htmlfavoritestations += "<aside class='icon comms-icon contacts-location'></aside>";
+        htmlfavoritestations += "<p>"+transportationData.stations.items[favoritestation].name+"</p></a></li>";
+        htmlfavoritestations += "</ul>";
+        htmlfavoritestations += "<a role='button' href='javascript:removeallfavorites()'>Borrar todos</a>";
+      }
+      else
+      {
+		htmlfavoritestations = "<header>Ruta troncal</header><ul>";
+        htmlfavoritestations += "<li>No hay estaciones favoritas</li></ul>";
+      }
+      
+      document.querySelector('#list-of-favorite-stations').innerHTML = htmlfavoritestations;
+      document.querySelector('#favorite-stations').className = 'current';/*
+      document.querySelector('#btn-favorite-back').addEventListener ('click', function () {
+      document.querySelector('#favorite-stations').className = 'right';
+      });*/
+    }
+    
+    function removeallfavorites()
+    {
+		document.querySelector('#remove-favorite-stations').className = 'fade-in';/*
+		document.querySelector('#remove-favorite-stations').addEventListener ('click', function () {
+        this.className = 'fade-out';
+		});*/
+	}
     
   </script>
   <script type="text/javascript" src="js/status.js"></script>
