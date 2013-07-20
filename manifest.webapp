@@ -7,5 +7,11 @@
     "name": "Juan Eladio",
     "url": "http://mozilla.pe"
   },
+  "activities" : {
+    type: "webtelephony/number",
+    number: { 
+      regexp:/^[\\d\\s+#*().-]{0,50}$/
+    }
+  },
   "default_locale": "es"
 }

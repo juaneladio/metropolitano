@@ -177,6 +177,18 @@
               <p>Estaciones favoritas</p>
             </a>
           </li>
+          <li>
+            <a href="javascript:showneareststations()">
+			  <aside class='icon comms-icon contacts-sms'></aside>
+              <p>Estación más cercana</p>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:showinformation()">
+			  <aside class='icon comms-icon contacts-sms'></aside>
+              <p>Información del servicio</p>
+            </a>
+          </li>
         </ul>
       </div>
     </article>
@@ -233,6 +245,30 @@
       </header>
       <article class="content scrollable header">
         <section data-type="list" id="station-details">
+        </section>
+      </article>
+    </section>
+  </section>
+  
+  <!--····························· Service information ·····························-->
+  <section id="info" data-position="right">
+     <section role="region">
+      <header class="fixed">
+        <a id="btn-info-back" href="#"><span class="icon icon-back">back</span></a>
+        <h1>Datos de estación</h1>
+      </header>
+      <article class="content scrollable header">
+        <section data-type="list" id="info-details">
+		  <p>Horario de atención</p>
+          <p class="small">De 5:50 a 23:00 horas</p>
+          <p>Tarifas en red Troncal</p>
+          <p class="small">Normal: S/. 2.00<br>Universitario: S/. 1.00 (*)<br>Escolar: S/. 1.00 (*)<br>(*) Con tarjeta preferencial</p>
+          <p>Tarifas en red Alimentadores</p>
+          <p class="small">Normal: S/. 1.00<br>Universitario: S/. 0.50 (*)<br>Escolar: S/. 0.50 (*)<br>(*) Con tarjeta preferencial</p>
+		  <p>Canales Virtuales de atención</p>
+		  <p class="small">Call Center: <a href="tel:+5112039000">(01)2039000</a>
+		  <br>Atención: L-V: 06-22 horas, S-D-F: 07-22 horas
+		  <br>Correo: <a href="mailto:atencionalusuario@protransporte.gob.pe">atencionalusuario@protransporte.gob.pe</a>
         </section>
       </article>
     </section>
@@ -305,25 +341,42 @@ var transportationData = {
 	},
 };
 
+    //info
+      document.querySelector('#btn-info-back').addEventListener ('click', function () {
+      document.querySelector('#info').className = 'right';
+      document.querySelector('[data-position="current"]').className = 'current';
+    });	
+    
     //stations
       document.querySelector('#btn-stations-back').addEventListener ('click', function () {
       document.querySelector('#stations').className = 'right';
       document.querySelector('[data-position="current"]').className = 'current';
     });	
     
+    //station
       document.querySelector('#btn-station-back').addEventListener ('click', function () {
         document.querySelector('#station').className = 'right';
         document.querySelector('[data-position="current"]').className = 'current';
       });
       
+    //removefavoritestations
 		document.querySelector('#remove-favorite-stations').addEventListener ('click', function () {
         this.className = 'fade-out';
 		});
 		
+    //favoritestations
       document.querySelector('#btn-favorite-back').addEventListener ('click', function () {
       document.querySelector('#favorite-stations').className = 'right';
       document.querySelector('[data-position="current"]').className = 'current';
       });
+    
+    function showinformation()
+    {
+      document.querySelector('#info').className = 'current';/*
+      document.querySelector('#btn-info-back').addEventListener ('click', function () {
+      document.querySelector('#info').className = 'right';
+    });*/
+	}
     
     function showstations()
     {
