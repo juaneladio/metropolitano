@@ -2,6 +2,10 @@
   "name": "Metropolitano de Lima",
   "description": "Información de rutas y servicios del Metropolitano de Lima",
   "launch_path": "/index.html",
+  "icons": {
+    "60": "/images/metropolitano_icon_60.png",
+    "128": "/images/metropolitano_icon_128.png"
+  },
   "orientation": ["portrait"],
   "developer": {
     "name": "Juan Eladio",
