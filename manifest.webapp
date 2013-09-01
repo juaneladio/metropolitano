@@ -1,17 +1,11 @@
 {
-  "name": "Metropolitano en Lima",
+  "name": "Metropolitano de Lima",
   "description": "Información de rutas y servicios del Metropolitano de Lima",
   "launch_path": "/index.html",
   "orientation": ["portrait"],
   "developer": {
     "name": "Juan Eladio",
     "url": "http://mozilla.pe"
-  },
-  "activities" : {
-    type: "webtelephony/number",
-    number: { 
-      regexp:/^[\\d\\s+#*().-]{0,50}$/
-    }
   },
   "default_locale": "es"
 }
