@@ -509,6 +509,17 @@ var transportationData = {
     function addfavoritestation(stationselected,transportationData)
     {
       localStorage.setItem("myfavoritestations",stationselected);
+      if ("mozNotification" in navigator){ // FirefoxOS
+      var notification = navigator.mozNotification.createNotification(
+                "Metropolitano de Lima",
+                "Nueva estación favorita"
+            );
+            notification.onshow = function () { setTimeout(notification.close(), 1000); }
+                    notification.show();}
+      else  // Firefox +22
+      { var n = new Notification("Metropolitano de Lima",{body:"Nueva estación favorita"});
+        //n.onshow = function () { setTimeout(n.close, 1000); }
+      }
       var htmlbutton = "<a role='button' href='javascript:removefavoritestation("+stationselected+",transportationData)'>Dejar de ser favorita</a>";
       document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
     }

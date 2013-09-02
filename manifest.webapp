@@ -11,17 +11,18 @@
     "name": "Juan Eladio",
     "url": "http://mozilla.pe"
   },
+  "locales": {
+    "en-US": {
+      "name": "Metropolitano in Lima",
+      "description": "Information in Spanish about routes in a public transportation service in Lima, Perú"
+    }
+  },
   "default_locale": "es",
   "permissions": {
-    "geolocation": {
-      "description": "geolocation"     
-    },
-    "systemXHR": {
-      "description": "json"
-    },
-    "desktop-notification": {
-      "description" : "notifications"
-    }
+    "geolocation": {},
+    "storage": {},
+    "systemXHR": {},
+    "desktop-notification": {}
   },
   "type": "privileged" 
 }
