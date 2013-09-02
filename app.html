@@ -159,6 +159,7 @@
     [data-type="list"] li p {
       white-space: normal;
     }
+    
   </style>
 </head>
 <body>
@@ -223,7 +224,7 @@
     <form role="dialog" data-type="confirm">
       <section>
         <h1>Confirmación</h1><!-- this heading is optional -->
-        <p>¿Está seguro de eliminar sus estaciones favoritas?</p>
+        <p>¿Está seguro de eliminar su estación favorita?</p>
       </section>
       <menu>
         <button>Cancelar</button>
@@ -237,7 +238,7 @@
      <section role="region">
       <header class="fixed">
         <a id="btn-favorite-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Estaciones Favoritas</h1>
+        <h1>Estación Favorita</h1>
       </header>
       <article class="content scrollable header">
         <section data-type="list" id="list-of-favorite-stations">
@@ -422,7 +423,7 @@ var transportationData = {
       document.querySelector('#btn-tweets-back').addEventListener ('click', function () {
       document.querySelector('#tweets').className = 'right';
       document.querySelector('[data-position="current"]').className = 'current';
-    });	
+    });
     
     function showinformation()
     {
@@ -461,9 +462,9 @@ var transportationData = {
       htmlstation += "<p>"+transportationData.stations.items[stationselected].address+"</p>";
       htmlstation += "</li></ul>";
       if (stationselected == localStorage.getItem("myfavoritestations"))
-			htmlstation += "<div id='favoritebutton'><a role='button' href='javascript:removefavoritestation("+stationselected+",transportationData)'>Quitar de favoritos</a></div>";
+			htmlstation += "<div id='favoritebutton'><a role='button' href='javascript:removefavoritestation("+stationselected+",transportationData)'>Dejar de ser favorita</a></div>";
       else
-            htmlstation += "<div id='favoritebutton'><a role='button' href='javascript:addfavoritestation("+stationselected+",transportationData)'>Añadir a favoritos</a></div>";
+            htmlstation += "<div id='favoritebutton'><a role='button' href='javascript:addfavoritestation("+stationselected+",transportationData)'>Fijar como favorita</a></div>";
       var today = new Date();
       var dayname = "";
       switch (today.getDay()) {
@@ -508,14 +509,14 @@ var transportationData = {
     function addfavoritestation(stationselected,transportationData)
     {
       localStorage.setItem("myfavoritestations",stationselected);
-      var htmlbutton = "<a role='button' href='javascript:removefavoritestation("+stationselected+",transportationData)'>Quitar de favoritos</a>";
+      var htmlbutton = "<a role='button' href='javascript:removefavoritestation("+stationselected+",transportationData)'>Dejar de ser favorita</a>";
       document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
     }
     
     function removefavoritestation(stationselected,transportationData)
     {
       localStorage.removeItem("myfavoritestations");
-      var htmlbutton = "<a role='button' href='javascript:addfavoritestation("+stationselected+",transportationData)'>Añadir a favoritos</a>";
+      var htmlbutton = "<a role='button' href='javascript:addfavoritestation("+stationselected+",transportationData)'>Fijar como favorita</a>";
       document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
     }
     
@@ -535,11 +536,11 @@ var transportationData = {
         htmlfavoritestations += "<aside class='icon comms-icon contacts-location'></aside>";
         htmlfavoritestations += "<p>"+transportationData.stations.items[favoritestation].name+"</p></a></li>";
         htmlfavoritestations += "</ul>";
-        htmlfavoritestations += "<a role='button' href='javascript:removeallfavorites()'>Borrar todos</a>";
+        htmlfavoritestations += "<a role='button' href='javascript:removeallfavorites()'>Quitar favorita</a>";
       }
       else
       {
-		htmlfavoritestations = "<ul><li><p>No hay estaciones favoritas</p></li></ul>";
+		htmlfavoritestations = "<ul><li><p>No hay estación favorita</p></li></ul>";
       }
       
       document.querySelector('#list-of-favorite-stations').innerHTML = htmlfavoritestations;
@@ -559,10 +560,12 @@ var transportationData = {
 	
 	function showneareststations()
 	{
+		document.querySelector('#list-of-nearest-stations').innerHTML = "<ul><li><p><progress></progress></p></li></ul>";
+			document.querySelector('#nearest-stations').className = 'current';
 		if ("geolocation" in navigator) {
 			var options = {
 			  enableHighAccuracy: true,
-			  timeout: 5, //5 sec
+			  timeout: 15000, //15 sec
 			  maximumAge: 0
 			};
 
@@ -606,14 +609,14 @@ var transportationData = {
 				htmlneareststations = "<ul><li><p>No se puede determinar estación cercana.</p></li></ul>";
 			  }
 			  document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
-			  document.querySelector('#nearest-stations').className = 'current';
+			  //document.querySelector('#nearest-stations').className = 'current';
 			};
 
 			function error(err) {
 			  //console.warn('ERROR(' + err.code + '): ' + err.message);
 			  var htmlneareststations = "<ul><li><p>No se puede determinar estación cercana.</p></li></ul>";
 			  document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
-			  document.querySelector('#nearest-stations').className = 'current';
+			  //document.querySelector('#nearest-stations').className = 'current';
 			};
 
 			navigator.geolocation.getCurrentPosition(success, error, options);
