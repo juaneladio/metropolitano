@@ -83,16 +83,13 @@
       /* z-index: 100; -> drawer */
     }
     [data-position="back"].fade-in {
-      z-index: 20;
+      z-index: 120;
       animation: fadeIn 0.2s forwards;
       -webkit-animation: fadeIn 0.2s forwards;
     }
     [data-position="back"].fade-out {
       animation: fadeOut 0.2s forwards;
       -webkit-animation: fadeOut 0.2s forwards;
-    }
-    [data-position="back"] iframe {
-      pointer-events: none;
     }
 
     [data-position="edit-mode"] {
@@ -155,6 +152,13 @@
       background: no-repeat right top;
       background-size: 3rem auto;
     }
+    
+    [data-type="list"] li {
+      height: auto;
+    }
+    [data-type="list"] li p {
+      white-space: normal;
+    }
   </style>
 </head>
 <body>
@@ -181,6 +185,12 @@
             <a href="javascript:showneareststations()">
 			  <aside class='icon comms-icon contacts-sms'></aside>
               <p>Estación más cercana</p>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:showtweets()">
+			  <aside class='icon comms-icon contacts-sms'></aside>
+              <p>Alertas de El Metropolitano</p>
             </a>
           </li>
           <li>
@@ -217,7 +227,7 @@
       </section>
       <menu>
         <button>Cancelar</button>
-        <button class="danger" formaction="javascript:localStorage.removeItem('myfavoritestations');">Borrar todo</button>
+        <button class="danger" formaction="javascript:confirmremoveallfavorites()">Borrar todo</button>
       </menu>
     </form>
   </section>
@@ -236,6 +246,20 @@
     </section>
   </section>
 
+  <!--····························· Favorite Stations ·····························-->
+  <section id="nearest-stations" data-position="right">
+     <section role="region">
+      <header class="fixed">
+        <a id="btn-nearest-back" href="#"><span class="icon icon-back">back</span></a>
+        <h1>Estaciones Cercanas</h1>
+      </header>
+      <article class="content scrollable header">
+        <section data-type="list" id="list-of-nearest-stations">
+        </section>
+      </article>
+    </section>
+  </section>
+
   <!--····························· Station Details ·····························-->
   <section id="station" data-position="right">
      <section role="region">
@@ -245,6 +269,20 @@
       </header>
       <article class="content scrollable header">
         <section data-type="list" id="station-details">
+        </section>
+      </article>
+    </section>
+  </section>
+
+  <!--····························· Tweets ·····························-->
+  <section id="tweets" data-position="right">
+     <section role="region">
+      <header class="fixed">
+        <a id="btn-tweets-back" href="#"><span class="icon icon-back">back</span></a>
+        <h1>Alertas de El Metropolitano</h1>
+      </header>
+      <article class="content scrollable header">
+        <section data-type="list" id="list-of-tweets">
         </section>
       </article>
     </section>
@@ -274,6 +312,10 @@
     </section>
   </section>
 
+  <script type="text/javascript" defer src="js/status.js"></script>
+  <script type="text/javascript" defer src="js/codebird-js-2.4.3/sha1.js"></script>
+  <script type="text/javascript" defer src="js/codebird-js-2.4.3/codebird.js"></script>
+  <script type="text/javascript" defer src="js/latlong.js"></script>
   <script>
     
     //metropolitano
@@ -301,7 +343,7 @@ var transportationData = {
 		{ /* 15 */ name: "Tacna", address: "Av. Emancipación cdra 4 y 5 con Av. Tacna cdra 5, Cercado de Lima", coordinatelat: "-12.04633", coordinatelng: "-77.037445", },
 		{ /* 16 */ name: "Jirón de la Unión", address: "Av. Emancipación cdra 1 Jr. de la Unión cdra 6, Cercado de Lima", coordinatelat: "-12.049050", coordinatelng: "-77.033110", },
 		{ /* 17 */ name: "Colmena", address: "Av. Nicolás de Piérola (Colmena) cdra 11 con Jr. Lampa cdra 9, Cercado de Lima", coordinatelat: "2.052725", coordinatelng: "-77.033097", },
-		{ /* 18 */ name: "Central", address: "Parque Los Héroes Navales con Av. Paseo de la República 170, Cercado de Lima", coordinatelat: "-12.057756,-77.035983", },
+		{ /* 18 */ name: "Central", address: "Parque Los Héroes Navales con Av. Paseo de la República 170, Cercado de Lima", coordinatelat: "-12.057756", coordinatelng: "-77.035983", },
 		{ /* 19 */ name: "Estadio Nacional", address: "Av. Paseo de la República cdra 9 con Puente Peatonal, Cercado de Lima/La Victoria", coordinatelat: "-12.068615", coordinatelng: "-77.032185", },
 		{ /* 20 */ name: "Mexico", address: "Av. Paseo de la República cdra 13 con Puente México, Cercado de Lima/La Victoria", coordinatelat: "-12.076835", coordinatelng: "-77.028837", },
 		{ /* 21 */ name: "Canadá", address: "Av. Paseo de la República cdra 19 con Puente Canadá, Lince/La Victoria", coordinatelat: "-12.082416", coordinatelng: "-77.026531", },
@@ -369,6 +411,18 @@ var transportationData = {
       document.querySelector('#favorite-stations').className = 'right';
       document.querySelector('[data-position="current"]').className = 'current';
       });
+		
+    //neareststations
+      document.querySelector('#btn-nearest-back').addEventListener ('click', function () {
+      document.querySelector('#nearest-stations').className = 'right';
+      document.querySelector('[data-position="current"]').className = 'current';
+      });
+    
+    //tweets
+      document.querySelector('#btn-tweets-back').addEventListener ('click', function () {
+      document.querySelector('#tweets').className = 'right';
+      document.querySelector('[data-position="current"]').className = 'current';
+    });	
     
     function showinformation()
     {
@@ -465,12 +519,18 @@ var transportationData = {
       document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
     }
     
+    function confirmremoveallfavorites()
+    {
+		localStorage.removeItem('myfavoritestations');
+		showfavoritestations();
+	}
+    
     function showfavoritestations()
     { 
       var favoritestation = localStorage.getItem("myfavoritestations");
       var htmlfavoritestations = "";
       if (favoritestation)
-      { htmlfavoritestations = "<header>Ruta troncal</header><ul>";
+      { htmlfavoritestations = "<ul>";
         htmlfavoritestations += "<li><a href='javascript:showstation("+favoritestation+",transportationData)'>";
         htmlfavoritestations += "<aside class='icon comms-icon contacts-location'></aside>";
         htmlfavoritestations += "<p>"+transportationData.stations.items[favoritestation].name+"</p></a></li>";
@@ -479,8 +539,7 @@ var transportationData = {
       }
       else
       {
-		htmlfavoritestations = "<header>Ruta troncal</header><ul>";
-        htmlfavoritestations += "<li>No hay estaciones favoritas</li></ul>";
+		htmlfavoritestations = "<ul><li><p>No hay estaciones favoritas</p></li></ul>";
       }
       
       document.querySelector('#list-of-favorite-stations').innerHTML = htmlfavoritestations;
@@ -497,9 +556,158 @@ var transportationData = {
         this.className = 'fade-out';
 		});*/
 	}
+	
+	function showneareststations()
+	{
+		if ("geolocation" in navigator) {
+			var options = {
+			  enableHighAccuracy: true,
+			  timeout: 5, //5 sec
+			  maximumAge: 0
+			};
+
+			function success(pos) {
+			  var crd = pos.coords;
+			  //console.log('Your current position is:');
+			  //alert('Latitude : ' + crd.latitude);
+			  //alert('Longitude: ' + crd.longitude);
+			  //console.log('More or less ' + crd.accuracy + ' meters.');
+			  
+			  var myLatLong = new LatLon(Geo.parseDMS(crd.latitude), Geo.parseDMS(crd.longitude));
+			  var numberstations = transportationData.stations.items.length;
+			  var min_distance;
+			  var neareststation;
+			  for (var i=0; i<numberstations; i++)
+			  {
+				//console.log(transportationData.stations.items[i].coordinatelat+' '+transportationData.stations.items[i].coordinatelng);
+				var current_station = new LatLon(Geo.parseDMS(transportationData.stations.items[i].coordinatelat), Geo.parseDMS(transportationData.stations.items[i].coordinatelng));
+				console.log(myLatLong);
+				var current_distance = myLatLong.distanceTo(current_station);
+				console.log(current_distance);
+				if (i==0)
+				{
+				  min_distance = current_distance;
+				  neareststation = 0;
+				}
+				if (parseFloat(current_distance) < parseFloat(min_distance))
+				{
+				  neareststation = i;
+				}
+			  }
+			  var htmlneareststations = "";
+			  if (neareststation)
+			  { htmlneareststations = "<ul>";
+				htmlneareststations += "<li><a href='javascript:showstation("+neareststation+",transportationData)'>";
+				htmlneareststations += "<aside class='icon comms-icon contacts-location'></aside>";
+				htmlneareststations += "<p>"+transportationData.stations.items[neareststation].name+"</p><p>"+min_distance +"Km aprox.</p></a></li>";
+				htmlneareststations += "</ul>";
+			  }
+			  else
+			  {
+				htmlneareststations = "<ul><li><p>No se puede determinar estación cercana.</p></li></ul>";
+			  }
+			  document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
+			  document.querySelector('#nearest-stations').className = 'current';
+			};
+
+			function error(err) {
+			  //console.warn('ERROR(' + err.code + '): ' + err.message);
+			  
+			  var crd = [];
+			  crd.latitude = "-11.995205";
+			  crd.longitude = "-77.084763";
+			  var myLatLong = new LatLon(Geo.parseDMS(crd.latitude), Geo.parseDMS(crd.longitude));
+			  var numberstations = transportationData.stations.items.length;
+			  var min_distance;
+			  var neareststation;
+			  for (var i=0; i<numberstations; i++)
+			  {
+				//console.log(transportationData.stations.items[i].coordinatelat+' '+transportationData.stations.items[i].coordinatelng);
+				var current_station = new LatLon(Geo.parseDMS(transportationData.stations.items[i].coordinatelat), Geo.parseDMS(transportationData.stations.items[i].coordinatelng));
+				console.log(myLatLong);
+				var current_distance = myLatLong.distanceTo(current_station);
+				console.log(current_distance);
+				if (i==0)
+				{
+				  min_distance = current_distance;
+				  neareststation = 0;
+				}
+				if (parseFloat(current_distance) < parseFloat(min_distance))
+				{
+				  neareststation = i;
+				}
+			  }
+			  var htmlneareststations = "";
+			  if (neareststation)
+			  { htmlneareststations = "<ul>";
+				htmlneareststations += "<li><a href='javascript:showstation("+neareststation+",transportationData)'>";
+				htmlneareststations += "<aside class='icon comms-icon contacts-location'></aside>";
+				htmlneareststations += "<p>"+transportationData.stations.items[neareststation].name+"</p><p>"+min_distance +"Km aprox.</p></a></li>";
+				htmlneareststations += "</ul>";
+			  }
+			  else
+			  {
+				htmlneareststations = "<ul><li><p>No se puede determinar estación cercana.</p></li></ul>";
+			  }
+			  document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
+			  document.querySelector('#nearest-stations').className = 'current';
+			};
+
+			navigator.geolocation.getCurrentPosition(success, error, options);
+		} else {
+		/* geolocation IS NOT available */
+		}
+	}
+	
+	function showtweets()
+	{
+		if (!navigator.onLine) {
+			document.querySelector('#list-of-tweets').innerHTML = "<ul><li><p>Offline!</p></li></ul>";
+			document.querySelector('#tweets').className = 'current';
+		}
+		else {
+			document.querySelector('#list-of-tweets').innerHTML = "<ul><li><p><progress></progress></p></li></ul>";
+			document.querySelector('#tweets').className = 'current';
+			var cb = new Codebird;
+			cb.setConsumerKey("SARefZOgzpapJ53OkZVw", "TskSVBlbiwC8YAoE5A8eCl95uSJug0GISQKvFBbC88I");
+			cb.__call(
+				"search_tweets",
+				"q=from:MetropolitanoPT",
+				function (reply) {
+					console.log(reply);
+					// If there are answers
+					reply_length = reply.statuses.length;
+					if (reply_length > 0)
+					{ 
+					  // Find out if there are new tweets
+					  // If so, push a notification with the text of the last tweet
+					  /*console.log(reply.search_metadata.max_id_str);
+					  if (localStorage.getItem("search_max_id") !== reply.search_metadata.max_id_str)
+					  {
+						alert("MetropolitanoPT: "+ reply.statuses[0].text);
+						localStorage.setItem("search_max_id",reply.search_metadata.max_id_str);
+					  }
+					  console.log()*/
+					  var htmltweets = "";
+					  htmltweets = "<ul>";
+					  for (var i=0; i < reply_length; i++)
+					  { console.log(reply.statuses[i].text);
+					    if (reply.statuses[i].text.charAt(0)!=='@')
+					    { htmltweets += "<li><p>MetropolitanoPT</p>";
+						  htmltweets += "<p>"+reply.statuses[i].text+"</p></a></li>";
+						}
+					  }
+					  htmltweets += "</ul>";
+					  document.querySelector('#list-of-tweets').innerHTML = htmltweets;
+					  
+					  document.querySelector('#tweets').className = 'current';
+					}
+				},
+			true // this parameter required
+			);
+		}
+	}
     
   </script>
-  <script type="text/javascript" src="js/status.js"></script>
 </body>
 </html>
-

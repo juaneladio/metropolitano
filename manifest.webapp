@@ -11,5 +11,17 @@
     "name": "Juan Eladio",
     "url": "http://mozilla.pe"
   },
-  "default_locale": "es"
+  "default_locale": "es",
+  "permissions": {
+    "geolocation": {
+      "description": "geolocation"     
+    },
+    "systemXHR": {
+      "description": "json"
+    },
+    "desktop-notification": {
+      "description" : "notifications"
+    }
+  },
+  "type": "privileged" 
 }
