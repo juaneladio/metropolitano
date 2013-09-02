@@ -164,7 +164,7 @@
 <body>
   <section role="region" id="index" data-position="current">
     <header class="fixed">
-      <h1>Metropolitano en Lima<em>(Offline)</em></h1>
+      <h1>Metropolitano de Lima</h1>
     </header>
     <article class="content scrollable header">
       <div data-type="list">
@@ -177,26 +177,26 @@
           </li>
           <li>
             <a href="javascript:showfavoritestations()">
-			  <aside class='icon comms-icon contacts-sms'></aside>
+			  <aside class='icon comms-icon contacts-favorite'></aside>
               <p>Estación favorita</p>
             </a>
           </li>
           <li>
             <a href="javascript:showneareststations()">
-			  <aside class='icon comms-icon contacts-sms'></aside>
+			  <aside class='icon comms-icon contacts-location'></aside>
               <p>Estación más cercana</p>
             </a>
           </li>
           <li>
             <a href="javascript:showtweets()">
-			  <aside class='icon comms-icon contacts-sms'></aside>
-              <p>Alertas de El Metropolitano</p>
+			  <aside class='icon comms-icon contacts-twitter'></aside>
+              <p>Alertas en Twitter</p>
             </a>
           </li>
           <li>
             <a href="javascript:showinformation()">
-			  <aside class='icon comms-icon contacts-sms'></aside>
-              <p>Información del servicio</p>
+			  <aside class='icon comms-icon contacts-phone'></aside>
+              <p>Información general</p>
             </a>
           </li>
         </ul>
@@ -435,7 +435,7 @@ var transportationData = {
     function showstations()
     {
       var htmlstations = "";
-      htmlstations = "<header>Ruta troncal</header><ul>";
+      htmlstations = "";
       var numberstations = transportationData.stations.items.length;
       for (var i=0; i<numberstations; i++)
       {
@@ -579,7 +579,6 @@ var transportationData = {
 			  var neareststation;
 			  for (var i=0; i<numberstations; i++)
 			  {
-				//console.log(transportationData.stations.items[i].coordinatelat+' '+transportationData.stations.items[i].coordinatelng);
 				var current_station = new LatLon(Geo.parseDMS(transportationData.stations.items[i].coordinatelat), Geo.parseDMS(transportationData.stations.items[i].coordinatelng));
 				console.log(myLatLong);
 				var current_distance = myLatLong.distanceTo(current_station);
@@ -612,43 +611,7 @@ var transportationData = {
 
 			function error(err) {
 			  //console.warn('ERROR(' + err.code + '): ' + err.message);
-			  
-			  var crd = [];
-			  crd.latitude = "-11.995205";
-			  crd.longitude = "-77.084763";
-			  var myLatLong = new LatLon(Geo.parseDMS(crd.latitude), Geo.parseDMS(crd.longitude));
-			  var numberstations = transportationData.stations.items.length;
-			  var min_distance;
-			  var neareststation;
-			  for (var i=0; i<numberstations; i++)
-			  {
-				//console.log(transportationData.stations.items[i].coordinatelat+' '+transportationData.stations.items[i].coordinatelng);
-				var current_station = new LatLon(Geo.parseDMS(transportationData.stations.items[i].coordinatelat), Geo.parseDMS(transportationData.stations.items[i].coordinatelng));
-				console.log(myLatLong);
-				var current_distance = myLatLong.distanceTo(current_station);
-				console.log(current_distance);
-				if (i==0)
-				{
-				  min_distance = current_distance;
-				  neareststation = 0;
-				}
-				if (parseFloat(current_distance) < parseFloat(min_distance))
-				{
-				  neareststation = i;
-				}
-			  }
-			  var htmlneareststations = "";
-			  if (neareststation)
-			  { htmlneareststations = "<ul>";
-				htmlneareststations += "<li><a href='javascript:showstation("+neareststation+",transportationData)'>";
-				htmlneareststations += "<aside class='icon comms-icon contacts-location'></aside>";
-				htmlneareststations += "<p>"+transportationData.stations.items[neareststation].name+"</p><p>"+min_distance +"Km aprox.</p></a></li>";
-				htmlneareststations += "</ul>";
-			  }
-			  else
-			  {
-				htmlneareststations = "<ul><li><p>No se puede determinar estación cercana.</p></li></ul>";
-			  }
+			  var htmlneareststations = "<ul><li><p>No se puede determinar estación cercana.</p></li></ul>";
 			  document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
 			  document.querySelector('#nearest-stations').className = 'current';
 			};
