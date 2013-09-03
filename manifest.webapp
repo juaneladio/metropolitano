@@ -1,7 +1,8 @@
 {
   "name": "Metropolitano de Lima",
   "description": "Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú.",
-  "launch_path": "/index.html",
+  "version": "1.0.1",
+  "launch_path": "/app.html",
   "icons": {
     "60": "/images/metropolitano_icon_60.png",
     "128": "/images/metropolitano_icon_128.png"
@@ -19,10 +20,18 @@
   },
   "default_locale": "es",
   "permissions": {
-    "geolocation": {},
-    "storage": {},
-    "systemXHR": {},
-    "desktop-notification": {}
+    "geolocation": {
+      "description": "Geolocation"
+    },
+    "storage": {
+      "description": "Local Storage"
+    },
+    "systemXHR":{
+      "description": "JSON"
+    },
+    "desktop-notification":{
+      "description": "Notifications"
+    }
   },
-  "type": "privileged" 
+  "type": "privileged"
 }

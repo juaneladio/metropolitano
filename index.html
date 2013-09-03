@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>Metropolitano de Lima</title>
+  <meta name="description" content="Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú.">
   <script>
     // Trun it to false to always install 'normal' package
     var supportHIDPI = false;
     var isFFOS = ("mozApps" in navigator && navigator.userAgent.search("Mobile") != -1);
 
-    /*if ( isFFOS ) {
+    if ( isFFOS ) {
       var manifestUrl = 'http://juaneladio.github.io/metropolitano/package/package.manifest';
       var req = navigator.mozApps.installPackage(manifestUrl);
       req.onsuccess = function() {
@@ -18,10 +19,10 @@
         console.log(this.error.name);
       };
 
-    } else {*/
+    } else {
       window.location.href = "app.html"
-    /*}*/
-
+    }
+    
   </script>
 </head>
 <body>
