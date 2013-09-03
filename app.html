@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no" />
   <title>Metropolitano de Lima</title>
+  <meta name="description" content="Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú.">
   <!-- Building blocks -->
   <link rel="stylesheet" href="style/action_menu.css">
   <link rel="stylesheet" href="style/buttons.css">
@@ -159,7 +159,9 @@
     [data-type="list"] li p {
       white-space: normal;
     }
-    
+    section[role="region"] > .content [data-type="list"] li > p {
+      margin: 0px 1.5rem 0px 3.5rem;
+    }
   </style>
 </head>
 <body>
@@ -172,32 +174,38 @@
         <ul>
           <li>
             <a href="javascript:showstations()">
-			  <aside class='icon comms-icon contacts-sms'></aside>
+              <aside class='icon comms-icon contacts-sms'></aside>
               <p>Estaciones principales</p>
             </a>
           </li>
           <li>
             <a href="javascript:showfavoritestations()">
-			  <aside class='icon comms-icon contacts-favorite'></aside>
+              <aside class='icon comms-icon contacts-favorite'></aside>
               <p>Estación favorita</p>
             </a>
           </li>
           <li>
             <a href="javascript:showneareststations()">
-			  <aside class='icon comms-icon contacts-location'></aside>
+              <aside class='icon comms-icon contacts-location'></aside>
               <p>Estación más cercana</p>
             </a>
           </li>
           <li>
             <a href="javascript:showtweets()">
-			  <aside class='icon comms-icon contacts-twitter'></aside>
+              <aside class='icon comms-icon contacts-twitter'></aside>
               <p>Alertas en Twitter</p>
             </a>
           </li>
           <li>
             <a href="javascript:showinformation()">
-			  <aside class='icon comms-icon contacts-phone'></aside>
+              <aside class='icon comms-icon contacts-phone'></aside>
               <p>Información general</p>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:showabout()">
+              <aside class='icon comms-icon contacts-email'></aside>
+              <p>Acerca de la aplicación</p>
             </a>
           </li>
         </ul>
@@ -210,7 +218,7 @@
      <section role="region">
       <header class="fixed">
         <a id="btn-stations-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Estaciones</h1>
+        <h1>Estaciones principales</h1>
       </header>
       <article class="content scrollable header">
         <section data-type="list" id="list-of-stations">
@@ -228,17 +236,17 @@
       </section>
       <menu>
         <button>Cancelar</button>
-        <button class="danger" formaction="javascript:confirmremoveallfavorites()">Borrar todo</button>
+        <button class="danger" formaction="javascript:confirmremoveallfavorites()">Borrar estación</button>
       </menu>
     </form>
   </section>
 
-  <!--····························· Favorite Stations ·····························-->
+  <!--····························· Favorite Station ·····························-->
   <section id="favorite-stations" data-position="right">
      <section role="region">
       <header class="fixed">
         <a id="btn-favorite-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Estación Favorita</h1>
+        <h1>Estación favorita</h1>
       </header>
       <article class="content scrollable header">
         <section data-type="list" id="list-of-favorite-stations">
@@ -247,12 +255,12 @@
     </section>
   </section>
 
-  <!--····························· Favorite Stations ·····························-->
+  <!--····························· Nearest Station ·····························-->
   <section id="nearest-stations" data-position="right">
      <section role="region">
       <header class="fixed">
         <a id="btn-nearest-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Estaciones Cercanas</h1>
+        <h1>Estación más cercana</h1>
       </header>
       <article class="content scrollable header">
         <section data-type="list" id="list-of-nearest-stations">
@@ -280,7 +288,7 @@
      <section role="region">
       <header class="fixed">
         <a id="btn-tweets-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Alertas de El Metropolitano</h1>
+        <h1>Alertas en Twitter</h1>
       </header>
       <article class="content scrollable header">
         <section data-type="list" id="list-of-tweets">
@@ -294,20 +302,43 @@
      <section role="region">
       <header class="fixed">
         <a id="btn-info-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Datos de estación</h1>
+        <h1>Información general</h1>
       </header>
       <article class="content scrollable header">
         <section data-type="list" id="info-details">
-		  <p>Horario de atención</p>
+          <p>Horario de atención</p>
           <p class="small">De 5:50 a 23:00 horas</p>
           <p>Tarifas en red Troncal</p>
           <p class="small">Normal: S/. 2.00<br>Universitario: S/. 1.00 (*)<br>Escolar: S/. 1.00 (*)<br>(*) Con tarjeta preferencial</p>
           <p>Tarifas en red Alimentadores</p>
           <p class="small">Normal: S/. 1.00<br>Universitario: S/. 0.50 (*)<br>Escolar: S/. 0.50 (*)<br>(*) Con tarjeta preferencial</p>
-		  <p>Canales Virtuales de atención</p>
-		  <p class="small">Call Center: <a href="tel:+5112039000">(01)2039000</a>
-		  <br>Atención: L-V: 06-22 horas, S-D-F: 07-22 horas
-		  <br>Correo: <a href="mailto:atencionalusuario@protransporte.gob.pe">atencionalusuario@protransporte.gob.pe</a>
+          <p>Canales Virtuales de atención</p>
+          <p class="small">Call Center: <a href="tel:+5112039000">(01)2039000</a>
+          <br>Atención: L-V: 06-22 horas, S-D-F: 07-22 horas
+          <br>Correo: <a href="mailto:atencionalusuario@protransporte.gob.pe">atencionalusuario@protransporte.gob.pe</a>
+        </section>
+      </article>
+    </section>
+  </section>
+  
+  <!--····························· About information ·····························-->
+  <section id="about" data-position="right">
+     <section role="region">
+      <header class="fixed">
+        <a id="btn-about-back" href="#"><span class="icon icon-back">back</span></a>
+        <h1>Acerca de la aplicación</h1>
+      </header>
+      <article class="content scrollable header">
+        <section data-type="list" id="info-details">
+          <p>Importante</p>
+          <p class="small">Ni esta aplicación ni su autor guardan relación con la Municipalidad de Lima.</p>
+          <p>Autor</p>
+          <p class="small"><a href="https://reps.mozilla.org/u/jesanchez/" target="_blank">Juan Eladio Sánchez Rosas</a><br>(<a href="http://mozilla.pe/" target="_blank">Mozilla Perú</a>)</p>
+          <p>Código de la aplicación</p>
+          <p class="small">Proyecto y peticiones <a href="https://github.com/juaneladio/metropolitano">GitHub</a>.</p>
+          <p>Transporte en Lima</p>
+          <p class="small">Otra aplicación de transporte en Lima: 
+          <br>- <a href="https://marketplace.firefox.com/app/subealmetrodelima/" target="_blank">Sube al Metro de Lima</a></p>
         </section>
       </article>
     </section>
@@ -319,12 +350,11 @@
   <script type="text/javascript" defer src="js/latlong.js"></script>
   <script>
     
-    //metropolitano
+// A. Datos generales del sistema de transporte
     
 var transportationData = {
 	stations: {
-		name: "Estaciones",
-		description: "Busca tu estación",
+		name: "Estaciones principales",
 		items: [
 		{ /* 0 */ name: "Naranjal", address: "Av. Túpac Amaru cdra 45 con Av. Chinchaysuyo cdra 1 - Independencia", coordinatelat: "-11.982013", coordinatelng: "-77.058663", },
 		{ /* 1 */ name: "Izaguirre", address: "Av. Túpac Amaru cdra 37 con Av. C Izaguirre cdra 1 - Independencia", coordinatelat: "-11.988667", coordinatelng: "-77.056915", },
@@ -367,8 +397,7 @@ var transportationData = {
 		]
 	},
 	routes: {
-		name: "Rutas",
-		description: "Rutas disponibles",
+		name: "Rutas disponibles",
 		items: [
 		{ name: "Regular A", days: [0,1,2,3,4,5,6], times: ["0520","2200"], stations: [0,1,2,3,4,5,6,7,8,9,10,11,15,16,17,18], },
 		{ name: "Regular B", days: [0,1,2,3,4,5,6], times: ["0520","2200"], stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
@@ -384,307 +413,305 @@ var transportationData = {
 	},
 };
 
-    //info
-      document.querySelector('#btn-info-back').addEventListener ('click', function () {
-      document.querySelector('#info').className = 'right';
-      document.querySelector('[data-position="current"]').className = 'current';
-    });	
+// B. Saltos hacia atrás en páginas de la aplicación
+
+  //info
+  document.querySelector('#btn-info-back').addEventListener ('click', function () {
+    document.querySelector('#info').className = 'right';
+    document.querySelector('[data-position="current"]').className = 'current';
+  });
+  //about
+  document.querySelector('#btn-about-back').addEventListener ('click', function () {
+    document.querySelector('#about').className = 'right';
+    document.querySelector('[data-position="current"]').className = 'current';
+  });
+  //stations
+  document.querySelector('#btn-stations-back').addEventListener ('click', function () {
+    document.querySelector('#stations').className = 'right';
+    document.querySelector('[data-position="current"]').className = 'current';
+  });
+  //station
+  document.querySelector('#btn-station-back').addEventListener ('click', function () {
+    document.querySelector('#station').className = 'right';
+    document.querySelector('[data-position="current"]').className = 'current';
+  });
+  //removefavoritestations
+  document.querySelector('#remove-favorite-stations').addEventListener ('click', function () {
+    this.className = 'fade-out';
+  });
+  //favoritestations
+  document.querySelector('#btn-favorite-back').addEventListener ('click', function () {
+    document.querySelector('#favorite-stations').className = 'right';
+    document.querySelector('[data-position="current"]').className = 'current';
+  });
+  //neareststations
+  document.querySelector('#btn-nearest-back').addEventListener ('click', function () {
+    document.querySelector('#nearest-stations').className = 'right';
+    document.querySelector('[data-position="current"]').className = 'current';
+  });
+  //tweets
+  document.querySelector('#btn-tweets-back').addEventListener ('click', function () {
+    document.querySelector('#tweets').className = 'right';
+    document.querySelector('[data-position="current"]').className = 'current';
+  });
     
-    //stations
-      document.querySelector('#btn-stations-back').addEventListener ('click', function () {
-      document.querySelector('#stations').className = 'right';
-      document.querySelector('[data-position="current"]').className = 'current';
-    });	
-    
-    //station
-      document.querySelector('#btn-station-back').addEventListener ('click', function () {
-        document.querySelector('#station').className = 'right';
-        document.querySelector('[data-position="current"]').className = 'current';
-      });
-      
-    //removefavoritestations
-		document.querySelector('#remove-favorite-stations').addEventListener ('click', function () {
-        this.className = 'fade-out';
-		});
-		
-    //favoritestations
-      document.querySelector('#btn-favorite-back').addEventListener ('click', function () {
-      document.querySelector('#favorite-stations').className = 'right';
-      document.querySelector('[data-position="current"]').className = 'current';
-      });
-		
-    //neareststations
-      document.querySelector('#btn-nearest-back').addEventListener ('click', function () {
-      document.querySelector('#nearest-stations').className = 'right';
-      document.querySelector('[data-position="current"]').className = 'current';
-      });
-    
-    //tweets
-      document.querySelector('#btn-tweets-back').addEventListener ('click', function () {
-      document.querySelector('#tweets').className = 'right';
-      document.querySelector('[data-position="current"]').className = 'current';
-    });
-    
-    function showinformation()
-    {
-      document.querySelector('#info').className = 'current';/*
-      document.querySelector('#btn-info-back').addEventListener ('click', function () {
-      document.querySelector('#info').className = 'right';
-    });*/
+// C. Funciones generales
+
+  function makeLink(text) // this REGEX converts http(s) links that are embedded in the tweet text into real hyperlinks.
+  {  
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;  
+    return text.replace(exp,"<a href='$1' target='_blank'>$1</a>");
+  }
+
+// D. Generadores de contenido para páginas 'dinámicas'
+
+  function showinformation()
+  {
+    document.querySelector('#info').className = 'current';
 	}
-    
-    function showstations()
-    {
-      var htmlstations = "";
-      htmlstations = "";
-      var numberstations = transportationData.stations.items.length;
-      for (var i=0; i<numberstations; i++)
-      {
-        htmlstations += "<li><a href='javascript:showstation("+i+",transportationData)'>";
-        htmlstations += "<aside class='icon comms-icon contacts-location'></aside>";
-        htmlstations += "<p>"+transportationData.stations.items[i].name+"</p></a></li>";
-      }
-      htmlstations += "</ul>";
-      document.querySelector('#list-of-stations').innerHTML = htmlstations;
-      
-      document.querySelector('#stations').className = 'current';/*
-      document.querySelector('#btn-stations-back').addEventListener ('click', function () {
-      document.querySelector('#stations').className = 'right';
-    });*/
+  
+  function showabout()
+  {
+    document.querySelector('#about').className = 'current';
 	}
-	
-    function showstation(stationselected,transportationData)
+  
+  function showstations()
+  {
+    var htmlstations = "<ul>";
+    var numberstations = transportationData.stations.items.length;
+    for (var i=0; i<numberstations; i++)
     {
+      htmlstations += "<li><a href='javascript:showstation("+i+",transportationData)'>";
+      htmlstations += "<aside class='icon comms-icon contacts-location'></aside>";
+      htmlstations += "<p>"+transportationData.stations.items[i].name+"</p></a></li>";
+    }
+    htmlstations += "</ul>";
+    document.querySelector('#list-of-stations').innerHTML = htmlstations;
+    document.querySelector('#stations').className = 'current';
+	}
+  
+  function showstation(stationselected,transportationData)
+  {
 	  var htmlstation = "";
-      // htmlstation += "<header>"+transportationData.stations.items[stationselected].name+"</header>";
-      htmlstation += "<ul><li><aside class='icon comms-icon contacts-location'></aside>";
-      htmlstation += "<p>"+transportationData.stations.items[stationselected].name+"</p>";
-      htmlstation += "<p>"+transportationData.stations.items[stationselected].address+"</p>";
-      htmlstation += "</li></ul>";
-      if (stationselected == localStorage.getItem("myfavoritestations"))
+    htmlstation += "<ul><li><aside class='icon comms-icon contacts-location'></aside>";
+    htmlstation += "<p>"+transportationData.stations.items[stationselected].name+"</p>";
+    htmlstation += "<p>"+transportationData.stations.items[stationselected].address+"</p>";
+    htmlstation += "</li></ul>";
+    if (stationselected == localStorage.getItem("myfavoritestations"))
 			htmlstation += "<div id='favoritebutton'><a role='button' href='javascript:removefavoritestation("+stationselected+",transportationData)'>Dejar de ser favorita</a></div>";
-      else
-            htmlstation += "<div id='favoritebutton'><a role='button' href='javascript:addfavoritestation("+stationselected+",transportationData)'>Fijar como favorita</a></div>";
-      var today = new Date();
-      var dayname = "";
-      switch (today.getDay()) {
-		case 0: dayname = "Domingo"; break
-		case 1: dayname = "Lunes"; break
-		case 2: dayname = "Martes"; break
-		case 3: dayname = "Miércoles"; break
-		case 4: dayname = "Jueves"; break
-		case 5: dayname = "Viernes"; break
-		case 6: dayname = "Sábado"; break
-      }
-      htmlstation += "<header>Servicios hoy "+dayname+"</header><ul>";
-      var numberroutes = transportationData.routes.items.length;
-      for (var i=0; i<numberroutes; i++)
-      {
-		if ( (transportationData.routes.items[i].days.indexOf(today.getDay())!==-1)
-		 && (transportationData.routes.items[i].stations.indexOf(stationselected)!==-1) )
-		{ htmlstation += "<li><aside class='icon comms-icon contacts-link'></aside><p>"+transportationData.routes.items[i].name+"</p><p>";
-		  var numbertimes = transportationData.routes.items[i].times.length;
-		  for (var j=0; j<numbertimes; j++)
-		  { if (j===0)
-		    { htmlstation += ""+transportationData.routes.items[i].times[j].toString()+"-"; }
-		    else if ( (j%2) === 0 )
-		  	{ htmlstation += ";"+transportationData.routes.items[i].times[j]+"-"; }
-            else 
+    else
+      htmlstation += "<div id='favoritebutton'><a role='button' href='javascript:addfavoritestation("+stationselected+",transportationData)'>Fijar como favorita</a></div>";
+    var today = new Date();
+    var dayname = "";
+    switch (today.getDay()) {
+      case 0: dayname = "Domingo"; break
+      case 1: dayname = "Lunes"; break
+      case 2: dayname = "Martes"; break
+      case 3: dayname = "Miércoles"; break
+      case 4: dayname = "Jueves"; break
+      case 5: dayname = "Viernes"; break
+      case 6: dayname = "Sábado"; break
+    }
+    htmlstation += "<header>Servicios hoy "+dayname+"</header><ul>";
+    var numberroutes = transportationData.routes.items.length;
+    for (var i=0; i<numberroutes; i++)
+    {
+      if ( (transportationData.routes.items[i].days.indexOf(today.getDay())!==-1)
+        && (transportationData.routes.items[i].stations.indexOf(stationselected)!==-1) )
+      { htmlstation += "<li><aside class='icon comms-icon contacts-link'></aside><p>"+transportationData.routes.items[i].name+"</p><p>";
+        var numbertimes = transportationData.routes.items[i].times.length;
+        for (var j=0; j<numbertimes; j++)
+        { if (j===0)
+          { htmlstation += ""+transportationData.routes.items[i].times[j].toString()+"-"; }
+          else if ( (j%2) === 0 )
+          { htmlstation += ";"+transportationData.routes.items[i].times[j]+"-"; }
+          else 
 	        { htmlstation += ""+transportationData.routes.items[i].times[j]+""; }
-          }
-		  htmlstation += "</p></li>";
-		}
+        }
+        htmlstation += "</p></li>";
+      }
 	  }
 	  htmlstation += "</ul>";
-      document.querySelector('#station-details').innerHTML = htmlstation;
+    document.querySelector('#station-details').innerHTML = htmlstation;
 	  document.querySelector('#station').className = 'current';
 	  document.querySelector('[data-position="current"]').className = 'left';
-      //if (document.querySelector('#favorite-stations').className == 'current') document.querySelector('#favorite-stations').className = '';
-      /*
-      document.querySelector('#btn-station-back').addEventListener ('click', function () {
-        document.querySelector('#station').className = 'right';
-      });*/
-    }
-    
-    function addfavoritestation(stationselected,transportationData)
-    {
-      localStorage.setItem("myfavoritestations",stationselected);
-      if ("mozNotification" in navigator){ // FirefoxOS
+  }
+  
+  function addfavoritestation(stationselected,transportationData)
+  {
+    localStorage.setItem("myfavoritestations",stationselected);
+    if ("mozNotification" in navigator)
+    { // FirefoxOS
       var notification = navigator.mozNotification.createNotification(
-                "Metropolitano de Lima",
-                "Nueva estación favorita"
-            );
-            notification.onshow = function () { setTimeout(notification.close(), 1000); }
-                    notification.show();}
-      else  // Firefox +22
-      { var n = new Notification("Metropolitano de Lima",{body:"Nueva estación favorita"});
-        //n.onshow = function () { setTimeout(n.close, 1000); }
-      }
-      var htmlbutton = "<a role='button' href='javascript:removefavoritestation("+stationselected+",transportationData)'>Dejar de ser favorita</a>";
-      document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
+        "Metropolitano de Lima",
+        "Nueva estación favorita"
+        );
+      notification.onshow = function () { setTimeout(notification.close(), 1000); }
+                    notification.show();
     }
-    
-    function removefavoritestation(stationselected,transportationData)
-    {
-      localStorage.removeItem("myfavoritestations");
-      var htmlbutton = "<a role='button' href='javascript:addfavoritestation("+stationselected+",transportationData)'>Fijar como favorita</a>";
-      document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
+    else
+    if ("Notification" in navigator)
+    { // Firefox +22
+      var n = new Notification("Metropolitano de Lima",{body:"Nueva estación favorita"});
     }
-    
-    function confirmremoveallfavorites()
-    {
+    var htmlbutton = "<a role='button' href='javascript:removefavoritestation("+stationselected+",transportationData)'>Dejar de ser favorita</a>";
+    document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
+  }
+  
+  function removefavoritestation(stationselected,transportationData)
+  {
+    localStorage.removeItem("myfavoritestations");
+    var htmlbutton = "<a role='button' href='javascript:addfavoritestation("+stationselected+",transportationData)'>Fijar como favorita</a>";
+    document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
+  }
+  
+  function confirmremoveallfavorites()
+  {
 		localStorage.removeItem('myfavoritestations');
 		showfavoritestations();
 	}
-    
-    function showfavoritestations()
-    { 
-      var favoritestation = localStorage.getItem("myfavoritestations");
-      var htmlfavoritestations = "";
-      if (favoritestation)
-      { htmlfavoritestations = "<ul>";
-        htmlfavoritestations += "<li><a href='javascript:showstation("+favoritestation+",transportationData)'>";
-        htmlfavoritestations += "<aside class='icon comms-icon contacts-location'></aside>";
-        htmlfavoritestations += "<p>"+transportationData.stations.items[favoritestation].name+"</p></a></li>";
-        htmlfavoritestations += "</ul>";
-        htmlfavoritestations += "<a role='button' href='javascript:removeallfavorites()'>Quitar favorita</a>";
+  
+  function showfavoritestations()
+  { 
+    var favoritestation = localStorage.getItem("myfavoritestations");
+    var htmlfavoritestations = "";
+    if (favoritestation)
+    { htmlfavoritestations = "<ul>";
+      htmlfavoritestations += "<li><a href='javascript:showstation("+favoritestation+",transportationData)'>";
+      htmlfavoritestations += "<aside class='icon comms-icon contacts-location'></aside>";
+      htmlfavoritestations += "<p>"+transportationData.stations.items[favoritestation].name+"</p></a></li>";
+      htmlfavoritestations += "</ul>";
+      htmlfavoritestations += "<a role='button' href='javascript:removeallfavorites()'>Quitar favorita</a>";
+    }
+    else
+    {
+      htmlfavoritestations = "<ul><li><p>No hay estación favorita</p></li></ul>";
+    }
+    document.querySelector('#list-of-favorite-stations').innerHTML = htmlfavoritestations;
+    document.querySelector('#favorite-stations').className = 'current';
+  }
+  
+  function removeallfavorites()
+  {
+    document.querySelector('#remove-favorite-stations').className = 'fade-in';
+  }
+  
+  function showneareststations()
+  {
+    if (!navigator.onLine)
+    {
+			document.querySelector('#list-of-tweets').innerHTML = "<p class='small'>Usted no está conectado a Internet.</p>";
+			document.querySelector('#tweets').className = 'current';
+		}
+		else
+    {
+			document.querySelector('#list-of-nearest-stations').innerHTML = "<p class='small'>Por favor, espere un momento ... <progress></progress></p>";
+			document.querySelector('#nearest-stations').className = 'current';
+      if ("geolocation" in navigator)
+      {
+        var options = {
+          enableHighAccuracy: true,
+          timeout: 15000, //15 sec
+          maximumAge: 0
+          };
+        function success(pos)
+        {
+          var crd = pos.coords;
+          //console.log('Latitude : ' + crd.latitude);
+          //console.log('Longitude: ' + crd.longitude);
+          //console.log('More or less ' + crd.accuracy + ' meters.');
+          var myLatLong = new LatLon(Geo.parseDMS(crd.latitude), Geo.parseDMS(crd.longitude));
+          var numberstations = transportationData.stations.items.length;
+          var min_distance;
+          var neareststation;
+          for (var i=0; i<numberstations; i++)
+          {
+            var current_station = new LatLon(Geo.parseDMS(transportationData.stations.items[i].coordinatelat), Geo.parseDMS(transportationData.stations.items[i].coordinatelng));
+            //console.log(myLatLong);
+            var current_distance = myLatLong.distanceTo(current_station);
+            //console.log(current_distance);
+            if (i==0)
+            {
+              min_distance = current_distance;
+              neareststation = 0;
+            }
+            if (parseFloat(current_distance) < parseFloat(min_distance))
+            {
+              neareststation = i;
+            }
+          }
+          var htmlneareststations = "";
+          if (neareststation)
+          { htmlneareststations = "<ul>";
+            htmlneareststations += "<li><a href='javascript:showstation("+neareststation+",transportationData)'>";
+            htmlneareststations += "<aside class='icon comms-icon contacts-location'></aside>";
+            htmlneareststations += "<p>"+transportationData.stations.items[neareststation].name+"</p><p>"+min_distance +"Km aprox.</p></a></li>";
+            htmlneareststations += "</ul>";
+          }
+          else
+          {
+            htmlneareststations = "<ul><li><p>No se puede determinar estación cercana.</p></li></ul>";
+          }
+          document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
+        };
+        function error(err)
+        {
+          //console.warn('ERROR(' + err.code + '): ' + err.message);
+          var htmlneareststations = "<p class='small'>Lo sentimos, no se pudo determinar su ubicación.</p>";
+          document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
+        };
+        navigator.geolocation.getCurrentPosition(success, error, options);
       }
       else
       {
-		htmlfavoritestations = "<ul><li><p>No hay estación favorita</p></li></ul>";
+        /* geolocation IS NOT available */
+        var htmlneareststations = "<p class='small'>La geolocalización no está disponible en su equipo.</p>";
+        document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
       }
-      
-      document.querySelector('#list-of-favorite-stations').innerHTML = htmlfavoritestations;
-      document.querySelector('#favorite-stations').className = 'current';/*
-      document.querySelector('#btn-favorite-back').addEventListener ('click', function () {
-      document.querySelector('#favorite-stations').className = 'right';
-      });*/
     }
-    
-    function removeallfavorites()
+	}
+  
+  function showtweets()
+	{
+		if (!navigator.onLine)
     {
-		document.querySelector('#remove-favorite-stations').className = 'fade-in';/*
-		document.querySelector('#remove-favorite-stations').addEventListener ('click', function () {
-        this.className = 'fade-out';
-		});*/
-	}
-	
-	function showneareststations()
-	{
-		document.querySelector('#list-of-nearest-stations').innerHTML = "<ul><li><p><progress></progress></p></li></ul>";
-			document.querySelector('#nearest-stations').className = 'current';
-		if ("geolocation" in navigator) {
-			var options = {
-			  enableHighAccuracy: true,
-			  timeout: 15000, //15 sec
-			  maximumAge: 0
-			};
-
-			function success(pos) {
-			  var crd = pos.coords;
-			  //console.log('Your current position is:');
-			  //alert('Latitude : ' + crd.latitude);
-			  //alert('Longitude: ' + crd.longitude);
-			  //console.log('More or less ' + crd.accuracy + ' meters.');
-			  
-			  var myLatLong = new LatLon(Geo.parseDMS(crd.latitude), Geo.parseDMS(crd.longitude));
-			  var numberstations = transportationData.stations.items.length;
-			  var min_distance;
-			  var neareststation;
-			  for (var i=0; i<numberstations; i++)
-			  {
-				var current_station = new LatLon(Geo.parseDMS(transportationData.stations.items[i].coordinatelat), Geo.parseDMS(transportationData.stations.items[i].coordinatelng));
-				console.log(myLatLong);
-				var current_distance = myLatLong.distanceTo(current_station);
-				console.log(current_distance);
-				if (i==0)
-				{
-				  min_distance = current_distance;
-				  neareststation = 0;
-				}
-				if (parseFloat(current_distance) < parseFloat(min_distance))
-				{
-				  neareststation = i;
-				}
-			  }
-			  var htmlneareststations = "";
-			  if (neareststation)
-			  { htmlneareststations = "<ul>";
-				htmlneareststations += "<li><a href='javascript:showstation("+neareststation+",transportationData)'>";
-				htmlneareststations += "<aside class='icon comms-icon contacts-location'></aside>";
-				htmlneareststations += "<p>"+transportationData.stations.items[neareststation].name+"</p><p>"+min_distance +"Km aprox.</p></a></li>";
-				htmlneareststations += "</ul>";
-			  }
-			  else
-			  {
-				htmlneareststations = "<ul><li><p>No se puede determinar estación cercana.</p></li></ul>";
-			  }
-			  document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
-			  //document.querySelector('#nearest-stations').className = 'current';
-			};
-
-			function error(err) {
-			  //console.warn('ERROR(' + err.code + '): ' + err.message);
-			  var htmlneareststations = "<ul><li><p>No se puede determinar estación cercana.</p></li></ul>";
-			  document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
-			  //document.querySelector('#nearest-stations').className = 'current';
-			};
-
-			navigator.geolocation.getCurrentPosition(success, error, options);
-		} else {
-		/* geolocation IS NOT available */
-		}
-	}
-	
-	function showtweets()
-	{
-		if (!navigator.onLine) {
-			document.querySelector('#list-of-tweets').innerHTML = "<ul><li><p>Offline!</p></li></ul>";
+			document.querySelector('#list-of-tweets').innerHTML = "<p class='small'>Usted no está conectado a Internet.</p>";
 			document.querySelector('#tweets').className = 'current';
 		}
-		else {
-			document.querySelector('#list-of-tweets').innerHTML = "<ul><li><p><progress></progress></p></li></ul>";
+		else
+    {
+			document.querySelector('#list-of-tweets').innerHTML = "<p class='small'>Por favor, espere un momento ... <progress></progress></p>";
 			document.querySelector('#tweets').className = 'current';
 			var cb = new Codebird;
 			cb.setConsumerKey("SARefZOgzpapJ53OkZVw", "TskSVBlbiwC8YAoE5A8eCl95uSJug0GISQKvFBbC88I");
 			cb.__call(
 				"search_tweets",
 				"q=from:MetropolitanoPT",
-				function (reply) {
-					console.log(reply);
+				function (reply)
+        { //console.log(reply);
 					// If there are answers
 					reply_length = reply.statuses.length;
 					if (reply_length > 0)
-					{ 
-					  // Find out if there are new tweets
-					  // If so, push a notification with the text of the last tweet
-					  /*console.log(reply.search_metadata.max_id_str);
-					  if (localStorage.getItem("search_max_id") !== reply.search_metadata.max_id_str)
-					  {
-						alert("MetropolitanoPT: "+ reply.statuses[0].text);
-						localStorage.setItem("search_max_id",reply.search_metadata.max_id_str);
-					  }
-					  console.log()*/
+					{
 					  var htmltweets = "";
 					  htmltweets = "<ul>";
 					  for (var i=0; i < reply_length; i++)
-					  { console.log(reply.statuses[i].text);
+					  { //console.log(reply.statuses[i].text);
 					    if (reply.statuses[i].text.charAt(0)!=='@')
-					    { htmltweets += "<li><p>MetropolitanoPT</p>";
-						  htmltweets += "<p>"+reply.statuses[i].text+"</p></a></li>";
-						}
+					    {
+                htmltweets += "<li><aside class='icon comms-icon contacts-twitter'></aside><p>MetropolitanoPT</p>";
+                htmltweets += '<p class="small">'+makeLink(reply.statuses[i].text)+"</p></a></li>";
+              }
 					  }
 					  htmltweets += "</ul>";
 					  document.querySelector('#list-of-tweets').innerHTML = htmltweets;
-					  
-					  document.querySelector('#tweets').className = 'current';
 					}
 				},
-			true // this parameter required
+        true // this parameter required by Codebird
 			);
 		}
 	}
-    
+  
   </script>
 </body>
 </html>
