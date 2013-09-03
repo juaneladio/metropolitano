@@ -1,6 +1,6 @@
 {
   "name": "Metropolitano de Lima",
-  "description": "Información de rutas y servicios del Metropolitano de Lima",
+  "description": "Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú.",
   "launch_path": "/index.html",
   "icons": {
     "60": "/images/metropolitano_icon_60.png",
@@ -14,7 +14,7 @@
   "locales": {
     "en-US": {
       "name": "Metropolitano in Lima",
-      "description": "Information in Spanish about routes in a public transportation service in Lima, Perú"
+      "description": "Information in Spanish about routes in Metropolitano, a public transportation service in Lima, Perú."
     }
   },
   "default_locale": "es",
