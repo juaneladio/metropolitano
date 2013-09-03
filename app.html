@@ -570,12 +570,12 @@ var transportationData = {
     { 
       var servicealreadylisted = false;
       var numberdirections = transportationData.routes.services[i].directions.length;
-      console.log('Numberdirections: '+numberdirections);
       for (var j=0; j<numberdirections; j++)
       { 
         var servicewithcoincidences = false;
         if ( (transportationData.routes.services[i].directions[j].days.indexOf(today.getDay())!==-1)
-          )
+          && (transportationData.routes.services[i].directions[j].stations.indexOf(stationselected)!==-1)
+          ) // If today this direction is available, and this direction pass through this station
         {
           servicewithcoincidences = true;
           if (!servicealreadylisted)
