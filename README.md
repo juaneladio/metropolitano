@@ -18,6 +18,8 @@ Archivos importantes:
 * js/applicationScript.js: código JavaScript requerido para el funcionamiento de la aplicación. Incluye el código para el intercambio entre páginas y la generación dinámica de las mismas.
 * manifest.webapp: Archivo manifiesto con la información general de la aplicación, utilizado para identificar la aplicación y los permisos que requiere en el Firefox Marketplace.
 
+Librerías adicionales: codebird.js y latlong.js.
+
 ¿Sugerencias?
 -------------
 
