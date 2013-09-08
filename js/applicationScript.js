@@ -363,7 +363,7 @@
               if (reply.statuses[i].text.charAt(0)!=='@')
               {
                 htmltweets += '<li><aside class="icon comms-icon contacts-twitter"></aside><p>'+twitterAccount+"</p>";
-                htmltweets += '<p class="small">'+makeLink(reply.statuses[i].text)+"</p></a></li>";
+                htmltweets += '<p class="small">'+makeLink(reply.statuses[i].text)+"</p></li>";
               }
             }
             htmltweets += "</ul>";
