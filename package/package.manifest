@@ -2,7 +2,7 @@
   "name": "Metropolitano de Lima",
   "description": "Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú.",
   "package_path": "http://juaneladio.github.io/metropolitano/package/package.zip",
-  "size": 3010516,
+  "size": 3009889,
   "version": "1.1.0",
   "launch_path": "/app.html",
   "icons": {
