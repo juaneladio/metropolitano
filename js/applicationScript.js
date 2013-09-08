@@ -1,43 +1,44 @@
 // B. Jumps between application's pages.
 
-  //info
-  document.querySelector('#btn-info-back').addEventListener ('click', function () {
-    document.querySelector('#info').className = 'right';
-    document.querySelector('[data-position="current"]').className = 'current';
-  });
-  //about
-  document.querySelector('#btn-about-back').addEventListener ('click', function () {
-    document.querySelector('#about').className = 'right';
-    document.querySelector('[data-position="current"]').className = 'current';
-  });
   //stations
   document.querySelector('#btn-stations-back').addEventListener ('click', function () {
     document.querySelector('#stations').className = 'right';
-    document.querySelector('[data-position="current"]').className = 'current';
-  });
-  //station
-  document.querySelector('#btn-station-back').addEventListener ('click', function () {
-    document.querySelector('#station').className = 'right';
-    document.querySelector('[data-position="current"]').className = 'current';
-  });
-  //removefavoritestations
-  document.querySelector('#remove-favorite-stations').addEventListener ('click', function () {
-    this.className = 'fade-out';
+    document.querySelector('#index').className = 'current';
   });
   //favoritestations
   document.querySelector('#btn-favorite-back').addEventListener ('click', function () {
     document.querySelector('#favorite-stations').className = 'right';
-    document.querySelector('[data-position="current"]').className = 'current';
+    document.querySelector('#index').className = 'current';
   });
   //neareststations
   document.querySelector('#btn-nearest-back').addEventListener ('click', function () {
     document.querySelector('#nearest-stations').className = 'right';
-    document.querySelector('[data-position="current"]').className = 'current';
+    document.querySelector('#index').className = 'current';
   });
   //tweets
   document.querySelector('#btn-tweets-back').addEventListener ('click', function () {
     document.querySelector('#tweets').className = 'right';
-    document.querySelector('[data-position="current"]').className = 'current';
+    document.querySelector('#index').className = 'current';
+  });
+  //info
+  document.querySelector('#btn-info-back').addEventListener ('click', function () {
+    document.querySelector('#info').className = 'right';
+    document.querySelector('#index').className = 'current';
+  });
+  //about
+  document.querySelector('#btn-about-back').addEventListener ('click', function () {
+    document.querySelector('#about').className = 'right';
+    document.querySelector('#index').className = 'current';
+  });
+  //1station
+  document.querySelector('#btn-station-back').addEventListener ('click', function () {
+    document.querySelector('#station').className = 'right';
+  });
+  //stationsindirection
+  document.querySelector('#btn-stationsindirection-back').addEventListener ('click', function () {
+    this.className = 'fade-out';
+//    document.querySelector('#stationsindirection').className = 'right';
+//    document.querySelector('station').className = 'current';
   });
     
 // C. General functions
@@ -74,6 +75,28 @@
     document.querySelector('#list-of-stations').innerHTML = htmlstations;
     document.querySelector('#stations').className = 'current';
   }
+
+  function showstationsindirection(stationSelected,routeSelected,directionSelected)
+  {
+    var htmlstations = '';
+    htmlstations += '<h1>';
+    htmlstations += applicationData.routes[routeSelected].name+'<br>';
+    htmlstations += applicationData.routes[routeSelected].directions[directionSelected].name;
+    htmlstations += '</h1>';
+    htmlstations += '<p class="small">';
+    var numberStationsInDirectionSelected = applicationData.routes[routeSelected].directions[directionSelected].stations.length;
+    for (var i=0; i<numberStationsInDirectionSelected; i++)
+    {
+      stationIterated = applicationData.routes[routeSelected].directions[directionSelected].stations[i];
+      if (stationIterated === stationSelected)
+      htmlstations += '* '+applicationData.stations[stationIterated].name+"<br>";
+      else
+      htmlstations += '-'+applicationData.stations[stationIterated].name+"<br>";
+    }
+    htmlstations += '</p>';
+    document.querySelector('#list-of-stationsindirection').innerHTML = htmlstations;
+    document.querySelector('#stationsindirection').className = 'fade-in';
+	}
   
   function showstation(stationselected)
   {
@@ -119,11 +142,12 @@
             routewithcoincidences = true;
             if (!routealreadylisted)
             { // I'm going to list the Route's name only once
-              htmlstation += '<li><aside class="icon comms-icon contacts-link"></aside><p>';
+              htmlstation += '<li><p>';
               htmlstation += applicationData.routes[i].name+'</p>';
               routealreadylisted = true;
             }
-            htmlstation += "<p>"+applicationData.routes[i].directions[j].name+"</p>";
+//            htmlstation += "<p>"+applicationData.routes[i].directions[j].name+"</p>";
+            htmlstation += '<a href="javascript:showstationsindirection('+stationselected+','+i+','+j+')"><aside class="icon comms-icon contacts-link"></aside><p>'+applicationData.routes[i].directions[j].name+"</p>";
             htmlstation += "<p>- "+"Salidas"+": ";
             var numberhours = applicationData.routes[i].directions[j].hours.length;
             for (var k=0; k<numberhours; k++)
@@ -145,7 +169,8 @@
                 { htmlstation += ", "+applicationData.routes[i].directions[j].hours[k]+""; }
               }
             }
-            htmlstation += "</p>";
+            htmlstation += "</p></a>";
+//            htmlstation += "</p>";
           }
           if (routewithcoincidences && (j==numberdirections-1) )
           { // If this Route has coincidences and this is the last iteration I'm closing the list of Directions
@@ -158,7 +183,6 @@
     // d. Transfer all HTML to the page
     document.querySelector('#station-details').innerHTML = htmlstation;
     document.querySelector('#station').className = 'current';
-    document.querySelector('[data-position="current"]').className = 'left';
   }
   
   function addfavoritestation(stationselected,applicationData)
@@ -195,7 +219,18 @@
   function confirmremoveallfavorites()
   {
     localStorage.removeItem('myfavoritestations');
+    document.querySelector('#remove-favorite-stations').className = 'fade-out';
     showfavoritestations();
+  }
+  
+  function cancelremoveallfavorites()
+  {
+    document.querySelector('#remove-favorite-stations').className = 'fade-out';
+  }
+  
+  function cancelstationsindirection()
+  {
+    document.querySelector('#stationsindirection').className = 'fade-out';
   }
   
   function showfavoritestations()

@@ -38,13 +38,9 @@
   <link rel="stylesheet" href="cross_browser.css">
 
   <style>
-
-    iframe {
-      border: none;
+    #index {
       height: 100%;
-      width: 100%;
     }
-
     [data-position="right"] {
       position: absolute;
       top: 0;
@@ -55,6 +51,9 @@
       -webkit-transform: translateX(100%);
       z-index: 15;
       z-index: 100; /* -> drawer */
+    }
+    section[role="region"][data-position="right"] {
+      position: absolute;
     }
     [data-position="right"].current {
       animation: rightToCurrent 0.4s forwards;
@@ -108,33 +107,64 @@
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 20;
+      z-index: 120;
       opacity: 1;
     }
-    [data-position="edit-mode"] iframe {
-      pointer-events: none;
-    }
 
-    #scrolling iframe {
-      top: -5rem;
-    }
-
+    /* Headers */
     #headers section[role="region"] {
       margin-bottom: 1.5rem;
     }
-
-    #headers article section[role="region"] {
+    #headers section[role="region"]:not(#drawer) {
       display: inline;
     }
-
-    #headers section[role="region"] article header:first-child {
+    #headers article header:first-child {
       margin-top: 1.5rem;
     }
-
     #headers section[role="region"] header h2 {
       margin: 0 0 1.5rem 0;
     }
 
+    /* Lists */
+    /* to avoid double background effect on press */
+    [data-type=list] li>a:active { 
+      background-color: transparent;
+    }
+
+    /* Drawer */
+    section[role="region"]:not(#drawer) {
+      transition: none;
+      left: 0;
+      z-index: 0;
+      padding-left: 0;
+    }
+    section[role="region"]:not(#drawer) > header:first-child {
+      margin-left: 0;
+    }
+    section[role="region"]:not(#drawer) > header:first-child h1 {
+      margin-left: 3rem;
+    }
+    section[role="region"]#drawer > header:first-child h1 {
+      margin-left: 4.5rem;
+    }
+    section[role="region"]:not(#drawer) > header:first-child > a {
+      width: 5rem;
+    }
+    section[role="region"]#drawer > header:first-child > a .icon {
+      width: 3.5rem;
+    }
+    section[data-type="sidebar"] + section[role="region"] > header:first-child > button, 
+    section[data-type="sidebar"] + section[role="region"] > header:first-child > a {
+      background-position: 3.5rem center;
+    }
+    section[role="region"]:not(#drawer) > header:first-child > a .icon:after {
+      width: 2rem;
+    }
+    section[role="region"]#drawer > header:first-child > a .icon:after {
+      width: 3.5rem;
+    }
+
+    /* Switches */
     #switches label:last-child {
       margin-left: 2rem;  
     }
@@ -143,10 +173,43 @@
     nav[data-type="scrollbar"] {
       padding-top: 1rem;
     }
-
     nav[data-type="scrollbar"] p {
       opacity: 1;
     }
+
+    /* Seek bars */
+    div[role="slider"] > label.icon {
+      background: no-repeat right top;
+      background-size: 3rem auto;
+    }
+    
+    /* Tabs */
+    #tabs .content {
+      padding: 0;
+    }
+    #tabs .content .content {
+      padding: 1.5rem 3rem;
+    }
+
+    /* Filters */
+    [role="tablist"][data-type="filter"] {
+      margin-bottom: 2rem;
+    }
+
+    .bottom[role="tablist"][data-type="filter"] {
+      bottom: auto;
+    }
+
+    /* Device rotation */
+    .landscape section[role="region"]#drawer > header:first-child {
+      background: green;
+    }
+    
+    /* Custom style */
+    
+    /*form[role="dialog"][data-type="confirm"] > section {
+      overflow-y: hidden;
+    }*/
 
     div[role="slider"] > label.icon {
       background: no-repeat right top;
@@ -235,7 +298,7 @@
         <p>¿Está seguro de eliminar su estación favorita?</p>
       </section>
       <menu>
-        <button>Cancelar</button>
+        <button formaction="javascript:cancelremoveallfavorites()">Cancelar</button>
         <button class="danger" formaction="javascript:confirmremoveallfavorites()">Borrar estación</button>
       </menu>
     </form>
@@ -281,6 +344,17 @@
         </section>
       </article>
     </section>
+  </section>
+  
+  <!--·························· Stations in route ··························-->
+  <section id="stationsindirection" data-position="back" class="fullscreen">
+    <form role="dialog" data-type="confirm">
+        <section data-type="list" id="list-of-stationsindirection">
+        </section>
+      <menu>
+        <button formaction="javascript:cancelstationsindirection()">Cancelar</button>
+      </menu>
+    </form>
   </section>
 
   <!--····························· Tweets ·····························-->
