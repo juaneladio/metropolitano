@@ -34,12 +34,6 @@
   document.querySelector('#btn-station-back').addEventListener ('click', function () {
     document.querySelector('#station').className = 'right';
   });
-  //stationsindirection
-  document.querySelector('#btn-stationsindirection-back').addEventListener ('click', function () {
-    this.className = 'fade-out';
-//    document.querySelector('#stationsindirection').className = 'right';
-//    document.querySelector('station').className = 'current';
-  });
     
 // C. General functions
 
@@ -63,13 +57,35 @@
   
   function showliststations()
   {
+    /* The list is ordered before
+     * The next script was based on MDN's Array.prototype.sort
+     * */
+    // the array to be sorted
+    var list = applicationData.stations;
+    // temporary holder of position and sort-value
+    var map = list.map(function(e, i){
+      return {index: i, value: e.name.toLowerCase()}
+    })
+    console.log(map);
+    // sorting the map containing the reduced values
+    map.sort(function(a, b) {
+      return a.value > b.value ? 1 : -1;
+    });
+    console.log(map);
+    // container for the resulting order
+    var result = map.map(function(e){
+      return list[e.index]
+    })
     var htmlstations = "<ul>";
     var numberstations = applicationData.stations.length;
     for (var i=0; i<numberstations; i++)
     {
-      htmlstations += "<li><a href='javascript:showstation("+i+")'>";
+      htmlstations += "<li><a href='javascript:showstation("+map[i].index+")'>";
+      // map[i].index has the unordered index for the current element
       htmlstations += '<aside class="icon comms-icon contacts-location"></aside>';
-      htmlstations += "<p>"+applicationData.stations[i].name+"</p></a></li>";
+      htmlstations += "<p>"+result[i].name+"</p></a></li>";
+      // result[i].name is the name of the current element, 
+      // equals map[i].value but without .toLowerCase()
     }
     htmlstations += "</ul>";
     document.querySelector('#list-of-stations').innerHTML = htmlstations;
