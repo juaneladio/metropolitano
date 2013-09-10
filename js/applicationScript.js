@@ -58,8 +58,7 @@
   function showliststations()
   {
     /* The list is ordered before
-     * The next script was based on MDN's Array.prototype.sort
-     * */
+     * The next script was based on MDN's Array.prototype.sort page */
     // the array to be sorted
     var list = applicationData.stations;
     // temporary holder of position and sort-value
@@ -80,11 +79,13 @@
     var numberstations = applicationData.stations.length;
     for (var i=0; i<numberstations; i++)
     {
+      // Before: htmlstations += "<li><a href='javascript:showstation("+i+")'>";
       htmlstations += "<li><a href='javascript:showstation("+map[i].index+")'>";
-      // map[i].index has the unordered index for the current element
+      // Now: Explanation: map[i].index has the unordered index for the current element
       htmlstations += '<aside class="icon comms-icon contacts-location"></aside>';
+      // Before: htmlstations += "<p>"+applicationData.stations[i].name+"</p></a></li>";
       htmlstations += "<p>"+result[i].name+"</p></a></li>";
-      // result[i].name is the name of the current element, 
+      // Now: Explanation: result[i].name is the name of the current element, 
       // equals map[i].value but without .toLowerCase()
     }
     htmlstations += "</ul>";
