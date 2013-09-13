@@ -1,5 +1,6 @@
 Metropolitano de Lima / MozLocations
 ====================================
+[Spanish first, English next]
 
 Una aplicación para Firefox OS (y cualquier navegador web) para usuarios del Metropolitano, un sistema de transporte público en Lima, Perú.
 
@@ -24,3 +25,30 @@ Librerías adicionales: codebird.js y latlong.js.
 -------------
 
 Regístralas en el GitHub del proyecto https://github.com/juaneladio/metropolitano/issues
+
+Metropolitano de Lima / MozLocations (English)
+==============================================
+
+A Firefox OS app (and a mobile web application for browsers) for users of Metropolitano de Lima, a public transportation system in Lima, Peru.
+
+Web: http://juaneladio.github.io/metropolitano/app.html
+
+This app can be ported quickly to other integrated systems of public transportation (like buses and trains), transportation companies, an so on. Also, because it's based in places identified by coordinates, it can be used as a foundation for apps related with other business: franchises, restaurants, clinics and more.
+
+For developers
+--------------
+
+'MozLocations' was built using Firefox OS Building Blocks http://buildingfirefoxos.com/ 
+
+Main files:
+* app.html: Starting point in the application. It contains all the pages that are part of the application.
+* js/applicationData.js: Base information used by the application. It contains all the stations of the transportation system and the routes that connect the stations. In other scenaries (like a business with many offices) the stations are just 'locations'.
+* js/applicationScript.js: JavaScript code required by the application. It includes the code for the interchange between pages and the dynamic generation of the pages.
+* manifest.webapp: Manifest file with the general information of the app, it's used to identify the app and the privilegies that requires in the Firefox Marketplace.
+
+Additional libraries: codebird.js and latlong.js
+
+Suggestions?
+------------
+
+Register them in Github https://github.com/juaneladio/metropolitano/issues
