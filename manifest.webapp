@@ -23,12 +23,6 @@
     "geolocation": {
       "description": "Geolocation"
     },
-    "storage": {
-      "description": "Local storage"
-    },
-    "systemXHR":{
-      "description": "Retrieve tweets"
-    },
     "desktop-notification":{
       "description": "Notifications"
     }
