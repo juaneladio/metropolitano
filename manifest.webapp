@@ -24,10 +24,10 @@
       "description": "Geolocation"
     },
     "storage": {
-      "description": "Local Storage"
+      "description": "Local storage"
     },
     "systemXHR":{
-      "description": "JSON"
+      "description": "Retrieve tweets"
     },
     "desktop-notification":{
       "description": "Notifications"
