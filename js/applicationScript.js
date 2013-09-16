@@ -65,12 +65,12 @@
     var map = list.map(function(e, i){
       return {index: i, value: e.name.toLowerCase()}
     })
-    console.log(map);
+    //console.log(map);
     // sorting the map containing the reduced values
     map.sort(function(a, b) {
       return a.value > b.value ? 1 : -1;
     });
-    console.log(map);
+    //console.log(map);
     // container for the resulting order
     var result = map.map(function(e){
       return list[e.index]
@@ -362,7 +362,7 @@
       document.querySelector('#list-of-tweets').innerHTML = '<p class="small">'+"Por favor, espere un momento ... "+"<progress></progress></p>";
       document.querySelector('#tweets').className = 'current';
       var twitterAccount = "MetropolitanoPT";
-      var cb = new Codebird;
+      /*var cb = new Codebird;
       cb.setConsumerKey("SARefZOgzpapJ53OkZVw", "TskSVBlbiwC8YAoE5A8eCl95uSJug0GISQKvFBbC88I");
       cb.__call(
         "search_tweets",
@@ -388,7 +388,62 @@
           }
         },
         true // this parameter is required by Codebird
-      );
+      );*/
+      
+      /* This new code is based on 
+       * https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
+       * */
+      var httpRequest;
+      var url = 'http://mozilla.pe/labs/metropolitano.php'
+      //makeRequest('http://mozilla.pe/labs/metropolitano.php');
+      if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+        httpRequest = new XMLHttpRequest();
+      } else if (window.ActiveXObject) { // IE
+        try {
+          httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        } 
+        catch (e) {
+          try {
+            httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+          } 
+          catch (e) {}
+        }
+      }
+
+      if (!httpRequest) {
+        console.log('Giving up :( Cannot create an XMLHTTP instance');
+        document.querySelector('#list-of-tweets').innerHTML = '<p class="small">'+"No se puede usar AJAX en este navegador."+"</p>";
+        return false;
+      }
+      httpRequest.onreadystatechange = function(){
+        if (httpRequest.readyState === 4) {
+          if (httpRequest.status === 200) {
+            var response = JSON.parse(httpRequest.responseText);
+            //console.log(response);
+            response_length = response.statuses.length;
+              if (response_length > 0)
+              {
+                var htmltweets = "";
+                var twitterAccount="MetropolitanoPT";
+                htmltweets = "<ul>";
+                for (var i=0; i < response_length; i++)
+                { //console.log(response.statuses[i].text);
+                  if (response.statuses[i].text.charAt(0)!=='@')
+                  {
+                    htmltweets += '<li><aside class="icon comms-icon contacts-twitter"></aside><p>'+response.statuses[i].user.screen_name+"</p>";
+                    htmltweets += '<p class="small">'+makeLink(response.statuses[i].text)+"</p></li>";
+                  }
+                }
+                htmltweets += "</ul>";
+                document.querySelector('#list-of-tweets').innerHTML = htmltweets;
+              }
+          } else {
+            console.log('There was a problem with the request.');
+            document.querySelector('#list-of-tweets').innerHTML = '<p class="small">'+"Hubo un problema con la petición."+"</p>";
+          }
+        }
+      };
+      httpRequest.open('GET', url);
+      httpRequest.send();
     }
   }
-  
