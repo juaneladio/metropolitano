@@ -324,7 +324,7 @@
           { htmlneareststations = "<ul>";
             htmlneareststations += '<li><a href="javascript:showstation('+neareststation+')">';
             htmlneareststations += '<aside class="icon comms-icon contacts-location"></aside>';
-            htmlneareststations += "<p>"+applicationData.stations[neareststation].name+"</p><p>"+"+"+min_distance+"</p></a></li>";
+            htmlneareststations += "<p>"+applicationData.stations[neareststation].name+"</p><p>"+"+"+min_distance+" Kms.</p></a></li>";
             htmlneareststations += "</ul>";
           }
           else
