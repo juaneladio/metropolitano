@@ -2,8 +2,8 @@
   "name": "Metropolitano de Lima",
   "description": "Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú.",
   "package_path": "http://juaneladio.github.io/metropolitano/package/package.zip",
-  "size": 3010218,
-  "version": "1.1.1",
+  "size": 3147842,
+  "version": "1.1.2",
   "launch_path": "/app.html",
   "icons": {
     "60": "/images/metropolitano_icon_60.png",
@@ -18,9 +18,13 @@
     "en-US": {
       "name": "Metropolitano in Lima",
       "description": "Information in Spanish about routes in Metropolitano, a public transportation service in Lima, Perú."
+    },
+    "es": {
+      "name": "Metropolitano de Lima",
+      "description": "Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú."
     }
   },
-  "default_locale": "es",
+  "default_locale": "es-PE",
   "permissions": {
     "geolocation": {
       "description": "Geolocation"
