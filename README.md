@@ -1,5 +1,5 @@
-Metropolitano de Lima / MozLocations
-====================================
+Metropolitano de Lima / MozLocations (Spanish)
+==============================================
 [Spanish first, English next]
 
 Una aplicación para Firefox OS (y cualquier navegador web) para usuarios del Metropolitano, un sistema de transporte público en Lima, Perú.
@@ -15,11 +15,11 @@ Para desarrolladores
 
 Archivos importantes:
 * app.html: Punto de entrada de la aplicación, y que contiene todas las páginas que componen la aplicación.
-* js/applicationData.js: Información de base usada por la aplicación. Contiene todas las estaciones del sistema de transporte y las rutas que interconectan las estaciones. En otros escenarios (como un negocio con varios locales) las estaciones serían simplemente 'ubicaciones'.
+* js/applicationData.js: Información de base usada por la aplicación. Contiene todas las estaciones del sistema de transporte y las rutas que interconectan las estaciones. En otros escenarios (como un negocio con varios locales) las estaciones serían simplemente 'ubicaciones' y se pueden eliminar todas las rutas (la aplicación está preparada para eso).
 * js/applicationScript.js: código JavaScript requerido para el funcionamiento de la aplicación. Incluye el código para el intercambio entre páginas y la generación dinámica de las mismas.
 * manifest.webapp: Archivo manifiesto con la información general de la aplicación, utilizado para identificar la aplicación y los permisos que requiere en el Firefox Marketplace.
 
-Librerías adicionales: codebird.js y latlong.js.
+Librerías adicionales: codebird.php y latlong.js.
 
 ¿Sugerencias?
 -------------
@@ -42,11 +42,11 @@ For developers
 
 Main files:
 * app.html: Starting point in the application. It contains all the pages that are part of the application.
-* js/applicationData.js: Base information used by the application. It contains all the stations of the transportation system and the routes that connect the stations. In other scenaries (like a business with many offices) the stations are just 'locations'.
+* js/applicationData.js: Base information used by the application. It contains all the stations of the transportation system and the routes that connect the stations. In other scenaries (like a business with many offices) the stations are just 'locations' and the routes can be eliminated (the app is prepared for that).
 * js/applicationScript.js: JavaScript code required by the application. It includes the code for the interchange between pages and the dynamic generation of the pages.
 * manifest.webapp: Manifest file with the general information of the app, it's used to identify the app and the privilegies that requires in the Firefox Marketplace.
 
-Additional libraries: codebird.js and latlong.js
+Additional libraries: codebird.php and latlong.js
 
 Suggestions?
 ------------
