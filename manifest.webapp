@@ -1,6 +1,6 @@
 {
   "name": "Metropolitano de Lima",
-  "description": "Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú.",
+  "description": "Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú (Peru). Si no tienes un equipo con Firefox OS ve a http://juaneladio.github.io/metropolitano/app.html",
   "version": "1.1.2",
   "launch_path": "/app.html",
   "icons": {
