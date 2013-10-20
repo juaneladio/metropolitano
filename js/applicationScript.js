@@ -106,7 +106,7 @@
     {
       stationIterated = applicationData.routes[routeSelected].directions[directionSelected].stations[i];
       if (stationIterated === stationSelected)
-      htmlstations += '* '+applicationData.stations[stationIterated].name+"<br>";
+      htmlstations += '<u>[ '+applicationData.stations[stationIterated].name+" ]</u><br>";
       else
       htmlstations += '-'+applicationData.stations[stationIterated].name+"<br>";
     }
@@ -143,7 +143,7 @@
         case 6: dayname = "Sábado"; break
       }
       // c. Load available routes Today
-      htmlstation += "<header>"+"Rutas disponibles hoy "+dayname+"</header><ul>";
+      htmlstation += "<header>"+"Rutas para hoy <strong>"+dayname+"</strong></header><ul>";
       var numberroutes = applicationData.routes.length;
       for (var i=0; i<numberroutes; i++)
       { 
