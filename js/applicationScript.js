@@ -233,7 +233,7 @@
     { // FirefoxOS
       var notification = navigator.mozNotification.createNotification(
         "Metropolitano de Lima",
-        "Nueva estación favorita"
+        "Estación favorita: "+applicationData.stations[stationselected].name
         );
       notification.onshow = function () { setTimeout(notification.close(), 1000); }
                     notification.show();
@@ -241,7 +241,7 @@
     else
     if ("Notification" in navigator)
     { // Firefox +22
-      var n = new Notification("Metropolitano de Lima",{body:"Nueva estación favorita"});
+      var n = new Notification("Metropolitano de Lima",{body:"Estación favorita: "+applicationData.stations[stationselected].name});
     }
     else
     { // Other browsers: do nothing
