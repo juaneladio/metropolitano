@@ -42,6 +42,24 @@
     var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;  
     return text.replace(exp,"<a href='$1' target='_blank'>$1</a>");
   }
+  
+  function getFavoriteStationsAsArray()
+  {
+    var arrayFavoriteStations = JSON.parse(localStorage.getItem("myfavoritestations"));
+    if (arrayFavoriteStations == null ) { arrayFavoriteStations=[]; }
+    return arrayFavoriteStations;
+  }
+  
+  function removeFavoriteStation(stationselected)
+  {
+    var arrayFavoriteStations = getFavoriteStationsAsArray();
+    var position = arrayFavoriteStations.indexOf(stationselected);
+    if (position != -1)
+    {
+      arrayFavoriteStations.splice(position,1);
+    }
+    localStorage.setItem("myfavoritestations",JSON.stringify(arrayFavoriteStations));
+  }
 
 // D. Content builders for dynamic pages
 
@@ -123,7 +141,7 @@
     htmlstation += "<p>"+applicationData.stations[stationselected].name+"</p>";
     htmlstation += "<p>"+applicationData.stations[stationselected].address+"</p>";
     htmlstation += "</li>";
-    if (stationselected == localStorage.getItem("myfavoritestations"))
+    if ((getFavoriteStationsAsArray().indexOf(stationselected)) != -1)
       htmlstation += '<div id="favoritebutton"><a role="button" href="javascript:removefavoritestation('+stationselected+',applicationData)">'+"Dejar de ser favorita"+"</a></div>";
     else
       htmlstation += '<div id="favoritebutton"><a role="button" href="javascript:addfavoritestation('+stationselected+',applicationData)">'+"Fijar como favorita"+"</a></div>";
@@ -204,7 +222,13 @@
   
   function addfavoritestation(stationselected,applicationData)
   {
-    localStorage.setItem("myfavoritestations",stationselected);
+    //localStorage.setItem("myfavoritestations",stationselected);
+    var arrayFavoriteStations = getFavoriteStationsAsArray();
+    if (arrayFavoriteStations.indexOf(stationselected) == -1)
+    { // if I didn't find it, add it
+      arrayFavoriteStations.push(stationselected);
+      localStorage.setItem("myfavoritestations",JSON.stringify(arrayFavoriteStations));
+    }
     if ("mozNotification" in navigator)
     { // FirefoxOS
       var notification = navigator.mozNotification.createNotification(
@@ -228,9 +252,10 @@
   
   function removefavoritestation(stationselected,applicationData)
   {
-    localStorage.removeItem("myfavoritestations");
+    removeFavoriteStation(stationselected);
     var htmlbutton = '<a role="button" href="javascript:addfavoritestation('+stationselected+',applicationData)">'+"Fijar como favorita"+"</a>";
     document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
+    showfavoritestations();
   }
   
   function confirmremoveallfavorites()
@@ -252,15 +277,20 @@
   
   function showfavoritestations()
   { 
-    var favoritestation = localStorage.getItem("myfavoritestations");
+    var arrayFavoriteStations = getFavoriteStationsAsArray();
     var htmlfavoritestations = "";
-    if (favoritestation)
-    { htmlfavoritestations = "<ul>";
-      htmlfavoritestations += '<li><a href="javascript:showstation('+favoritestation+')">';
-      htmlfavoritestations += '<aside class="icon comms-icon contacts-location"></aside>';
-      htmlfavoritestations += "<p>"+applicationData.stations[favoritestation].name+"</p></a></li>";
+    if (arrayFavoriteStations.length  )
+    {
+      htmlfavoritestations = "<ul>";
+      var numberstations = arrayFavoriteStations.length;
+      for (var i=0; i<numberstations; i++)
+      {
+        htmlfavoritestations += "<li><a href='javascript:showstation("+arrayFavoriteStations[i]+")'>";
+        htmlfavoritestations += '<aside class="icon comms-icon contacts-location"></aside>';
+        htmlfavoritestations += "<p>"+applicationData.stations[arrayFavoriteStations[i]].name+"</p></a></li>";
+      }
       htmlfavoritestations += "</ul>";
-      htmlfavoritestations += '<a role="button" class="danger" href="javascript:removeallfavorites()">'+"Dejar de ser favorita"+"</a>";
+      htmlfavoritestations += '<a role="button" class="danger" href="javascript:removeallfavorites()">'+"Quitar todas las favoritas"+"</a>";
     }
     else
     {
