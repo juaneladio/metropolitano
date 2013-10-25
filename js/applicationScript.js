@@ -255,7 +255,7 @@
     removeFavoriteStation(stationselected);
     var htmlbutton = '<a role="button" href="javascript:addfavoritestation('+stationselected+',applicationData)">'+"Fijar como favorita"+"</a>";
     document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
-    showfavoritestations();
+    renderfavoritestations();
   }
   
   function confirmremoveallfavorites()
@@ -275,8 +275,8 @@
     document.querySelector('#stationsindirection').className = 'fade-out';
   }
   
-  function showfavoritestations()
-  { 
+  function renderfavoritestations()
+  {
     var arrayFavoriteStations = getFavoriteStationsAsArray();
     var htmlfavoritestations = "";
     if (arrayFavoriteStations.length  )
@@ -297,6 +297,14 @@
       htmlfavoritestations = '<p class="small">'+"No hay estación favorita."+"</p>";
     }
     document.querySelector('#list-of-favorite-stations').innerHTML = htmlfavoritestations;
+  }
+  
+  function showfavoritestations()
+  { 
+    // render fills updated HTML, show really displays
+    // if not, weird behaviors occurs (remove a favorite still shows in list of favorites
+    // or if add show after remove a favorite in main list displays favorites, not main list
+    renderfavoritestations();
     document.querySelector('#favorite-stations').className = 'current';
   }
   
