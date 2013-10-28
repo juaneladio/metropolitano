@@ -146,6 +146,7 @@
     else
       htmlstation += '<div id="favoritebutton"><a role="button" href="javascript:addfavoritestation('+stationselected+',applicationData)">'+"Fijar como favorita"+"</a></div>";
     htmlstation += "</ul>";
+    htmlstation += "<p id='msg'></p><button id='map-button'>see map</button><div id='map'></div>";
     // b. Load current date in order to show information valid for today
     if ("routes" in applicationData)
     {
@@ -218,6 +219,9 @@
     // d. Transfer all HTML to the page
     document.querySelector('#station-details').innerHTML = htmlstation;
     document.querySelector('#station').className = 'current';
+    setTimeout(function(){
+      Map.init(applicationData.stations[stationselected]);
+    },2000);
   }
   
   function addfavoritestation(stationselected,applicationData)
