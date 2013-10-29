@@ -354,6 +354,7 @@
             }
             if (parseFloat(current_distance) < parseFloat(min_distance))
             {
+              min_distance = current_distance;
               neareststation = i;
             }
           }
