@@ -317,8 +317,8 @@
   {
     if (!navigator.onLine)
     {
-      document.querySelector('#list-of-tweets').innerHTML = '<p class="small">'+"Usted no está conectado a Internet."+"</p>";
-      document.querySelector('#tweets').className = 'current';
+      document.querySelector('#list-of-nearest-stations').innerHTML = '<p class="small">'+"Usted no está conectado a Internet."+"</p>";
+      document.querySelector('#nearest-stations').className = 'current';
     }
     else
     {
