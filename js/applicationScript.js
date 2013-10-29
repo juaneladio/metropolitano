@@ -354,14 +354,15 @@
     }
     else
     {
-      document.querySelector('#list-of-nearest-stations').innerHTML = '<p class="small">'+"Por favor, espere un momento ... "+"<progress></progress></p>";
+      var stationsList = document.querySelector('#list-of-nearest-stations');
+      stationsList.innerHTML = '<p class="small">'+"Por favor, espere un momento ... "+"<progress></progress></p>";
       document.querySelector('#nearest-stations').className = 'current';
       if ("geolocation" in navigator)
       {
         var options = {
-          /*enableHighAccuracy: true,
-          timeout: 15000, //15 sec
-          maximumAge: 0*/
+          // enableHighAccuracy: true,
+          timeout: 30000 //30 sec
+          // maximumAge: 0
           };
         function success(pos)
         {
@@ -411,12 +412,14 @@
           htmlneareststations += '</p></li></ul>';
           
           document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
+          Map.geoSuccess(crd);
         };
         function error(err)
         {
           //console.warn('ERROR(' + err.code + '): ' + err.message);
           var htmlneareststations = '<p class="small">'+"Lo sentimos, no se pudo determinar su ubicación."+"</p>";
           document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
+          Map.geoError();
         };
         navigator.geolocation.getCurrentPosition(success, error, options);
       }
