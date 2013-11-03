@@ -132,6 +132,29 @@
     document.querySelector('#list-of-stationsindirection').innerHTML = htmlstations;
     document.querySelector('#stationsindirection').className = 'fade-in';
 	}
+
+  function showstationinmap(stationSelected,applicationData)
+  {
+    var htmlstations = '';
+    htmlstations += '<h1>';
+    htmlstations += applicationData.stations[stationSelected].name;
+    htmlstations += '</h1>';
+    htmlstations += '<p class="small">';
+    htmlstations += applicationData.stations[stationSelected].address;
+    htmlstations += '</p>';
+    if (!navigator.onLine)
+    {
+      htmlstations += '<p class="small">'+"Usted no está conectado a Internet."+"</p>";
+      document.querySelector('#list-of-stationinmap').innerHTML = htmlstations;
+    }
+    else
+    {
+      htmlstations += "<div id='map'></div>";
+      document.querySelector('#list-of-stationinmap').innerHTML = htmlstations;
+      Map.init(applicationData.stations[stationSelected]);
+    }
+    document.querySelector('#stationinmap').className = 'fade-in';
+	}
   
   function showstation(stationselected)
   {
@@ -146,7 +169,7 @@
     else
       htmlstation += '<div id="favoritebutton"><a role="button" href="javascript:addfavoritestation('+stationselected+',applicationData)">'+"Fijar como favorita"+"</a></div>";
     htmlstation += "</ul>";
-    htmlstation += "<p id='msg'></p><button id='map-button'>see map</button><div id='map'></div>";
+    htmlstation += '<div id="showmapbutton"><a role="button" href="javascript:showstationinmap('+stationselected+',applicationData)">'+"Mostrar mapa de estación"+"</a></div>";
     // b. Load current date in order to show information valid for today
     if ("routes" in applicationData)
     {
@@ -219,9 +242,9 @@
     // d. Transfer all HTML to the page
     document.querySelector('#station-details').innerHTML = htmlstation;
     document.querySelector('#station').className = 'current';
-    setTimeout(function(){
+    /*setTimeout(function(){
       Map.init(applicationData.stations[stationselected]);
-    },2000);
+    },2000);*/
   }
   
   function addfavoritestation(stationselected,applicationData)
@@ -277,6 +300,11 @@
   function cancelstationsindirection()
   {
     document.querySelector('#stationsindirection').className = 'fade-out';
+  }
+  
+  function cancelstationinmap()
+  {
+    document.querySelector('#stationinmap').className = 'fade-out';
   }
   
   function renderfavoritestations()
@@ -405,33 +433,6 @@
       document.querySelector('#list-of-tweets').innerHTML = '<p class="small">'+"Por favor, espere un momento ... "+"<progress></progress></p>";
       document.querySelector('#tweets').className = 'current';
       var twitterAccount = "MetropolitanoPT";
-      /*var cb = new Codebird;
-      cb.setConsumerKey("SARefZOgzpapJ53OkZVw", "TskSVBlbiwC8YAoE5A8eCl95uSJug0GISQKvFBbC88I");
-      cb.__call(
-        "search_tweets",
-        "q=from:"+twitterAccount,
-        function (reply)
-        { //console.log(reply);
-          // If there are answers
-          reply_length = reply.statuses.length;
-          if (reply_length > 0)
-          {
-            var htmltweets = "";
-            htmltweets = "<ul>";
-            for (var i=0; i < reply_length; i++)
-            { //console.log(reply.statuses[i].text);
-              if (reply.statuses[i].text.charAt(0)!=='@')
-              {
-                htmltweets += '<li><aside class="icon comms-icon contacts-twitter"></aside><p>'+twitterAccount+"</p>";
-                htmltweets += '<p class="small">'+makeLink(reply.statuses[i].text)+"</p></li>";
-              }
-            }
-            htmltweets += "</ul>";
-            document.querySelector('#list-of-tweets').innerHTML = htmltweets;
-          }
-        },
-        true // this parameter is required by Codebird
-      );*/
       
       /* This new code is based on 
        * https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started
@@ -490,3 +491,66 @@
       httpRequest.send();
     }
   }
+
+//E. Maps
+
+(function(){
+  window.Map = {
+    /*init: function(station){
+      var netStatus = navigator.onLine ? 'online': 'offline';
+      var mapButton = document.getElementById('map-button');
+      var mapEl = document.getElementById('map');
+
+      if (netStatus === 'online') {
+        var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
+        var that = this;
+
+        mapButton.addEventListener('click',
+                                    function(){
+                                      that.showMap(mapEl);
+                                      that.addMarker(station, map);
+                                    }, false);
+      } else {
+        var message = 'You need internet connection to use maps';
+        var content = document.createTextNode(message);
+        var wrapper = document.getElementById('msg');
+        mapButton.disabled = true;
+        wrapper.appendChild(content);
+      }
+      mapEl.classList.add('off');
+    },*/
+    init: function(station){
+      var mapEl = document.getElementById('map');
+      var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
+      this.showMap(mapEl);
+      this.addMarker(station, map);
+      mapEl.classList.add('off');
+    },
+
+    addMarker: function(place, map){
+      var lat = place.coordinatelat;
+      var lng = place.coordinatelng;
+      L.mapbox.markerLayer({
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [lng, lat]
+        },
+        properties: {
+          title: place.name,
+          address: place.address
+        }
+      }).addTo(map);
+      map.setView([lat,lng], 15);
+      map.invalidateSize(false);
+    },
+
+    showMap: function(el){
+      if ( el.classList.contains('on') ){
+        el.classList.remove('on');
+      } else {
+        el.classList.add('on');
+      }
+    }
+  }
+})();

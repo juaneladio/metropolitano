@@ -39,9 +39,8 @@
   <link rel="stylesheet" href="cross_browser.css">
 
   <!-- Custom CSS (only for this app, inheriths Building Blocks) -->
-  <link rel="stylesheet" href="applicationStyle.css">
-  <link href='http://api.tiles.mapbox.com/mapbox.js/v1.4.0/mapbox.css' rel='stylesheet' />
-  <link href='style/map.css' rel='stylesheet' />
+  <link rel="stylesheet" href="style/applicationStyle.css">
+  <link rel="stylesheet" href="style/mapbox.css">
 </head>
 <body>
   <section role="region" id="index" data-position="current">
@@ -172,6 +171,17 @@
       </menu>
     </form>
   </section>
+  
+  <!--·························· Station in map ··························-->
+  <section id="stationinmap" data-position="back" class="fullscreen">
+    <form role="dialog" data-type="confirm">
+        <section data-type="list" id="list-of-stationinmap">
+        </section>
+      <menu>
+        <button formaction="javascript:cancelstationinmap()">Cancelar</button>
+      </menu>
+    </form>
+  </section>
 
   <!--····························· Tweets ·····························-->
   <section id="tweets" data-position="right">
@@ -231,8 +241,7 @@
     </section>
   </section>
 
-  <script src='http://api.tiles.mapbox.com/mapbox.js/v1.4.0/mapbox.js'></script>
-  <script type="text/javascript" src="js/maps.js"></script>
+  <script type="text/javascript" src="js/mapbox.js"></script>
   <script type="text/javascript" src="js/latlong.js"></script>
   <script type="text/javascript" src="js/applicationData.js"></script>
   <script type="text/javascript" src="js/applicationScript.js"></script>

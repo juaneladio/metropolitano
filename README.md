@@ -1,6 +1,7 @@
+[Spanish first, English next]
+
 Metropolitano de Lima / MozLocations (Spanish)
 ==============================================
-[Spanish first, English next]
 
 Una aplicación para Firefox OS (y cualquier navegador web) para usuarios del Metropolitano, un sistema de transporte público en Lima, Perú.
 
@@ -19,7 +20,7 @@ Archivos importantes:
 * js/applicationScript.js: código JavaScript requerido para el funcionamiento de la aplicación. Incluye el código para el intercambio entre páginas y la generación dinámica de las mismas.
 * manifest.webapp: Archivo manifiesto con la información general de la aplicación, utilizado para identificar la aplicación y los permisos que requiere en el Firefox Marketplace.
 
-Librerías adicionales: codebird.php y latlong.js.
+Librerías adicionales: codebird.php, latlong.js y mapbox.js.
 
 ¿Sugerencias?
 -------------
@@ -46,7 +47,7 @@ Main files:
 * js/applicationScript.js: JavaScript code required by the application. It includes the code for the interchange between pages and the dynamic generation of the pages.
 * manifest.webapp: Manifest file with the general information of the app, it's used to identify the app and the privilegies that requires in the Firefox Marketplace.
 
-Additional libraries: codebird.php and latlong.js
+Additional libraries: codebird.php, latlong.js and mapbox.js
 
 Suggestions?
 ------------
