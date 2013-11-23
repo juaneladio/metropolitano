@@ -390,18 +390,26 @@
               neareststation = i;
             }
           }
-          var htmlneareststations = "";
-          if (neareststation)
-          { htmlneareststations = "<ul>";
-            htmlneareststations += '<li><a href="javascript:showstation('+neareststation+')">';
-            htmlneareststations += '<aside class="icon comms-icon contacts-location"></aside>';
-            htmlneareststations += "<p>"+applicationData.stations[neareststation].name+"</p><p>"+"+"+min_distance+" Kms.</p></a></li>";
-            htmlneareststations += "</ul>";
-          }
+          // Print info
+          var htmlneareststations = '';
+          htmlneareststations = '<ul>';
+          htmlneareststations += '<li><a href="javascript:showstation('+neareststation+')">';
+          htmlneareststations += '<aside class="icon comms-icon contacts-location"></aside>';
+          htmlneareststations += '<p>'+applicationData.stations[neareststation].name+'</p>';
+          htmlneareststations += '<p>'+'+'+min_distance+' Kms.</p>';
+          htmlneareststations += '</a></li>';
+          // Number of blocks is an arbitrary measure
+          htmlneareststations += '<li><aside class="icon comms-icon contacts-sms"></aside>';
+          htmlneareststations += '<p></p><p class="small">';
+          min_blocks = Math.round(min_distance*10); // I assume 1 block = 100 meters
+          if (min_blocks<=10)
+            htmlneareststations += 'Te encuentras a unas '+min_blocks+' cuadras aprox.';
+          else if (min_blocks<=100)
+            htmlneareststations += '¡Oh, vaya! Estás demasiado lejos para ir a pie.';
           else
-          {
-            htmlneareststations = "<ul><li><p>"+"No se puede determinar estación cercana."+"</p></li></ul>";
-          }
+            htmlneareststations += '¡OH, NO! Parece que no estás en la misma ciudad.';
+          htmlneareststations += '</p></li></ul>';
+          
           document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
         };
         function error(err)
