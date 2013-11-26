@@ -546,7 +546,7 @@
         },
         properties: {
           title: place.name,
-          address: place.address
+          'marker-color': '#FF4E00'
         }
       }).addTo(map);
       map.setView([lat,lng], 15);

@@ -193,3 +193,7 @@ section[role="region"] > .content [data-type="list"] li > p {
 form[role="dialog"][data-type="confirm"] p {
   line-height: 2rem;
 }
+
+.leaflet-popup-content .marker-title {
+  color: #000000;
+}
