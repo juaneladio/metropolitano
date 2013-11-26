@@ -149,9 +149,8 @@
     }
     else
     {
-      htmlstations += "<div id='map'></div>";
       document.querySelector('#list-of-stationinmap').innerHTML = htmlstations;
-      Map.init(applicationData.stations[stationSelected]);
+      Map.init(applicationData.stations[stationSelected], '#list-of-stationinmap');
     }
     document.querySelector('#stationinmap').className = 'fade-in';
 	}
@@ -354,14 +353,15 @@
     }
     else
     {
-      document.querySelector('#list-of-nearest-stations').innerHTML = '<p class="small">'+"Por favor, espere un momento ... "+"<progress></progress></p>";
+      var stationsList = document.querySelector('#list-of-nearest-stations');
+      stationsList.innerHTML = '<p class="small">'+"Por favor, espere un momento ... "+"<progress></progress></p>";
       document.querySelector('#nearest-stations').className = 'current';
       if ("geolocation" in navigator)
       {
         var options = {
-          /*enableHighAccuracy: true,
-          timeout: 15000, //15 sec
-          maximumAge: 0*/
+          // enableHighAccuracy: true,
+          timeout: 30000 //30 sec
+          // maximumAge: 0
           };
         function success(pos)
         {
@@ -411,12 +411,16 @@
           htmlneareststations += '</p></li></ul>';
           
           document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
+          Map.init(applicationData.stations, '#list-of-nearest-stations');
+          Map.geoSuccess(crd);
         };
         function error(err)
         {
           //console.warn('ERROR(' + err.code + '): ' + err.message);
           var htmlneareststations = '<p class="small">'+"Lo sentimos, no se pudo determinar su ubicación."+"</p>";
           document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
+          Map.init(applicationData.stations, '#list-of-nearest-stations');
+          Map.geoError();
         };
         navigator.geolocation.getCurrentPosition(success, error, options);
       }
@@ -527,12 +531,46 @@
       }
       mapEl.classList.add('off');
     },*/
-    init: function(station){
+    map: null,
+
+    init: function(station, el){
+      this.cleanMap();
+      this.insertMapEl(el);
+      var that = this;
+      if (station instanceof Array) {
+        setTimeout(function(){
+          var stations = station;
+          that.initMap();
+          for(var i=0;i<stations.length; i++){
+            that.addMarker(stations[i], that.map);
+          };
+        }, 2000);
+      } else {
+        setTimeout(function(){
+          that.initMap();
+          that.addMarker(station, that.map);
+        }, 2000);
+      }
+    },
+
+    initMap: function() {
       var mapEl = document.getElementById('map');
-      var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
+      this.map = L.mapbox.map('map', 'examples.map-9ijuk24y');
       this.showMap(mapEl);
-      this.addMarker(station, map);
-      mapEl.classList.add('off');
+    },
+
+    cleanMap: function(){
+      var map = document.getElementById('map');
+      if (map !== (undefined || null )) {
+        map.parentElement.removeChild(map);
+      }
+    },
+
+    insertMapEl: function(el){
+      var mapEl = document.createElement('div');
+      var container = document.querySelector(el);
+      mapEl.setAttribute('id', 'map');
+      container.appendChild(mapEl);
     },
 
     addMarker: function(place, map){
@@ -559,6 +597,23 @@
       } else {
         el.classList.add('on');
       }
+    },
+
+    geoSuccess: function(position){
+      var that = this;
+      setTimeout(function(){
+        var lat = position.coords.latitude,
+            lng = position.coords.longitude;
+        that.map.setView([lat, lng], 13);
+        var marker = L.marker([lat, lng]).addTo(that.map);
+      }, 3000);
+    },
+
+    geoError: function(){
+      var that = this;
+      setTimeout(function(){
+        that.map.setView([-12.057756, -77.035983], 13);
+      }, 3000);
     }
   }
 })();
