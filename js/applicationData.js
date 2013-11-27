@@ -25,7 +25,7 @@ var applicationData = {
     { /* 14 */ name: "España", address: "Av. Alfonso Ugarte cdra 13 con Av. República de Portugal, Breña/Cercado de Lima", coordinatelat: "-12.058138", coordinatelng: "-77.041765", },
     { /* 15 */ name: "Tacna", address: "Av. Emancipación cdra 4 y 5 con Av. Tacna cdra 5, Cercado de Lima", coordinatelat: "-12.04633", coordinatelng: "-77.037445", },
     { /* 16 */ name: "Jirón de la Unión", address: "Av. Emancipación cdra 1 Jr. de la Unión cdra 6, Cercado de Lima", coordinatelat: "-12.049050", coordinatelng: "-77.033110", },
-    { /* 17 */ name: "Colmena", address: "Av. Nicolás de Piérola (Colmena) cdra 11 con Jr. Lampa cdra 9, Cercado de Lima", coordinatelat: "2.052725", coordinatelng: "-77.033097", },
+    { /* 17 */ name: "Colmena", address: "Av. Nicolás de Piérola (Colmena) cdra 11 con Jr. Lampa cdra 9, Cercado de Lima", coordinatelat: "-12.052725", coordinatelng: "-77.033097", },
     { /* 18 */ name: "Central", address: "Parque Los Héroes Navales con Av. Paseo de la República 170, Cercado de Lima", coordinatelat: "-12.057756", coordinatelng: "-77.035983", },
     { /* 19 */ name: "Estadio Nacional", address: "Av. Paseo de la República cdra 9 con Puente Peatonal, Cercado de Lima/La Victoria", coordinatelat: "-12.068615", coordinatelng: "-77.032185", },
     { /* 20 */ name: "Mexico", address: "Av. Paseo de la República cdra 13 con Puente México, Cercado de Lima/La Victoria", coordinatelat: "-12.076835", coordinatelng: "-77.028837", },
