@@ -412,7 +412,7 @@
           
           document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
           Map.init(applicationData.stations, '#list-of-nearest-stations');
-          Map.geoSuccess(crd);
+          Map.geoSuccess(pos,min_blocks);
         };
         function error(err)
         {
@@ -420,7 +420,7 @@
           var htmlneareststations = '<p class="small">'+"Lo sentimos, no se pudo determinar su ubicación."+"</p>";
           document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
           Map.init(applicationData.stations, '#list-of-nearest-stations');
-          Map.geoError();
+          // I don't center the map in an specific location: it chooses the last coordinate added in applicationData
         };
         navigator.geolocation.getCurrentPosition(success, error, options);
       }
@@ -508,29 +508,6 @@
 
 (function(){
   window.Map = {
-    /*init: function(station){
-      var netStatus = navigator.onLine ? 'online': 'offline';
-      var mapButton = document.getElementById('map-button');
-      var mapEl = document.getElementById('map');
-
-      if (netStatus === 'online') {
-        var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
-        var that = this;
-
-        mapButton.addEventListener('click',
-                                    function(){
-                                      that.showMap(mapEl);
-                                      that.addMarker(station, map);
-                                    }, false);
-      } else {
-        var message = 'You need internet connection to use maps';
-        var content = document.createTextNode(message);
-        var wrapper = document.getElementById('msg');
-        mapButton.disabled = true;
-        wrapper.appendChild(content);
-      }
-      mapEl.classList.add('off');
-    },*/
     map: null,
 
     init: function(station, el){
@@ -538,18 +515,18 @@
       this.insertMapEl(el);
       var that = this;
       if (station instanceof Array) {
-        setTimeout(function(){
+        //setTimeout(function(){
           var stations = station;
           that.initMap();
           for(var i=0;i<stations.length; i++){
             that.addMarker(stations[i], that.map);
           };
-        }, 2000);
+        //}, 2000);
       } else {
-        setTimeout(function(){
+        //setTimeout(function(){
           that.initMap();
           that.addMarker(station, that.map);
-        }, 2000);
+        //}, 2000);
       }
     },
 
@@ -599,21 +576,41 @@
       }
     },
 
-    geoSuccess: function(position){
+    geoSuccess: function(position,min_blocks){
       var that = this;
-      setTimeout(function(){
-        var lat = position.coords.latitude,
+      //setTimeout(function(){
+      /*  var lat = position.coords.latitude,
             lng = position.coords.longitude;
-        that.map.setView([lat, lng], 13);
         var marker = L.marker([lat, lng]).addTo(that.map);
-      }, 3000);
-    },
-
-    geoError: function(){
-      var that = this;
-      setTimeout(function(){
-        that.map.setView([-12.057756, -77.035983], 13);
-      }, 3000);
+        that.map.setView([lat, lng], 15);*/
+      //}, 3000);
+      // Adding new marker with current position (and different color)
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      L.mapbox.markerLayer({
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [lng, lat]
+        },
+        properties: {
+          title: 'Usted está aquí',
+          'marker-color': '#16AECF'
+        }
+      }).addTo(that.map);
+      // Stablishing the zoom level
+      if (min_blocks<=6)
+      { that.map.setView([lat,lng], 15); }
+      else if (min_blocks<=12)
+      { that.map.setView([lat,lng], 14); }
+      else if (min_blocks<=24)
+      { that.map.setView([lat,lng], 13); }
+      else if (min_blocks<=48)
+      { that.map.setView([lat,lng], 12); }
+      else if (min_blocks<=96)
+      { that.map.setView([lat,lng], 11); }
+      else
+      { that.map.setView([lat,lng], 10); }
     }
   }
 })();
