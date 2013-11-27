@@ -477,22 +477,55 @@
             var response = JSON.parse(httpRequest.responseText);
             //console.log(response);
             response_length = response.statuses.length;
-              if (response_length > 0)
+            if (response_length > 0)
+            {
+              // First: list only normal tweets, no replies
+              listoftweets=[];
+              for (var i=0; i < response_length; i++)
               {
-                var htmltweets = "";
-                var twitterAccount="MetropolitanoPT";
-                htmltweets = "<ul>";
-                for (var i=0; i < response_length; i++)
-                { //console.log(response.statuses[i].text);
-                  if (response.statuses[i].text.charAt(0)!=='@')
-                  {
-                    htmltweets += '<li><aside class="icon comms-icon contacts-twitter"></aside><p>'+response.statuses[i].user.screen_name+"</p>";
-                    htmltweets += '<p class="small">'+makeLink(response.statuses[i].text)+"</p></li>";
-                  }
+                if (response.statuses[i].text.charAt(0)!=='@')
+                {
+                  listoftweets.push({ 'screen_name' : response.statuses[i].user.screen_name ,
+                    'text' : response.statuses[i].text ,
+                    'id_str' : response.statuses[i].id_str });
                 }
-                htmltweets += "</ul>";
-                document.querySelector('#list-of-tweets').innerHTML = htmltweets;
               }
+              console.log(listoftweets);
+              // I always storage the latest tweet
+              if (localStorage.getItem("latesttweet"))
+              { latesttweet = localStorage.getItem("latesttweet"); }
+              else
+              { latesttweet = ''; }
+              // I'm going to change the way I show a tweet if it was requested before.
+              // Since I detect that a tweet was readed before I change a flag.
+              tweetsalreadyseen = 0;
+              // Now, print tweets
+              var htmltweets = "";
+              htmltweets = "<ul>";
+              listoftweets_length = listoftweets.length;
+              if (listoftweets_length)
+              {
+                for (var i=0; i < listoftweets_length; i++)
+                {
+                  if (listoftweets[i].id_str === latesttweet)
+                  { tweetsalreadyseen = 1; }
+                  // Print new statuses with an icon, and past statuses without icon and some opacity
+                  // tweetsalreadyseen is a flag to do that
+                  if (!tweetsalreadyseen)
+                  { htmltweets += '<li>';
+                    htmltweets += '<aside class="icon comms-icon contacts-twitter"></aside><p>'+listoftweets[i].screen_name+"</p>";
+                  }
+                  else
+                  { htmltweets += '<li class="disabled">';
+                    htmltweets += '<aside class="icon comms-icon contacts-twitter"></aside><p>'+listoftweets[i].screen_name+"</p>";
+                  }
+                  htmltweets += '<p class="small">'+makeLink(listoftweets[i].text)+"</p></li>";
+                }
+                localStorage.setItem("latesttweet",listoftweets[0].id_str);
+              }
+              htmltweets += "</ul>";
+              document.querySelector('#list-of-tweets').innerHTML = htmltweets;
+            }
           } else {
             console.log('There was a problem with the request.');
             document.querySelector('#list-of-tweets').innerHTML = '<p class="small">'+"Hubo un problema con la petición."+"</p>";

@@ -162,6 +162,12 @@ div[role="slider"] > label.icon {
 [data-type="list"] li p {
   white-space: normal;
 }
+[data-type="list"] li.disabled {
+  opacity: 0.8;
+}
+[data-type="list"] li.disabled > aside.icon  {
+  opacity: 0.4;
+}
 section[role="region"] > .content [data-type="list"] li > p {
   margin: 0px 1.5rem 0px 3.5rem;
 }
