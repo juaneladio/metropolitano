@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="60"
+   height="60"
+   id="svg3831"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="metropolitano_icon.svg"
+   inkscape:export-filename="/home/juaneladio/Developments/metropolitano/images/metropolitano_icon_256.png"
+   inkscape:export-xdpi="384"
+   inkscape:export-ydpi="384">
+  <defs
+     id="defs3833" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.0769604"
+     inkscape:cx="30"
+     inkscape:cy="30.923251"
+     inkscape:document-units="px"
+     inkscape:current-layer="g5194"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1301"
+     inkscape:window-height="744"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-397.5783,-599.71415)">
+    <g
+       id="g5194"
+       transform="translate(3479.2658,-2831.1832)"
+       inkscape:export-filename="E:\travel_site_folder\version2\image_store\icons\bus_logo_80x49_boxed.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         style="fill:#2c5aa0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="rect4120"
+         width="54"
+         height="54"
+         x="-3078.6875"
+         y="3433.8975"
+         ry="5.8399487" />
+      <path
+         sodipodi:nodetypes="ccczzc"
+         inkscape:connector-curvature="0"
+         id="path5067"
+         d="m -3024.6575,3442.202 c -16.9715,0 -25.9096,-0.042 -42.8811,-0.042 -1.3517,0 -2.4562,0.065 -2.9398,2.9611 0,0 0.049,28.5258 0.097,30.3516 0.048,1.8258 0.8134,4.2612 2.8618,4.215 2.0484,-0.046 8.8137,0 8.8137,0"
+         style="fill:none;stroke:#ffeb43;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5069"
+         d="m -3044.4004,3480.1223 c 0,3.7418 -3.1983,6.7751 -7.1435,6.7751 -3.9453,0 -7.1436,-3.0334 -7.1436,-6.7751 0,-3.7419 3.1983,-6.7752 7.1436,-6.7752 3.9452,0 7.1435,3.0334 7.1435,6.7752 z"
+         style="color:#000000;fill:none;stroke:#ffeb43;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path5073"
+         d="m -3044.8448,3479.5931 20.191,0"
+         style="fill:none;stroke:#ffeb43;stroke-width:1.92235744;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path5077"
+         d="m -3069.6578,3469.8974 c 3.7736,0 5.9703,-5.2192 5.9703,-8.6751 l 0,-11.3249 -6,0 z"
+         style="fill:#ffeb43;fill-opacity:1;stroke:none" />
+      <path
+         style="color:#000000;fill:#ffeb43;fill-opacity:1;stroke:none;stroke-width:1.87500000000000000;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         d="m -3057.6875,3461.8974 29,0 0,-12 -28.9827,0 z"
+         id="path5081"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc" />
+    </g>
+  </g>
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2012-01-18T20:18:13</dc:date>
+        <dc:description>bus logo from trjps.co.uk</dc:description>
+        <dc:source>http://openclipart.org/detail/167227/bus-logo-by-gmcglinn</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>GMcGlinn</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>bus</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>coach</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>logo</rdf:li>
+            <rdf:li>transport</rdf:li>
+            <rdf:li>travel</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
