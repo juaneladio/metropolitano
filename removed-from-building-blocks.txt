@@ -5,8 +5,11 @@ style/action_menu/header_actions.html
 style/action_menu/index.html
 js/action_menu.js
 js/status.js
-style_unstable/tabs/index.html
+style/headers/index.html
+style/tabs/index.html
+style/tabs/index_dark.html
 
+?
 style/action_menu.css
 style/edit_mode.css
 style/input_areas.css
@@ -15,7 +18,9 @@ style/switches.css
 style_unstable/drawer.css
 style_unstable/seekbars.css
 style_unstable/tabs.css
-style_unstable/toolbars.css
+style_unstable/toolbars.css 
+?
+
 icons/styles/action_icons.css
 icons/styles/media_icons.css
 icons/styles/settings_icons.css

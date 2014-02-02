@@ -475,7 +475,7 @@
         if (httpRequest.readyState === 4) {
           if (httpRequest.status === 200) {
             var response = JSON.parse(httpRequest.responseText);
-            console.log(response);
+            //console.log(response);
             response_length = response.statuses.length;
             if (response_length > 0)
             {
