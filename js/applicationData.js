@@ -7,6 +7,9 @@
  */
 
 var applicationData = {
+categories: [
+{
+  name: "Ruta Principal",
   stations: [
     { /* 0 */ name: "Naranjal", address: "Av. Túpac Amaru cdra 45 con Av. Chinchaysuyo cdra 1 - Independencia", coordinatelat: "-11.982013", coordinatelng: "-77.058663", },
     { /* 1 */ name: "Izaguirre", address: "Av. Túpac Amaru cdra 37 con Av. C Izaguirre cdra 1 - Independencia", coordinatelat: "-11.988667", coordinatelng: "-77.056915", },
@@ -110,5 +113,116 @@ var applicationData = {
     { name: "Naranjal » Plaza de Flores", days: [1,2,3,4,5], hours: ["06:30","09:30"], typeOfSchedule: "Intervals", stations: [0,23,26,30], },
     ]
   },
+  ],
+},
+{
+  name: "Alimentadora Norte",
+  stations:
+  [
+    { /* 0 */ name: "Naranjal", address: "Av. Túpac Amaru cdra 45 con Av. Chinchaysuyo cdra 1 - Independencia", coordinatelat: "-11.982013", coordinatelng: "-77.058663", },
+    { /* 1 */ name: "Ca. Huáscar", address: "Av. Chinchaysuyo cdra 1 con Ca. Huáscar - Independencia", coordinatelat: "-11.979987", coordinatelng: "-77.057894", },
+    { /* 2 */ name: "Ca. Paracas", address: "Av. Indoamérica con Ca. Paracas - Independencia", coordinatelat: "-11.981121", coordinatelng: "-77.054159", },
+    { /* 3 */ name: "Ca. Huanacaure", address: "Av. Indoamérica con Ca. Huanacaure - Independencia", coordinatelat: "-11.982674", coordinatelng: "-77.053537", },
+    { /* 4 */ name: "Ca. Pisac", address: "Ca. Huanacaure con Ca. Pisac - Independencia", coordinatelat: "-11.981593", coordinatelng: "-77.049106", },
+    { /* 5 */ name: "Ca. Huatanay", address: "Ca. Huatanay con Ca. Quipaypampa - Independencia", coordinatelat: "-11.981651", coordinatelng: "-77.048045", },
+    { /* 6 */ name: "Ca. Yauri", address: "Av. Coricancha con Ca. Yauri - Independencia", coordinatelat: "-11.9811", coordinatelng: "-77.043495", },
+    { /* 7 */ name: "Ca. Río Coricancha", address: "Av. Coricancha con Ca. Río Vilcanota - Independencia", coordinatelat: "-11.980754", coordinatelng: "-77.040618", },
+    { /* 8 */ name: "Ca. Vilcashuaman", address: "Ca. Vilcashuaman", coordinatelat: "-11.979704", coordinatelng: "-77.037819", },
+    { /* 9 */ name: "Ca. Quillabamba", address: "Ca. Quillabamba con Ca. Hermanos Ayar", coordinatelat: "-11.979305", coordinatelng: "-77.039579", },
+    { /* 10 */ name: "Ca. Cushihuallar", address: "Av. Coricancha con Ca. Cushihuallar", coordinatelat: "-11.980517", coordinatelng: "-77.040372", },
+    { /* 11 */ name: "Ca. Muquiyauyos", address: "Av. Huanacaure con Ca. Muquiyauyos", coordinatelat: "-11.981625", coordinatelng: "-77.050093", },
+    { /* 12 */ name: "Ca. 15 de Julio", address: "Av. Chinchaysuyo cdra 1 con Ca. 15 de Julio", coordinatelat: "-11.97983", coordinatelng: "-77.058397", },
+  ],
+  routes: [
+  { name: "Alimentador AN-01 Tahuantinsuyo",
+    directions: [
+    { name: "AN-01", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,6,5,11,3,2,12,0], },
+    ]
+  },
+  { name: "Alimentador AN-02 Tungasuca",
+    directions: [
+    { name: "AN-02", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-03 Trapiche",
+    directions: [
+    { name: "AN-03", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-04 Collique",
+    directions: [
+    { name: "AN-04 Regular", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    { name: "AN-04 Directo Mañana", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    { name: "AN-04 Directo Tarde", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-05 Payet",
+    directions: [
+    { name: "AN-05", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-06 Puno",
+    directions: [
+    { name: "AN-06", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-07 Belaunde",
+    directions: [
+    { name: "AN-07 Regular", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    { name: "AN-07 Directo Mañana", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    { name: "AN-07 Directo Tarde", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-08 Milagro de Jesús",
+    directions: [
+    { name: "AN-08 Regular", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    { name: "AN-08 Directo Mañana", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    { name: "AN-08 Directo Tarde", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-09 Carabayllo",
+    directions: [
+    { name: "AN-09 Regular", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    { name: "AN-09 Directo Mañana", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    { name: "AN-09 Directo Tarde", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-10 Santo Domingo",
+    directions: [
+    { name: "AN-10", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-12 Puente Piedra",
+    directions: [
+    { name: "AN-12", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-13 La Ensenada",
+    directions: [
+    { name: "AN-13", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-14 Bertello",
+    directions: [
+    { name: "AN-14", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-15 Los Alisos",
+    directions: [
+    { name: "AN-15", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-16 Los Olivos",
+    directions: [
+    { name: "AN-16", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
+  { name: "Alimentador AN-17 Antúnez de Mayolo",
+    directions: [
+    { name: "AN-17", days: [0,1,2,3,4,5,6], hours: ["06:00","23:00"], typeOfSchedule: "Intervals", stations: [], },
+    ]
+  },
   ]
+},
+]
 };
