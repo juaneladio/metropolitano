@@ -78,7 +78,7 @@
     /* The list is ordered before
      * The next script was based on MDN's Array.prototype.sort page */
     // the array to be sorted
-    var list = applicationData.stations;
+    var list = applicationData.categories[0].stations;
     // temporary holder of position and sort-value
     var map = list.map(function(e, i){
       return {index: i, value: e.name.toLowerCase()}
@@ -94,14 +94,14 @@
       return list[e.index]
     })
     var htmlstations = "<ul>";
-    var numberstations = applicationData.stations.length;
+    var numberstations = applicationData.categories[0].stations.length;
     for (var i=0; i<numberstations; i++)
     {
       // Before: htmlstations += "<li><a href='javascript:showstation("+i+")'>";
       htmlstations += "<li><a href='javascript:showstation("+map[i].index+")'>";
       // Now: Explanation: map[i].index has the unordered index for the current element
       htmlstations += '<aside class="icon comms-icon contacts-location"></aside>';
-      // Before: htmlstations += "<p>"+applicationData.stations[i].name+"</p></a></li>";
+      // Before: htmlstations += "<p>"+applicationData.categories[0].stations[i].name+"</p></a></li>";
       htmlstations += "<p>"+result[i].name+"</p></a></li>";
       // Now: Explanation: result[i].name is the name of the current element, 
       // equals map[i].value but without .toLowerCase()
@@ -115,18 +115,18 @@
   {
     var htmlstations = '';
     htmlstations += '<h1>';
-    htmlstations += applicationData.routes[routeSelected].name+'<br>';
-    htmlstations += applicationData.routes[routeSelected].directions[directionSelected].name;
+    htmlstations += applicationData.categories[0].routes[routeSelected].name+'<br>';
+    htmlstations += applicationData.categories[0].routes[routeSelected].directions[directionSelected].name;
     htmlstations += '</h1>';
     htmlstations += '<p class="small">';
-    var numberStationsInDirectionSelected = applicationData.routes[routeSelected].directions[directionSelected].stations.length;
+    var numberStationsInDirectionSelected = applicationData.categories[0].routes[routeSelected].directions[directionSelected].stations.length;
     for (var i=0; i<numberStationsInDirectionSelected; i++)
     {
-      stationIterated = applicationData.routes[routeSelected].directions[directionSelected].stations[i];
+      stationIterated = applicationData.categories[0].routes[routeSelected].directions[directionSelected].stations[i];
       if (stationIterated === stationSelected)
-      htmlstations += '<u>[ '+applicationData.stations[stationIterated].name+" ]</u><br>";
+      htmlstations += '<u>[ '+applicationData.categories[0].stations[stationIterated].name+" ]</u><br>";
       else
-      htmlstations += '-'+applicationData.stations[stationIterated].name+"<br>";
+      htmlstations += '-'+applicationData.categories[0].stations[stationIterated].name+"<br>";
     }
     htmlstations += '</p>';
     document.querySelector('#list-of-stationsindirection').innerHTML = htmlstations;
@@ -137,10 +137,10 @@
   {
     var htmlstations = '';
     htmlstations += '<h1>';
-    htmlstations += applicationData.stations[stationSelected].name;
+    htmlstations += applicationData.categories[0].stations[stationSelected].name;
     htmlstations += '</h1>';
     htmlstations += '<p class="small">';
-    htmlstations += applicationData.stations[stationSelected].address;
+    htmlstations += applicationData.categories[0].stations[stationSelected].address;
     htmlstations += '</p>';
     if (!navigator.onLine)
     {
@@ -150,7 +150,7 @@
     else
     {
       document.querySelector('#list-of-stationinmap').innerHTML = htmlstations;
-      Map.init(applicationData.stations[stationSelected], '#list-of-stationinmap');
+      Map.init(applicationData.categories[0].stations[stationSelected], '#list-of-stationinmap');
     }
     document.querySelector('#stationinmap').className = 'fade-in';
 	}
@@ -160,8 +160,8 @@
     // a. Show stations details
     var htmlstation = "";
     htmlstation += '<ul><li><aside class="icon comms-icon contacts-location"></aside>';
-    htmlstation += "<p>"+applicationData.stations[stationselected].name+"</p>";
-    htmlstation += "<p>"+applicationData.stations[stationselected].address+"</p>";
+    htmlstation += "<p>"+applicationData.categories[0].stations[stationselected].name+"</p>";
+    htmlstation += "<p>"+applicationData.categories[0].stations[stationselected].address+"</p>";
     htmlstation += "</li>";
     if ((getFavoriteStationsAsArray().indexOf(stationselected)) != -1)
       htmlstation += '<div id="favoritebutton"><a role="button" href="javascript:removefavoritestation('+stationselected+',applicationData)">'+"Dejar de ser favorita"+"</a></div>";
@@ -170,7 +170,7 @@
     htmlstation += "</ul>";
     htmlstation += '<div id="showmapbutton"><a role="button" href="javascript:showstationinmap('+stationselected+',applicationData)">'+"Mostrar mapa de estación"+"</a></div>";
     // b. Load current date in order to show information valid for today
-    if ("routes" in applicationData)
+    if ("routes" in applicationData.categories[0])
     {
       var today = new Date();
       var dayname = "";
@@ -185,46 +185,46 @@
       }
       // c. Load available routes Today
       htmlstation += "<header>"+"Rutas para hoy <strong>"+dayname+"</strong></header><ul>";
-      var numberroutes = applicationData.routes.length;
+      var numberroutes = applicationData.categories[0].routes.length;
       for (var i=0; i<numberroutes; i++)
       { 
         var routealreadylisted = false;
-        var numberdirections = applicationData.routes[i].directions.length;
+        var numberdirections = applicationData.categories[0].routes[i].directions.length;
         for (var j=0; j<numberdirections; j++)
         { 
           var routewithcoincidences = false;
-          if ( (applicationData.routes[i].directions[j].days.indexOf(today.getDay())!==-1)
-            && (applicationData.routes[i].directions[j].stations.indexOf(stationselected)!==-1)
+          if ( (applicationData.categories[0].routes[i].directions[j].days.indexOf(today.getDay())!==-1)
+            && (applicationData.categories[0].routes[i].directions[j].stations.indexOf(stationselected)!==-1)
             ) // If today this direction is available, and this direction pass through this station
           {
             routewithcoincidences = true;
             if (!routealreadylisted)
             { // I'm going to list the Route's name only once
               htmlstation += '<li><p>';
-              htmlstation += applicationData.routes[i].name+'</p>';
+              htmlstation += applicationData.categories[0].routes[i].name+'</p>';
               routealreadylisted = true;
             }
-//            htmlstation += "<p>"+applicationData.routes[i].directions[j].name+"</p>";
-            htmlstation += '<a href="javascript:showstationsindirection('+stationselected+','+i+','+j+')"><aside class="icon comms-icon contacts-link"></aside><p>'+applicationData.routes[i].directions[j].name+"</p>";
+//            htmlstation += "<p>"+applicationData.categories[0].routes[i].directions[j].name+"</p>";
+            htmlstation += '<a href="javascript:showstationsindirection('+stationselected+','+i+','+j+')"><aside class="icon comms-icon contacts-link"></aside><p>'+applicationData.categories[0].routes[i].directions[j].name+"</p>";
             htmlstation += "<p>- "+"Salidas"+": ";
-            var numberhours = applicationData.routes[i].directions[j].hours.length;
+            var numberhours = applicationData.categories[0].routes[i].directions[j].hours.length;
             for (var k=0; k<numberhours; k++)
             {
-              if (applicationData.routes[i].directions[j].typeOfSchedule === "Intervals")
+              if (applicationData.categories[0].routes[i].directions[j].typeOfSchedule === "Intervals")
               { // Intervals: Ej: The direction is available between 07:00 and 09:00 hours
                 if (k===0)
-                { htmlstation += ""+applicationData.routes[i].directions[j].hours[k].toString()+"-"; }
+                { htmlstation += ""+applicationData.categories[0].routes[i].directions[j].hours[k].toString()+"-"; }
                 else if ( (k%2) === 0 )
-                { htmlstation += ", "+applicationData.routes[i].directions[j].hours[k]+"-"; }
+                { htmlstation += ", "+applicationData.categories[0].routes[i].directions[j].hours[k]+"-"; }
                 else 
-                { htmlstation += ""+applicationData.routes[i].directions[j].hours[k]+""; }
+                { htmlstation += ""+applicationData.categories[0].routes[i].directions[j].hours[k]+""; }
               }
-              if (applicationData.routes[i].directions[j].typeOfSchedule === "Frequencies")
+              if (applicationData.categories[0].routes[i].directions[j].typeOfSchedule === "Frequencies")
               { // Frequencies: Ej: The route is available at 07:30, then at 09:00, and the last departure is at 12:30
                 if (k===0)
-                { htmlstation += ""+applicationData.routes[i].directions[j].hours[k].toString(); }
+                { htmlstation += ""+applicationData.categories[0].routes[i].directions[j].hours[k].toString(); }
                 else
-                { htmlstation += ", "+applicationData.routes[i].directions[j].hours[k]+""; }
+                { htmlstation += ", "+applicationData.categories[0].routes[i].directions[j].hours[k]+""; }
               }
             }
             htmlstation += "</p></a>";
@@ -242,7 +242,7 @@
     document.querySelector('#station-details').innerHTML = htmlstation;
     document.querySelector('#station').className = 'current';
     /*setTimeout(function(){
-      Map.init(applicationData.stations[stationselected]);
+      Map.init(applicationData.categories[0].stations[stationselected]);
     },2000);*/
   }
   
@@ -259,7 +259,7 @@
     { // FirefoxOS
       var notification = navigator.mozNotification.createNotification(
         "Metropolitano de Lima",
-        "Estación favorita: "+applicationData.stations[stationselected].name
+        "Estación favorita: "+applicationData.categories[0].stations[stationselected].name
         );
       notification.onshow = function () { setTimeout(notification.close(), 1000); }
                     notification.show();
@@ -267,7 +267,7 @@
     else
     if ("Notification" in navigator)
     { // Firefox +22
-      var n = new Notification("Metropolitano de Lima",{body:"Estación favorita: "+applicationData.stations[stationselected].name});
+      var n = new Notification("Metropolitano de Lima",{body:"Estación favorita: "+applicationData.categories[0].stations[stationselected].name});
     }
     else
     { // Other browsers: do nothing
@@ -318,7 +318,7 @@
       {
         htmlfavoritestations += "<li><a href='javascript:showstation("+arrayFavoriteStations[i]+")'>";
         htmlfavoritestations += '<aside class="icon comms-icon contacts-location"></aside>';
-        htmlfavoritestations += "<p>"+applicationData.stations[arrayFavoriteStations[i]].name+"</p></a></li>";
+        htmlfavoritestations += "<p>"+applicationData.categories[0].stations[arrayFavoriteStations[i]].name+"</p></a></li>";
       }
       htmlfavoritestations += "</ul>";
       htmlfavoritestations += '<a role="button" class="danger" href="javascript:removeallfavorites()">'+"Quitar todas las favoritas"+"</a>";
@@ -370,12 +370,12 @@
           //console.log('Longitude: ' + crd.longitude);
           //console.log('More or less ' + crd.accuracy + ' meters.');
           var myLatLong = new LatLon(Geo.parseDMS(crd.latitude), Geo.parseDMS(crd.longitude));
-          var numberstations = applicationData.stations.length;
+          var numberstations = applicationData.categories[0].stations.length;
           var min_distance;
           var neareststation;
           for (var i=0; i<numberstations; i++)
           {
-            var current_station = new LatLon(Geo.parseDMS(applicationData.stations[i].coordinatelat), Geo.parseDMS(applicationData.stations[i].coordinatelng));
+            var current_station = new LatLon(Geo.parseDMS(applicationData.categories[0].stations[i].coordinatelat), Geo.parseDMS(applicationData.categories[0].stations[i].coordinatelng));
             //console.log(myLatLong);
             var current_distance = myLatLong.distanceTo(current_station);
             //console.log(current_distance);
@@ -395,7 +395,7 @@
           htmlneareststations = '<ul>';
           htmlneareststations += '<li><a href="javascript:showstation('+neareststation+')">';
           htmlneareststations += '<aside class="icon comms-icon contacts-location"></aside>';
-          htmlneareststations += '<p>'+applicationData.stations[neareststation].name+'</p>';
+          htmlneareststations += '<p>'+applicationData.categories[0].stations[neareststation].name+'</p>';
           htmlneareststations += '<p>'+'+'+min_distance+' Kms.</p>';
           htmlneareststations += '</a></li>';
           // Number of blocks is an arbitrary measure
@@ -411,7 +411,7 @@
           htmlneareststations += '</p></li></ul>';
           
           document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
-          Map.init(applicationData.stations, '#list-of-nearest-stations');
+          Map.init(applicationData.categories[0].stations, '#list-of-nearest-stations');
           Map.geoSuccess(pos,min_blocks);
         };
         function error(err)
@@ -419,7 +419,7 @@
           //console.warn('ERROR(' + err.code + '): ' + err.message);
           var htmlneareststations = '<p class="small">'+"Lo sentimos, no se pudo determinar su ubicación."+"</p>";
           document.querySelector('#list-of-nearest-stations').innerHTML = htmlneareststations;
-          Map.init(applicationData.stations, '#list-of-nearest-stations');
+          Map.init(applicationData.categories[0].stations, '#list-of-nearest-stations');
           // I don't center the map in an specific location: it chooses the last coordinate added in applicationData
         };
         navigator.geolocation.getCurrentPosition(success, error, options);
@@ -475,7 +475,7 @@
         if (httpRequest.readyState === 4) {
           if (httpRequest.status === 200) {
             var response = JSON.parse(httpRequest.responseText);
-            //console.log(response);
+            console.log(response);
             response_length = response.statuses.length;
             if (response_length > 0)
             {
@@ -485,12 +485,16 @@
               {
                 if (response.statuses[i].text.charAt(0)!=='@')
                 {
-                  listoftweets.push({ 'screen_name' : response.statuses[i].user.screen_name ,
+                  date = new Date (response.statuses[i].created_at);
+                  listoftweets.push({
+                    'screen_name' : response.statuses[i].user.screen_name ,
                     'text' : response.statuses[i].text ,
-                    'id_str' : response.statuses[i].id_str });
+                    'id_str' : response.statuses[i].id_str,
+                    'created_at' : date.toLocaleString(["es-PE","es","en"])
+                    });
                 }
               }
-              console.log(listoftweets);
+              //console.log(listoftweets);
               // I always storage the latest tweet
               if (localStorage.getItem("latesttweet"))
               { latesttweet = localStorage.getItem("latesttweet"); }
@@ -513,13 +517,14 @@
                   // tweetsalreadyseen is a flag to do that
                   if (!tweetsalreadyseen)
                   { htmltweets += '<li>';
-                    htmltweets += '<aside class="icon comms-icon contacts-twitter"></aside><p>'+listoftweets[i].screen_name+"</p>";
                   }
                   else
                   { htmltweets += '<li class="disabled">';
-                    htmltweets += '<aside class="icon comms-icon contacts-twitter"></aside><p>'+listoftweets[i].screen_name+"</p>";
                   }
-                  htmltweets += '<p class="small">'+makeLink(listoftweets[i].text)+"</p></li>";
+                  htmltweets += '<aside class="icon comms-icon contacts-twitter"></aside>';
+                  htmltweets += '<p>'+listoftweets[i].screen_name+"</p>";
+                  htmltweets += '<p class="small">'+makeLink(listoftweets[i].text);
+                  htmltweets += '<br>['+listoftweets[i].created_at+']</p></li>';
                 }
                 localStorage.setItem("latesttweet",listoftweets[0].id_str);
               }
