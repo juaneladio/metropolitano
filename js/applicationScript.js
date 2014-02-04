@@ -124,9 +124,9 @@
     {
       stationIterated = applicationData.categories[0].routes[routeSelected].directions[directionSelected].stations[i];
       if (stationIterated === stationSelected)
-      htmlstations += '<u>[ '+applicationData.categories[0].stations[stationIterated].name+" ]</u><br>";
+      htmlstations += '* <u>[ '+applicationData.categories[0].stations[stationIterated].name+" ]</u><br>";
       else
-      htmlstations += '-'+applicationData.categories[0].stations[stationIterated].name+"<br>";
+      htmlstations += '- '+applicationData.categories[0].stations[stationIterated].name+"<br>";
     }
     htmlstations += '</p>';
     document.querySelector('#list-of-stationsindirection').innerHTML = htmlstations;
@@ -160,15 +160,15 @@
     // a. Show stations details
     var htmlstation = "";
     htmlstation += '<ul><li><aside class="icon comms-icon contacts-location"></aside>';
-    htmlstation += "<p>"+applicationData.categories[0].stations[stationselected].name+"</p>";
-    htmlstation += "<p>"+applicationData.categories[0].stations[stationselected].address+"</p>";
+    htmlstation += '<p>'+applicationData.categories[0].stations[stationselected].name+'</p>';
+    htmlstation += '<p>'+applicationData.categories[0].stations[stationselected].address+'</p>';
     htmlstation += "</li>";
     if ((getFavoriteStationsAsArray().indexOf(stationselected)) != -1)
-      htmlstation += '<div id="favoritebutton"><a role="button" href="javascript:removefavoritestation('+stationselected+',applicationData)">'+"Dejar de ser favorita"+"</a></div>";
+      htmlstation += '<li><div id="favoritebutton"><a role="button" href="javascript:removefavoritestation('+stationselected+',applicationData)">'+'Dejar de ser favorita'+'</a></div></li>';
     else
-      htmlstation += '<div id="favoritebutton"><a role="button" href="javascript:addfavoritestation('+stationselected+',applicationData)">'+"Fijar como favorita"+"</a></div>";
+      htmlstation += '<li><div id="favoritebutton"><a role="button" href="javascript:addfavoritestation('+stationselected+',applicationData)">'+'Fijar como favorita'+'</a></div></li>';
+    htmlstation += '<li><div id="showmapbutton"><a role="button" href="javascript:showstationinmap('+stationselected+',applicationData)" class="icon icon-view">'+'Mostrar mapa de estación'+'</a></div></li>';
     htmlstation += "</ul>";
-    htmlstation += '<div id="showmapbutton"><a role="button" href="javascript:showstationinmap('+stationselected+',applicationData)">'+"Mostrar mapa de estación"+"</a></div>";
     // b. Load current date in order to show information valid for today
     if ("routes" in applicationData.categories[0])
     {
@@ -184,7 +184,7 @@
         case 6: dayname = "Sábado"; break
       }
       // c. Load available routes Today
-      htmlstation += "<header>"+"Rutas para hoy <strong>"+dayname+"</strong></header><ul>";
+      htmlstation += '<header>'+'Rutas para hoy <strong>'+dayname+'</strong></header><ul>';
       var numberroutes = applicationData.categories[0].routes.length;
       for (var i=0; i<numberroutes; i++)
       { 
