@@ -168,7 +168,7 @@
     else
       htmlstation += '<li><div id="favoritebutton"><a role="button" href="javascript:addfavoritestation('+stationselected+',applicationData)">'+'Fijar como favorita'+'</a></div></li>';
     htmlstation += '<li><div id="showmapbutton"><a role="button" href="javascript:showstationinmap('+stationselected+',applicationData)" class="icon icon-view">'+'Mostrar mapa de estación'+'</a></div></li>';
-    htmlstation += "</ul>";
+    htmlstation += '</ul>';
     // b. Load current date in order to show information valid for today
     if ("routes" in applicationData.categories[0])
     {
@@ -184,7 +184,7 @@
         case 6: dayname = "Sábado"; break
       }
       // c. Load available routes Today
-      htmlstation += '<header>'+'Rutas para hoy <strong>'+dayname+'</strong></header><ul>';
+      htmlstation += '<header>'+'Rutas para hoy <strong>'+dayname+'</strong></header><ul class="compact">';
       var numberroutes = applicationData.categories[0].routes.length;
       for (var i=0; i<numberroutes; i++)
       { 
@@ -200,13 +200,12 @@
             routewithcoincidences = true;
             if (!routealreadylisted)
             { // I'm going to list the Route's name only once
-              htmlstation += '<li><p>';
-              htmlstation += applicationData.categories[0].routes[i].name+'</p>';
+              htmlstation += '<li><div><label>';
+              htmlstation += applicationData.categories[0].routes[i].name+'</label>';
               routealreadylisted = true;
             }
-//            htmlstation += "<p>"+applicationData.categories[0].routes[i].directions[j].name+"</p>";
-            htmlstation += '<a href="javascript:showstationsindirection('+stationselected+','+i+','+j+')"><aside class="icon comms-icon contacts-link"></aside><p>'+applicationData.categories[0].routes[i].directions[j].name+"</p>";
-            htmlstation += "<p>- "+"Salidas"+": ";
+            htmlstation += '<a role="button" class="icon icon-view" href="javascript:showstationsindirection('+stationselected+','+i+','+j+')">'+applicationData.categories[0].routes[i].directions[j].name+'</a>';
+            htmlstation += '<label>- '+'Salidas'+': ';
             var numberhours = applicationData.categories[0].routes[i].directions[j].hours.length;
             for (var k=0; k<numberhours; k++)
             {
@@ -227,16 +226,15 @@
                 { htmlstation += ", "+applicationData.categories[0].routes[i].directions[j].hours[k]+""; }
               }
             }
-            htmlstation += "</p></a>";
-//            htmlstation += "</p>";
+            htmlstation += '</label>';
           }
           if (routewithcoincidences && (j==numberdirections-1) )
           { // If this Route has coincidences and this is the last iteration I'm closing the list of Directions
-            htmlstation += "</li>";
+            htmlstation += '</div></li>';
           }
         }
       }
-      htmlstation += "</ul>";
+      htmlstation += '</ul>';
     }
     // d. Transfer all HTML to the page
     document.querySelector('#station-details').innerHTML = htmlstation;

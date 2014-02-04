@@ -203,3 +203,9 @@ form[role="dialog"][data-type="confirm"] p {
 .leaflet-popup-content .marker-title {
   color: #000000;
 }
+
+li button.icon, li a.icon[role="button"], li .button.icon {
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
