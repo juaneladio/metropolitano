@@ -124,7 +124,7 @@
     {
       stationIterated = applicationData.categories[0].routes[routeSelected].directions[directionSelected].stations[i];
       if (stationIterated === stationSelected)
-      htmlstations += '* <u>[ '+applicationData.categories[0].stations[stationIterated].name+" ]</u><br>";
+      htmlstations += '* <u>[ '+applicationData.categories[0].stations[stationIterated].name.toUpperCase()+" ]</u><br>";
       else
       htmlstations += '- '+applicationData.categories[0].stations[stationIterated].name+"<br>";
     }
