@@ -541,21 +541,15 @@
   
   function shareTweetText(tweetText)
   {
-    if ("MozActivity" in navigator)
-    {
-      var activity = new MozActivity({
+    var activity = new MozActivity({
         name: "new",
         data: {
           type: [ "websms/sms","mail" ],
-          number: '', //r equired by websms
+          number: '', // required by websms
           body: tweetText, // required by websms
           url: "mailto:?body=" + tweetText, // required by mail
         }
       });
-    }
-    else
-    { // Other browsers/OS: do nothing
-    }
   }
 
 //E. Maps
