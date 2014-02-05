@@ -513,16 +513,15 @@
                   { tweetsalreadyseen = 1; }
                   // Print new statuses with an icon, and past statuses without icon and some opacity
                   // tweetsalreadyseen is a flag to do that
+                  htmltweets += '<li>';
                   if (!tweetsalreadyseen)
-                  { htmltweets += '<li>';
-                  }
+                  { htmltweets += '<aside class="icon comms-icon contacts-twitter"></aside>'; }
                   else
-                  { htmltweets += '<li class="disabled">';
-                  }
-                  htmltweets += '<aside class="icon comms-icon contacts-twitter"></aside>';
+                  { htmltweets += '<aside class="icon comms-icon contacts-twitter disabled"></aside>'; }
                   htmltweets += '<p>'+listoftweets[i].screen_name+"</p>";
                   htmltweets += '<p class="small">'+makeLink(listoftweets[i].text);
-                  htmltweets += '<br>['+listoftweets[i].created_at+']</p></li>';
+                  htmltweets += '<br>['+listoftweets[i].created_at+']';
+                  htmltweets += '<br><a role="button" class="icon icon-view" href="javascript:shareTweetText(\''+twitterAccount+': '+listoftweets[i].text+'\')">Compartir texto de tuit</a></li>';
                 }
                 localStorage.setItem("latesttweet",listoftweets[0].id_str);
               }
@@ -537,6 +536,25 @@
       };
       httpRequest.open('GET', url);
       httpRequest.send();
+    }
+  }
+  
+  function shareTweetText(tweetText)
+  {
+    if ("MozActivity" in navigator)
+    {
+      var activity = new MozActivity({
+        name: "new",
+        data: {
+          type: [ "websms/sms","mail" ],
+          number: '', //r equired by websms
+          body: tweetText, // required by websms
+          url: "mailto:?body=" + tweetText, // required by mail
+        }
+      });
+    }
+    else
+    { // Other browsers/OS: do nothing
     }
   }
 
