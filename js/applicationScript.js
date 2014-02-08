@@ -184,7 +184,7 @@
         case 6: dayname = "Sábado"; break
       }
       // c. Load available routes Today
-      htmlstation += '<header>'+'Rutas para hoy <strong>'+dayname+'</strong></header><ul class="compact">';
+      htmlstation += '<header>'+'Rutas y estaciones hoy <strong>'+dayname+'</strong></header><ul class="compact">';
       var numberroutes = applicationData.categories[0].routes.length;
       for (var i=0; i<numberroutes; i++)
       { 
