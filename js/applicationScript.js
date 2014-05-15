@@ -450,6 +450,8 @@
       var httpRequest;
       var url = 'http://mozilla.pe/labs/metropolitano.php'
       //makeRequest('http://mozilla.pe/labs/metropolitano.php');
+      /* The source code used in metropolitano.php is stored at
+       * https://github.com/juaneladio/metropolitano-backend */
       if (window.XMLHttpRequest) { // Mozilla, Safari, ...
         httpRequest = new XMLHttpRequest();
       } else if (window.ActiveXObject) { // IE

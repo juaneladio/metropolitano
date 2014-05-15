@@ -20,7 +20,9 @@ Archivos importantes:
 * js/applicationScript.js: código JavaScript requerido para el funcionamiento de la aplicación. Incluye el código para el intercambio entre páginas y la generación dinámica de las mismas.
 * manifest.webapp: Archivo manifiesto con la información general de la aplicación, utilizado para identificar la aplicación y los permisos que requiere en el Firefox Marketplace.
 
-Librerías adicionales: codebird.php, latlong.js y mapbox.js.
+Librerías adicionales: latlong.js y mapbox.js.
+
+Para una característica especial (obtener una lista de tuits de una cuenta de Twitter) requiere un backend que usa codebird.php. El código fuente está disponible en https://github.com/juaneladio/metropolitano-backend y para desplegar necesitará registrar una App en Twitter.
 
 ¿Sugerencias?
 -------------
@@ -47,7 +49,9 @@ Main files:
 * js/applicationScript.js: JavaScript code required by the application. It includes the code for the interchange between pages and the dynamic generation of the pages.
 * manifest.webapp: Manifest file with the general information of the app, it's used to identify the app and the privilegies that requires in the Firefox Marketplace.
 
-Additional libraries: codebird.php, latlong.js and mapbox.js
+Additional libraries: latlong.js and mapbox.js
+
+For a special feature (retrieve a list of tweets from a Twitter account) it requires a backend which uses codebird.php. The source code is available at https://github.com/juaneladio/metropolitano-backend and in order to deploy it you need to register a Twitter App.
 
 Suggestions?
 ------------
