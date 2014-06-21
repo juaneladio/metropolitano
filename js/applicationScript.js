@@ -526,7 +526,9 @@
                   htmltweets += '<p>'+listoftweets[i].screen_name+"</p>";
                   htmltweets += '<p class="small">'+makeLink(listoftweets[i].text);
                   htmltweets += '<br>['+listoftweets[i].created_at+']';
-                  htmltweets += '<br><a role="button" class="icon icon-view" href="javascript:shareTweetText(\''+twitterAccount+': '+listoftweets[i].text+'\')">Compartir texto de tuit</a></li>';
+                  if (typeof MozActivity === 'function')
+                  { htmltweets += '<br><a role="button" class="icon icon-view" href="javascript:shareTweetText(\''+twitterAccount+': '+listoftweets[i].text+'\')">'+"Compartir"+'</a>'; }
+                  htmltweets += '</li>';
                 }
                 localStorage.setItem("latesttweet",listoftweets[0].id_str);
               }
