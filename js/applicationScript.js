@@ -256,7 +256,9 @@
     // Updated following https://github.com/nickdesaulniers/fxos-irc/blob/master/js/notification.js
     var title = "Metropolitano de Lima";
     var optionsBody = "Estación favorita: "+applicationData.categories[0].stations[stationselected].name;
-    var options = { body: optionsBody };
+    // icon doesn't work with local routes
+    var optionIcon = "http://juaneladio.github.io/metropolitano/images/metropolitano_icon_32.png";
+    var options = { body: optionsBody, icon: optionIcon };
     if ("Notification" in window)
     {
       var n = new Notification(title,options);
