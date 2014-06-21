@@ -253,22 +253,25 @@
       arrayFavoriteStations.push(stationselected);
       localStorage.setItem("myfavoritestations",JSON.stringify(arrayFavoriteStations));
     }
-    if ("mozNotification" in navigator)
+    // Updated following https://github.com/nickdesaulniers/fxos-irc/blob/master/js/notification.js
+    var title = "Metropolitano de Lima";
+    var optionsBody = "Estación favorita: "+applicationData.categories[0].stations[stationselected].name;
+    var options = { body: optionsBody };
+    if ("Notification" in window)
+    {
+      var n = new Notification(title,options);
+    }
+    else if ("mozNotification" in navigator)
     { // FirefoxOS
       var notification = navigator.mozNotification.createNotification(
-        "Metropolitano de Lima",
-        "Estación favorita: "+applicationData.categories[0].stations[stationselected].name
+        title,options
         );
       notification.onshow = function () { setTimeout(notification.close(), 1000); }
                     notification.show();
     }
     else
-    if ("Notification" in navigator)
-    { // Firefox +22
-      var n = new Notification("Metropolitano de Lima",{body:"Estación favorita: "+applicationData.categories[0].stations[stationselected].name});
-    }
-    else
     { // Other browsers: do nothing
+      alert(title + ": " + options.body);
     }
     var htmlbutton = '<a role="button" href="javascript:removefavoritestation('+stationselected+',applicationData)">'+"Dejar de ser favorita"+"</a>";
     document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
@@ -323,7 +326,7 @@
     }
     else
     {
-      htmlfavoritestations = '<p class="small">'+"No hay estación favorita."+"</p>";
+      htmlfavoritestations = '<p class="small">'+"No hay estaciones favoritas."+"</p>";
     }
     document.querySelector('#list-of-favorite-stations').innerHTML = htmlfavoritestations;
   }
