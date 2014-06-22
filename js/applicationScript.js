@@ -268,8 +268,13 @@
       var notification = navigator.mozNotification.createNotification(
         title,options
         );
+      notification.onclick = function () {  
+        // show favorite stations
+        document.querySelector('#favorite-stations').className = 'right';
+        document.querySelector('#index').className = 'current';
+      }
       notification.onshow = function () { setTimeout(notification.close(), 1000); }
-                    notification.show();
+      notification.show();
     }
     else
     { // Other browsers: do nothing
