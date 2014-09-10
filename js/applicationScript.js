@@ -257,23 +257,22 @@
     var title = "Metropolitano de Lima";
     var optionsBody = "Estación favorita: "+applicationData.categories[0].stations[stationselected].name;
     // icon doesn't work with local routes
-    var optionIcon = "http://juaneladio.github.io/metropolitano/images/metropolitano_icon_32.png";
-    var options = { body: optionsBody, icon: optionIcon };
+    var options;
+    if (!navigator.onLine)
+    { options = { body: optionsBody }; }
+    else
+    {
+      var optionIcon = "http://juaneladio.github.io/metropolitano/images/metropolitano_icon_32.png";
+      options = { body: optionsBody, icon: optionIcon };
+    }
     if ("Notification" in window)
     {
       var n = new Notification(title,options);
     }
     else if ("mozNotification" in navigator)
     { // FirefoxOS
-      var notification = navigator.mozNotification.createNotification(
-        title,options
-        );
-      notification.onclick = function () {  
-        // show favorite stations
-        document.querySelector('#favorite-stations').className = 'right';
-        document.querySelector('#index').className = 'current';
-      }
-      notification.onshow = function () { setTimeout(notification.close(), 1000); }
+      var notification = navigator.mozNotification.createNotification(title,options);
+      // notification.onshow = function () { setTimeout(notification.close(), 1000); }
       notification.show();
     }
     else
