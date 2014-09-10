@@ -594,7 +594,7 @@
 
     initMap: function() {
       var mapEl = document.getElementById('map');
-      this.map = L.mapbox.map('map', 'examples.map-9ijuk24y');
+      this.map = L.mapbox.map('map', 'examples.map-i86nkdio');
       this.showMap(mapEl);
     },
 
