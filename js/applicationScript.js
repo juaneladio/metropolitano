@@ -594,7 +594,12 @@
 
     initMap: function() {
       var mapEl = document.getElementById('map');
-      this.map = L.mapbox.map('map', 'examples.map-i86nkdio');
+      // This is an Access Token only for this app, if you fork it you need to request one
+      // See: https://www.mapbox.com/mapbox.js/api/v2.1.0/api-access-tokens/
+      L.mapbox.accessToken = 'pk.eyJ1IjoianVhbmVsYWRpbyIsImEiOiJRdWNPLUkwIn0.nkdQycJC2ay4ahm3aa8OHQ';
+      // This is a Project in Mapbox only for this app, if you fork it just create a new project
+      // See: https://www.mapbox.com/projects/
+      this.map = L.mapbox.map('map', 'juaneladio.jfcf9pdn');
       this.showMap(mapEl);
     },
 
