@@ -21,7 +21,7 @@
     }
     h2.bb-docs {
       font-size: 1.8rem;
-      font-weight: lighter;
+      font-weight: 300;
       color: #666;
       margin: -1px 0 0;
       background-color: #f5f5f5;
@@ -34,6 +34,13 @@
   </style>
 </head>
 <body role="application">
+  <p dir="ltr">
+    <label>
+      <input type="checkbox"
+        onchange="document.documentElement.dir = this.checked ? 'rtl' : 'ltr'">
+      RTL mode
+    </label>
+  </p>
 
   <h2 class="bb-docs">Checkbox, commonly used in edit mode</h2>
   <label class="pack-checkbox">
