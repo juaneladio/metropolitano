@@ -163,9 +163,9 @@ div[role="slider"] > label.icon {
 
 /* Custom style */
 
-/*form[role="dialog"][data-type="confirm"] > section {
+form[role="dialog"][data-type="confirm"] > section {
   overflow-y: hidden;
-}*/
+}
 
 div[role="slider"] > label.icon {
   background: no-repeat right top;
@@ -198,7 +198,7 @@ section[role="region"] > .content [data-type="list"] li > p {
 
 #map {
   height: 290px;
-  width: 290px;
+  width: auto;
 }
 
 .off {
@@ -218,7 +218,7 @@ form[role="dialog"][data-type="confirm"] p {
 }
 
 li button.icon, li a.icon[role="button"], li .button.icon {
-white-space: nowrap;
+/*white-space: nowrap;*/
 overflow: hidden;
 text-overflow: ellipsis;
 }

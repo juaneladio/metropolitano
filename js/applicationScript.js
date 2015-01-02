@@ -158,16 +158,16 @@
   function showstation(stationselected)
   {
     // a. Show stations details
-    var htmlstation = "";
+    var htmlstation = '';
     htmlstation += '<ul><li><aside class="icon comms-icon contacts-location"></aside>';
     htmlstation += '<p>'+applicationData.categories[0].stations[stationselected].name+'</p>';
     htmlstation += '<p>'+applicationData.categories[0].stations[stationselected].address+'</p>';
     htmlstation += "</li>";
     if ((getFavoriteStationsAsArray().indexOf(stationselected)) != -1)
-      htmlstation += '<li><div id="favoritebutton"><a role="button" href="javascript:removefavoritestation('+stationselected+',applicationData)">'+'Dejar de ser favorita'+'</a></div></li>';
+      htmlstation += '<li><div id="favoritebutton"><button onclick="javascript:removefavoritestation('+stationselected+',applicationData)">'+'Dejar de ser favorita'+'</button></div></li>';
     else
-      htmlstation += '<li><div id="favoritebutton"><a role="button" href="javascript:addfavoritestation('+stationselected+',applicationData)">'+'Fijar como favorita'+'</a></div></li>';
-    htmlstation += '<li><div id="showmapbutton"><a role="button" href="javascript:showstationinmap('+stationselected+',applicationData)" class="icon icon-view">'+'Mostrar mapa de estación'+'</a></div></li>';
+      htmlstation += '<li><div id="favoritebutton"><button onclick="javascript:addfavoritestation('+stationselected+',applicationData)">'+'Fijar como favorita'+'</button></div></li>';
+    htmlstation += '<li><div id="showmapbutton"><button onclick="javascript:showstationinmap('+stationselected+',applicationData)" class="icon icon-view">'+'Mostrar mapa de estación'+'</button></div></li>';
     htmlstation += '</ul>';
     // b. Load current date in order to show information valid for today
     if ("routes" in applicationData.categories[0])
@@ -182,9 +182,10 @@
         case 4: dayname = "Jueves"; break
         case 5: dayname = "Viernes"; break
         case 6: dayname = "Sábado"; break
-      }
       // c. Load available routes Today
-      htmlstation += '<header>'+'Rutas y estaciones hoy <strong>'+dayname+'</strong></header><ul class="compact">';
+      }
+      htmlstation += '<section role="region" class="skin-organic">';
+      htmlstation += '<header><h2>'+'Rutas y estaciones hoy <strong>'+dayname+'</strong></h2></header><ul class="compact">';
       var numberroutes = applicationData.categories[0].routes.length;
       for (var i=0; i<numberroutes; i++)
       { 
@@ -204,8 +205,8 @@
               htmlstation += applicationData.categories[0].routes[i].name+'</label>';
               routealreadylisted = true;
             }
-            htmlstation += '<a role="button" class="icon icon-view" href="javascript:showstationsindirection('+stationselected+','+i+','+j+')">'+applicationData.categories[0].routes[i].directions[j].name+'</a>';
-            htmlstation += '<label>- '+'Salidas'+': ';
+            htmlstation += '<button class="icon icon-view" onclick="javascript:showstationsindirection('+stationselected+','+i+','+j+')">'+applicationData.categories[0].routes[i].directions[j].name+'';
+            htmlstation += '<br>';
             var numberhours = applicationData.categories[0].routes[i].directions[j].hours.length;
             for (var k=0; k<numberhours; k++)
             {
@@ -226,7 +227,7 @@
                 { htmlstation += ", "+applicationData.categories[0].routes[i].directions[j].hours[k]+""; }
               }
             }
-            htmlstation += '</label>';
+            htmlstation += '</button>';
           }
           if (routewithcoincidences && (j==numberdirections-1) )
           { // If this Route has coincidences and this is the last iteration I'm closing the list of Directions
@@ -235,6 +236,7 @@
         }
       }
       htmlstation += '</ul>';
+      htmlstation += '</section>';
     }
     // d. Transfer all HTML to the page
     document.querySelector('#station-details').innerHTML = htmlstation;
@@ -279,14 +281,14 @@
     { // Other browsers: do nothing
       alert(title + ": " + options.body);
     }
-    var htmlbutton = '<a role="button" href="javascript:removefavoritestation('+stationselected+',applicationData)">'+"Dejar de ser favorita"+"</a>";
+    var htmlbutton = '<button onclick="javascript:removefavoritestation('+stationselected+',applicationData)">'+"Dejar de ser favorita"+"</button>";
     document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
   }
   
   function removefavoritestation(stationselected,applicationData)
   {
     removeFavoriteStation(stationselected);
-    var htmlbutton = '<a role="button" href="javascript:addfavoritestation('+stationselected+',applicationData)">'+"Fijar como favorita"+"</a>";
+    var htmlbutton = '<button onclick="javascript:addfavoritestation('+stationselected+',applicationData)">'+"Fijar como favorita"+"</button>";
     document.querySelector('#favoritebutton').innerHTML =  htmlbutton;
     renderfavoritestations();
   }
@@ -327,8 +329,8 @@
         htmlfavoritestations += '<aside class="icon comms-icon contacts-location"></aside>';
         htmlfavoritestations += "<p>"+applicationData.categories[0].stations[arrayFavoriteStations[i]].name+"</p></a></li>";
       }
+      htmlfavoritestations += '<button class="danger" onclick="javascript:removeallfavorites()">'+"Quitar todas las favoritas"+"</button>";
       htmlfavoritestations += "</ul>";
-      htmlfavoritestations += '<a role="button" class="danger" href="javascript:removeallfavorites()">'+"Quitar todas las favoritas"+"</a>";
     }
     else
     {
@@ -533,7 +535,7 @@
                   htmltweets += '<p class="small">'+makeLink(listoftweets[i].text);
                   htmltweets += '<br>['+listoftweets[i].created_at+']';
                   if (typeof MozActivity === 'function')
-                  { htmltweets += '<br><a role="button" class="icon icon-view" href="javascript:shareTweetText(\''+twitterAccount+': '+listoftweets[i].text+'\')">'+"Compartir"+'</a>'; }
+                  { htmltweets += '<br><button class="icon icon-view" onclick="javascript:shareTweetText(\''+twitterAccount+': '+listoftweets[i].text+'\')">'+"Compartir"+'</button>'; }
                   htmltweets += '</li>';
                 }
                 localStorage.setItem("latesttweet",listoftweets[0].id_str);
