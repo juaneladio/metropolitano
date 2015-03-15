@@ -1,260 +1,262 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no" />
-  <title>Metropolitano de Lima</title>
-  <meta name="description" content="Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú.">
-  <!-- Building blocks -->
-  <!--link rel="stylesheet" href="style/action_menu.css"-->
-  <link rel="stylesheet" href="style/buttons.css">
-  <link rel="stylesheet" href="style/confirm.css">
-  <!--link rel="stylesheet" href="style/edit_mode.css"-->
-  <link rel="stylesheet" href="style/headers.css">
-  <!--link rel="stylesheet" href="style/input_areas.css"-->
-  <!--link rel="stylesheet" href="style/status.css"-->
-  <!--link rel="stylesheet" href="style/switches.css"-->
-  <!--link rel="stylesheet" href="style/drawer.css"-->
-  <link rel="stylesheet" href="style/lists.css">
-  <link rel="stylesheet" href="style/progress_activity.css">
-  <link rel="stylesheet" href="style/scrolling.css">
-  <!--link rel="stylesheet" href="style/seekbars.css"-->
-  <!--link rel="stylesheet" href="style/tabs.css"-->
-  <!--link rel="stylesheet" href="style/toolbars.css"-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>Metropolitano de Lima</title>
+    <meta name="description" content="Información de rutas y servicios del Metropolitano, un sistema de transporte público en Lima, Perú.">
+    <!-- Building blocks -->
+    <!--link rel="stylesheet" href="style/action_menu.css"-->
+    <link rel="stylesheet" href="style/buttons.css">
+    <link rel="stylesheet" href="style/confirm.css">
+    <!--link rel="stylesheet" href="style/edit_mode.css"-->
+    <link rel="stylesheet" href="style/headers.css">
+    <!--link rel="stylesheet" href="style/input_areas.css"-->
+    <!--link rel="stylesheet" href="style/status.css"-->
+    <!--link rel="stylesheet" href="style/switches.css"-->
+    <!--link rel="stylesheet" href="style/drawer.css"-->
+    <link rel="stylesheet" href="style/lists.css">
+    <link rel="stylesheet" href="style/progress_activity.css">
+    <link rel="stylesheet" href="style/scrolling.css">
+    <!--link rel="stylesheet" href="style/seekbars.css"-->
+    <!--link rel="stylesheet" href="style/tabs.css"-->
+    <!--link rel="stylesheet" href="style/toolbars.css"-->
 
-  <!-- Icons -->
-  <!--link rel="stylesheet" href="icons/styles/action_icons.css"-->
-  <!--link rel="stylesheet" href="icons/styles/media_icons.css"-->
-  <link rel="stylesheet" href="icons/styles/comms_icons.css">
-  <!--link rel="stylesheet" href="icons/styles/settings_icons.css"-->
+    <!-- Icons -->
+    <!--link rel="stylesheet" href="icons/styles/action_icons.css"-->
+    <!--link rel="stylesheet" href="icons/styles/media_icons.css"-->
+    <link rel="stylesheet" href="icons/styles/comms_icons.css">
+    <!--link rel="stylesheet" href="icons/styles/settings_icons.css"-->
 
-  <!-- Transitions -->
-  <link rel="stylesheet" href="transitions.css">
-  
-  <!-- Util CSS: some extra tricks -->
-  <link rel="stylesheet" href="util.css">
-  <link rel="stylesheet" href="fonts.css">
+    <!-- Transitions -->
+    <link rel="stylesheet" href="transitions.css">
 
-  <!-- Additional markup to make Building Blocks kind of cross browser -->
-  <!-- link rel="stylesheet" href="cross_browser.css" -->
+    <!-- Util CSS: some extra tricks -->
+    <link rel="stylesheet" href="util.css">
+    <link rel="stylesheet" href="fonts.css">
 
-  <!-- Custom CSS (only for this app, inheriths Building Blocks) -->
-  <link rel="stylesheet" href="style/applicationStyle.css">
-  <link rel="stylesheet" href="style/mapbox.css">
-</head>
-<body>
-  <section role="region" id="index" data-position="current">
-    <header class="fixed">
-      <h1>Metropolitano de Lima</h1>
-    </header>
-    <article class="content scrollable header">
-      <div data-type="list">
-        <ul>
-          <li>
-            <a href="javascript:showliststations()">
-              <aside class='icon comms-icon contacts-sms'></aside>
-              <p>Estaciones principales</p>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:showfavoritestations()">
-              <aside class='icon comms-icon contacts-favorite'></aside>
-              <p>Estaciones favoritas</p>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:showneareststations()">
-              <aside class='icon comms-icon contacts-location'></aside>
-              <p>Estación más cercana</p>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:showtweets()">
-              <aside class='icon comms-icon contacts-twitter'></aside>
-              <p>Alertas en Twitter</p>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:showinformation()">
-              <aside class='icon comms-icon contacts-phone'></aside>
-              <p>Información general</p>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:showabout()">
-              <aside class='icon comms-icon contacts-email'></aside>
-              <p>Acerca de la aplicación</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </article>
-  </section> <!-- end index -->
+    <!-- Additional markup to make Building Blocks kind of cross browser -->
+    <!-- link rel="stylesheet" href="cross_browser.css" -->
 
-  <!--····························· Stations ·····························-->
-  <section id="stations" data-position="right">
-     <section role="region">
-      <header class="fixed">
-        <a id="btn-stations-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Estaciones principales</h1>
-      </header>
-      <article class="content scrollable header">
-        <section data-type="list" id="list-of-stations">
+    <!-- Custom CSS (only for this app, inheriths Building Blocks) -->
+    <link rel="stylesheet" href="style/applicationStyle.css">
+    <link rel="stylesheet" href="style/mapbox.css">
+  </head>
+  <body>
+    <div id="app-container">
+      <section role="region" id="index" data-position="current">
+        <header class="fixed">
+          <h1>Metropolitano de Lima</h1>
+        </header>
+        <article class="content scrollable header">
+          <div data-type="list">
+            <ul>
+              <li>
+                <a href="javascript:showliststations()">
+                  <aside class='icon comms-icon contacts-sms'></aside>
+                  <p>Estaciones principales</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:showfavoritestations()">
+                  <aside class='icon comms-icon contacts-favorite'></aside>
+                  <p>Estaciones favoritas</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:showneareststations()">
+                  <aside class='icon comms-icon contacts-location'></aside>
+                  <p>Estación más cercana</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:showtweets()">
+                  <aside class='icon comms-icon contacts-twitter'></aside>
+                  <p>Alertas en Twitter</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:showinformation()">
+                  <aside class='icon comms-icon contacts-phone'></aside>
+                  <p>Información general</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:showabout()">
+                  <aside class='icon comms-icon contacts-email'></aside>
+                  <p>Acerca de la aplicación</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </section> <!-- end index -->
+
+      <!--····························· Stations ·····························-->
+      <section id="stations" data-position="right">
+        <section role="region">
+          <header class="fixed">
+            <a id="btn-stations-back" href="#"><span class="icon icon-back">back</span></a>
+            <h1>Estaciones principales</h1>
+          </header>
+          <article class="content scrollable header">
+            <section data-type="list" id="list-of-stations">
+            </section>
+          </article>
         </section>
-      </article>
-    </section>
-  </section>
-
-  <!--·························· Remove all favorite stations ··························-->
-  <section id="remove-favorite-stations" data-position="back" class="fullscreen">
-    <form role="dialog" data-type="confirm">
-      <section>
-        <h1>Confirmación</h1><!-- this heading is optional -->
-        <p>¿Está seguro de eliminar sus estaciones favoritas?</p>
       </section>
-      <menu>
-        <button formaction="javascript:cancelremoveallfavorites()">Cancelar</button>
-        <button class="danger" formaction="javascript:confirmremoveallfavorites()">Borrar favoritas</button>
-      </menu>
-    </form>
-  </section>
 
-  <!--····························· Favorite Station ·····························-->
-  <section id="favorite-stations" data-position="right">
-     <section role="region">
-      <header class="fixed">
-        <a id="btn-favorite-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Estaciones favoritas</h1>
-      </header>
-      <article class="content scrollable header">
-        <section data-type="list" id="list-of-favorite-stations">
-        </section>
-      </article>
-    </section>
-  </section>
+      <!--·························· Remove all favorite stations ··························-->
+      <section id="remove-favorite-stations" data-position="back" class="fullscreen">
+        <form role="dialog" data-type="confirm">
+          <section>
+            <h1>Confirmación</h1><!-- this heading is optional -->
+            <p>¿Está seguro de eliminar sus estaciones favoritas?</p>
+          </section>
+          <menu>
+            <button formaction="javascript:cancelremoveallfavorites()">Cancelar</button>
+            <button class="danger" formaction="javascript:confirmremoveallfavorites()">Borrar favoritas</button>
+          </menu>
+        </form>
+      </section>
 
-  <!--····························· Nearest Station ·····························-->
-  <section id="nearest-stations" data-position="right">
-     <section role="region">
-      <header class="fixed">
-        <a id="btn-nearest-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Estación más cercana</h1>
-      </header>
-      <article class="content scrollable header">
-        <section data-type="list" id="list-of-nearest-stations">
+      <!--····························· Favorite Station ·····························-->
+      <section id="favorite-stations" data-position="right">
+        <section role="region">
+          <header class="fixed">
+            <a id="btn-favorite-back" href="#"><span class="icon icon-back">back</span></a>
+            <h1>Estaciones favoritas</h1>
+          </header>
+          <article class="content scrollable header">
+            <section data-type="list" id="list-of-favorite-stations">
+            </section>
+          </article>
         </section>
-      </article>
-    </section>
-  </section>
+      </section>
 
-  <!--····························· Station Details ·····························-->
-  <section id="station" data-position="right">
-     <section role="region">
-      <header class="fixed">
-        <a id="btn-station-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Datos de estación</h1>
-      </header>
-      <article class="content scrollable header">
-        <section data-type="list" id="station-details">
+      <!--····························· Nearest Station ·····························-->
+      <section id="nearest-stations" data-position="right">
+        <section role="region">
+          <header class="fixed">
+            <a id="btn-nearest-back" href="#"><span class="icon icon-back">back</span></a>
+            <h1>Estación más cercana</h1>
+          </header>
+          <article class="content scrollable header">
+            <section data-type="list" id="list-of-nearest-stations">
+            </section>
+          </article>
         </section>
-      </article>
-    </section>
-  </section>
-  
-  <!--·························· Stations in route ··························-->
-  <section id="stationsindirection" data-position="back" class="fullscreen">
-    <form role="dialog" data-type="confirm">
-        <section data-type="list" id="list-of-stationsindirection">
-        </section>
-      <menu>
-        <button formaction="javascript:cancelstationsindirection()">Cancelar</button>
-      </menu>
-    </form>
-  </section>
-  
-  <!--·························· Station in map ··························-->
-  <section id="stationinmap" data-position="back" class="fullscreen">
-    <form role="dialog" data-type="confirm">
-        <section data-type="list" id="list-of-stationinmap">
-        </section>
-      <menu>
-        <button formaction="javascript:cancelstationinmap()">Cancelar</button>
-      </menu>
-    </form>
-  </section>
+      </section>
 
-  <!--····························· Tweets ·····························-->
-  <section id="tweets" data-position="right">
-     <section role="region">
-      <header class="fixed">
-        <a id="btn-tweets-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Alertas en Twitter</h1>
-      </header>
-      <article class="content scrollable header">
-        <section data-type="list" id="list-of-tweets">
+      <!--····························· Station Details ·····························-->
+      <section id="station" data-position="right">
+        <section role="region">
+          <header class="fixed">
+            <a id="btn-station-back" href="#"><span class="icon icon-back">back</span></a>
+            <h1>Datos de estación</h1>
+          </header>
+          <article class="content scrollable header">
+            <section data-type="list" id="station-details">
+            </section>
+          </article>
         </section>
-      </article>
-    </section>
-  </section>
-  
-  <!--····························· Service information ·····························-->
-  <section id="info" data-position="right">
-     <section role="region">
-      <header class="fixed">
-        <a id="btn-info-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Información general</h1>
-      </header>
-      <article class="content scrollable header">
-        <section id="info-details">
-          <p>Tarifas en red Troncal</p>
-          <p class="small">Normal: S/. 2.50<br>Universitario: S/. 1.25 (*)<br>Escolar: S/. 1.25 (*)</p>
-          <p>Tarifas en red Alimentadores</p>
-          <p class="small">Normal: S/. 0.50<br>Universitario: S/. 0.25 (*)<br>Escolar: S/. 0.25 (*)<br>(*) Con tarjeta preferencial a solicitar en los Centros de Atención de Usuario</p>
-          <p>Costo de nueva tarjeta</p>
-          <p class="small">S/.4.50 en todas las estaciones</p>
-          <p>Canales Virtuales de atención</p>
-          <p class="small">Call Center: <a href="tel:+5112039000">(01)2039000</a>
-          <br>Correo: <a href="mailto:atencionalusuario@protransporte.gob.pe">atencionalusuario@protransporte.gob.pe</a>
-          <br>Web: <a href="http://www.metropolitano.com.pe/index.php/atencion-al-usuario/formulario-de-contacto" target="_blank">Formulario de contacto</a></p>
-          <p>Canales Presenciales</p>
-          <p class="small">Centros de Atención al Usuario (CAU):
-          <br>Ubicados en los terminales Naranjal, Matellini y la Estación Central.
-          <br>Horario de atención: lunes a domingo de 06:00am a 10:00pm.
-          <br><strong>Objetos perdidos</strong> en alguna estación o bus del Metropolitano: Sólo en el CAU de Estación Central.</p>
-          <p class="small">Libro de reclamaciones:
-          <br>Ubicado en todas las Estaciones del Metropolitano. Deberá solicitarlo al Gestor de Estación de turno.</p>
-          <p class="small">Oficina central:
-          <br>Jr. Cuzco 286, 7mo. Piso, Cercado de Lima.</p>
-        </section>
-      </article>
-    </section>
-  </section>
-  
-  <!--····························· About information ·····························-->
-  <section id="about" data-position="right">
-     <section role="region">
-      <header class="fixed">
-        <a id="btn-about-back" href="#"><span class="icon icon-back">back</span></a>
-        <h1>Acerca de la aplicación</h1>
-      </header>
-      <article class="content scrollable header">
-        <section id="info-details">
-          <p>Importante</p>
-          <p class="small">Ni esta aplicación ni su autor guardan relación con la Municipalidad de Lima</p><p class="small">Los horarios son referenciales y sujetos a cambios.</p>
-          <p>Autor</p>
-          <p class="small"><a href="https://twitter.com/juaneladio" target="_blank">Juan Eladio Sánchez Rosas</a><br>(<a href="http://mozilla.pe/" target="_blank">Mozilla Perú</a>)</p>
-          <p>Código de la aplicación</p>
-          <p class="small">Proyecto y peticiones <a href="https://github.com/juaneladio/metropolitano" target="_blank">GitHub</a>.</p>
-          <p>Más aplicaciones peruanas</p>
-          <p class="small"><a href="http://mozilla.pe/apps" target="_blank">Apps peruanas para Firefox OS</a></p>
-        </section>
-      </article>
-    </section>
-  </section>
+      </section>
 
-  <script type="text/javascript" src="js/mapbox.js"></script>
-  <script type="text/javascript" src="js/latlong.js"></script>
-  <script type="text/javascript" src="js/applicationData.js"></script>
-  <script type="text/javascript" src="js/applicationScript.js"></script>
-</body>
+      <!--·························· Stations in route ··························-->
+      <section id="stationsindirection" data-position="back" class="fullscreen">
+        <form role="dialog" data-type="confirm">
+          <section data-type="list" id="list-of-stationsindirection">
+          </section>
+          <menu>
+            <button formaction="javascript:cancelstationsindirection()">Cancelar</button>
+          </menu>
+        </form>
+      </section>
+
+      <!--·························· Station in map ··························-->
+      <section id="stationinmap" data-position="back" class="fullscreen">
+        <form role="dialog" data-type="confirm">
+          <section data-type="list" id="list-of-stationinmap">
+          </section>
+          <menu>
+            <button formaction="javascript:cancelstationinmap()">Cancelar</button>
+          </menu>
+        </form>
+      </section>
+
+      <!--····························· Tweets ·····························-->
+      <section id="tweets" data-position="right">
+        <section role="region">
+          <header class="fixed">
+            <a id="btn-tweets-back" href="#"><span class="icon icon-back">back</span></a>
+            <h1>Alertas en Twitter</h1>
+          </header>
+          <article class="content scrollable header">
+            <section data-type="list" id="list-of-tweets">
+            </section>
+          </article>
+        </section>
+      </section>
+
+      <!--····························· Service information ·····························-->
+      <section id="info" data-position="right">
+        <section role="region">
+          <header class="fixed">
+            <a id="btn-info-back" href="#"><span class="icon icon-back">back</span></a>
+            <h1>Información general</h1>
+          </header>
+          <article class="content scrollable header">
+            <section id="info-details">
+              <p>Tarifas en red Troncal</p>
+              <p class="small">Normal: S/. 2.50<br>Universitario: S/. 1.25 (*)<br>Escolar: S/. 1.25 (*)</p>
+              <p>Tarifas en red Alimentadores</p>
+              <p class="small">Normal: S/. 0.50<br>Universitario: S/. 0.25 (*)<br>Escolar: S/. 0.25 (*)<br>(*) Con tarjeta preferencial a solicitar en los Centros de Atención de Usuario</p>
+              <p>Costo de nueva tarjeta</p>
+              <p class="small">S/.4.50 en todas las estaciones</p>
+              <p>Canales Virtuales de atención</p>
+              <p class="small">Call Center: <a href="tel:+5112039000">(01)2039000</a>
+                <br>Correo: <a href="mailto:atencionalusuario@protransporte.gob.pe">atencionalusuario@protransporte.gob.pe</a>
+                <br>Web: <a href="http://www.metropolitano.com.pe/index.php/atencion-al-usuario/formulario-de-contacto" target="_blank">Formulario de contacto</a></p>
+              <p>Canales Presenciales</p>
+              <p class="small">Centros de Atención al Usuario (CAU):
+                <br>Ubicados en los terminales Naranjal, Matellini y la Estación Central.
+                <br>Horario de atención: lunes a domingo de 06:00am a 10:00pm.
+                <br><strong>Objetos perdidos</strong> en alguna estación o bus del Metropolitano: Sólo en el CAU de Estación Central.</p>
+              <p class="small">Libro de reclamaciones:
+                <br>Ubicado en todas las Estaciones del Metropolitano. Deberá solicitarlo al Gestor de Estación de turno.</p>
+              <p class="small">Oficina central:
+                <br>Jr. Cuzco 286, 7mo. Piso, Cercado de Lima.</p>
+            </section>
+          </article>
+        </section>
+      </section>
+
+      <!--····························· About information ·····························-->
+      <section id="about" data-position="right">
+        <section role="region">
+          <header class="fixed">
+            <a id="btn-about-back" href="#"><span class="icon icon-back">back</span></a>
+            <h1>Acerca de la aplicación</h1>
+          </header>
+          <article class="content scrollable header">
+            <section id="info-details">
+              <p>Importante</p>
+              <p class="small">Ni esta aplicación ni su autor guardan relación con la Municipalidad de Lima</p><p class="small">Los horarios son referenciales y sujetos a cambios.</p>
+              <p>Autor</p>
+              <p class="small"><a href="https://twitter.com/juaneladio" target="_blank">Juan Eladio Sánchez Rosas</a><br>(<a href="http://mozilla.pe/" target="_blank">Mozilla Perú</a>)</p>
+              <p>Código de la aplicación</p>
+              <p class="small">Proyecto y peticiones <a href="https://github.com/juaneladio/metropolitano" target="_blank">GitHub</a>.</p>
+              <p>Más aplicaciones peruanas</p>
+              <p class="small"><a href="http://mozilla.pe/apps" target="_blank">Apps peruanas para Firefox OS</a></p>
+            </section>
+          </article>
+        </section>
+      </section>
+    </div>
+
+    <script type="text/javascript" src="js/mapbox.js"></script>
+    <script type="text/javascript" src="js/latlong.js"></script>
+    <script type="text/javascript" src="js/applicationData.js"></script>
+    <script type="text/javascript" src="js/applicationScript.js"></script>
+  </body>
 </html>
