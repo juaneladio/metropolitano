@@ -629,7 +629,8 @@
         },
         properties: {
           title: place.name,
-          'marker-color': '#FF4E00'
+          'marker-color': '#FF4E00',
+          'marker-symbol': 'bus'
         }
       }).addTo(map);
       map.setView([lat,lng], 15);
@@ -663,7 +664,8 @@
         },
         properties: {
           title: 'Usted está aquí',
-          'marker-color': '#16AECF'
+          'marker-color': '#16AECF',
+          'marker-symbol': 'pitch'
         }
       }).addTo(that.map);
       // Stablishing the zoom level
