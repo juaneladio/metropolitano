@@ -621,7 +621,7 @@
     addMarker: function(place, map){
       var lat = place.coordinatelat;
       var lng = place.coordinatelng;
-      L.mapbox.markerLayer({
+      L.mapbox.featureLayer({
         type: 'Feature',
         geometry: {
           type: 'Point',
@@ -655,7 +655,7 @@
       // Adding new marker with current position (and different color)
       var lat = position.coords.latitude;
       var lng = position.coords.longitude;
-      L.mapbox.markerLayer({
+      L.mapbox.featureLayer({
         type: 'Feature',
         geometry: {
           type: 'Point',
