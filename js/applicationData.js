@@ -110,7 +110,7 @@ categories: [
   { name: "Súper Expreso (Mañanas)",
     directions: [
     { name: "Plaza de Flores » Naranjal", days: [1,2,3,4,5], hours: ["07:10","09:35"], typeOfSchedule: "Intervals", stations: [0,18,23,26,30], },
-    { name: "Naranjal » Plaza de Flores", days: [1,2,3,4,5], hours: ["06:30","09:30"], typeOfSchedule: "Intervals", stations: [0,23,26,30], },
+    { name: "Naranjal » Plaza de Flores", days: [1,2,3,4,5], hours: ["06:30","09:00"], typeOfSchedule: "Intervals", stations: [0,23,26,30], },
     ]
   },
   ],
