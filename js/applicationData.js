@@ -1,7 +1,7 @@
 /* A. General data about locations:
  * In a public transportation system, there are Stations connected through Routes
- * - An Station has name, address and coordinates 
- * - A Route has directions (Ej: north-south, south-north), operation days, 
+ * - An Station has name, address and coordinates
+ * - A Route has directions (Ej: north-south, south-north), operation days,
  *   type of hourly schedules (Intervals or Frequencies), and connected stations.
  * In other scenaries, there are just Places without relationships.
  */
@@ -78,19 +78,19 @@ categories: [
   { name: "Expreso 1",
     directions: [
     { name: "Matellini » Naranjal", days: [1,2,3,4,5], hours: ["06:20","09:00","17:30","21:30"], typeOfSchedule: "Intervals", stations: [0,8,10,12,13,14,18,22,23,26,31,32,33,34,35,36,37], },
-    { name: "Naranjal » Matellini", days: [1,2,3,4,5], hours: ["06:00","08:55","16:35","21:15"], typeOfSchedule: "Intervals", stations: [0,8,10,12,13,14,18,22,23,26,31,32,33,34,35,36,37], },
+    { name: "Naranjal » Matellini", days: [1,2,3,4,5], hours: ["05:30","08:55","16:35","21:15"], typeOfSchedule: "Intervals", stations: [0,8,10,12,13,14,18,22,23,26,31,32,33,34,35,36,37], },
     ]
   },
   { name: "Expreso 2",
     directions: [
     { name: "Plaza de Flores » Naranjal", days: [1,2,3,4,5], hours: ["06:15","09:05","17:00","21:15"], typeOfSchedule: "Intervals", stations: [0,5,8,10,18,22,23,26,30], },
-    { name: "Naranjal » Plaza de Flores", days: [1,2,3,4,5], hours: ["06:00","09:00","16:35","20:50"], typeOfSchedule: "Intervals", stations: [0,5,8,10,18,22,23,26,30], },
+    { name: "Naranjal » Plaza de Flores", days: [1,2,3,4,5], hours: ["05:30","09:00","16:35","20:50"], typeOfSchedule: "Intervals", stations: [0,5,8,10,18,22,23,26,30], },
     ]
   },
   { name: "Expreso 3",
     directions: [
     { name: "Benavides » Naranjal (Mañanas)", days: [1,2,3,4,5], hours: ["06:15","09:05"], typeOfSchedule: "Intervals", stations: [28,26,24,23,22,21,18,14,1,0], },
-    { name: "Naranjal » Benavides (Mañanas)", days: [1,2,3,4,5], hours: ["06:00","09:00"], typeOfSchedule: "Intervals", stations: [28,26,24,23,22,21,18,8,3,1,0], },
+    { name: "Naranjal » Benavides (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [28,26,24,23,22,21,18,8,3,1,0], },
     { name: "Benavides » Naranjal (Tardes)", days: [1,2,3,4,5], hours: ["17:00","21:15"], typeOfSchedule: "Intervals", stations: [28,26,24,23,22,21,18,8,3,1,0], },
     { name: "Naranjal » Benavides (Tardes)", days: [1,2,3,4,5], hours: ["16:35","20:50"], typeOfSchedule: "Intervals", stations: [28,26,24,23,22,21,18,14,1,0], },
     ]
