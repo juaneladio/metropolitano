@@ -53,26 +53,38 @@ categories: [
   routes: [
   { name: "Regular A",
     directions: [
-    { name: "Central » Naranjal", days: [1,2,3,4,5,6], hours: ["05:40","22:55"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,11,15,16,17,18], },
-    { name: "Naranjal » Central", days: [1,2,3,4,5,6], hours: ["05:00","22:15"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,11,15,16,17,18], },
-    { name: "Central » Naranjal", days: [0], hours: ["05:55","22:35"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,11,15,16,17,18], },
+    { name: "Central » Naranjal", days: [1,2,3,4,5], hours: ["05:40","23:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,11,15,16,17,18], },
+    { name: "Naranjal » Central", days: [1,2,3,4,5], hours: ["05:00","22:30"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,11,15,16,17,18], },
+    { name: "Central » Naranjal", days: [6], hours: ["05:40","22:45"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,11,15,16,17,18], },
+    { name: "Naranjal » Central", days: [6], hours: ["05:00","22:15"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,11,15,16,17,18], },
+    { name: "Central » Naranjal", days: [0], hours: ["05:55","22:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,11,15,16,17,18], },
     { name: "Naranjal » Central", days: [0], hours: ["05:15","21:55"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,11,15,16,17,18], },
     ]
   },
   { name: "Regular B",
     directions: [
-    { name: "Matellini » Naranjal", days: [1,2,3,4,5,6], hours: ["05:20","23:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
-    { name: "Naranjal » Matellini", days: [1,2,3,4,5,6], hours: ["05:00","22:55"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
-    { name: "Matellini » Naranjal", days: [0], hours: ["05:30","22:10"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    { name: "Matellini » Naranjal", days: [1,2,3,4,5], hours: ["05:20","23:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    { name: "Naranjal » Matellini", days: [1,2,3,4,5], hours: ["05:00","23:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    { name: "Matellini » Naranjal", days: [6], hours: ["05:25","23:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    { name: "Naranjal » Matellini", days: [6], hours: ["05:00","23:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    { name: "Matellini » Naranjal", days: [0], hours: ["05:35","22:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
     { name: "Naranjal » Matellini", days: [0], hours: ["05:00","22:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
     ]
   },
   { name: "Regular C",
     directions: [
-    { name: "Matellini » Castilla", days: [1,2,3,4,5,6], hours: ["05:05","22:05"], typeOfSchedule: "Intervals", stations: [11,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
-    { name: "Castilla » Matellini", days: [1,2,3,4,5,6], hours: ["05:20","22:55"], typeOfSchedule: "Intervals", stations: [11,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
-    { name: "Matellini » Castilla", days: [0], hours: ["05:30","22:00"], typeOfSchedule: "Intervals", stations: [11,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    { name: "Matellini » Castilla", days: [1,2,3,4,5], hours: ["05:00","22:05"], typeOfSchedule: "Intervals", stations: [11,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    { name: "Castilla » Matellini", days: [1,2,3,4,5], hours: ["05:00","23:00"], typeOfSchedule: "Intervals", stations: [11,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    { name: "Matellini » Castilla", days: [6], hours: ["05:15","22:05"], typeOfSchedule: "Intervals", stations: [11,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    { name: "Castilla » Matellini", days: [6], hours: ["05:30","22:55"], typeOfSchedule: "Intervals", stations: [11,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    { name: "Matellini » Castilla", days: [0], hours: ["05:25","22:00"], typeOfSchedule: "Intervals", stations: [11,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
     { name: "Castilla » Matellini", days: [0], hours: ["05:30","21:55"], typeOfSchedule: "Intervals", stations: [11,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37], },
+    ]
+  },
+  { name: "Regular D",
+    directions: [
+    { name: "Central » Naranjal", days: [1,2,3,4,5], hours: ["05:35","09:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18], },
+    { name: "Naranjal » Central", days: [1,2,3,4,5], hours: ["05:00","09:30"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18], },
     ]
   },
   { name: "Expreso 1",
