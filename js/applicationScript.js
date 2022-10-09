@@ -589,6 +589,9 @@
         //setTimeout(function(){
           that.initMap();
           that.addMarker(station, that.map);
+          /*var lat = station.coordinatelat;
+          var lng = station.coordinatelng;
+          that.map.setCenter([lat,lng]);*/
         //}, 2000);
       }
     },
@@ -597,11 +600,27 @@
       var mapEl = document.getElementById('map');
       // This is an Access Token only for this app, if you fork it you need to request one
       // See: https://www.mapbox.com/mapbox.js/api/v2.1.0/api-access-tokens/
-      L.mapbox.accessToken = 'pk.eyJ1IjoianVhbmVsYWRpbyIsImEiOiJRdWNPLUkwIn0.nkdQycJC2ay4ahm3aa8OHQ';
+     // L.mapbox.accessToken = 'pk.eyJ1IjoianVhbmVsYWRpbyIsImEiOiJRdWNPLUkwIn0.nkdQycJC2ay4ahm3aa8OHQ';
       // This is a Project in Mapbox only for this app, if you fork it just create a new project
       // See: https://www.mapbox.com/projects/
-      this.map = L.mapbox.map('map', 'juaneladio.jfcf9pdn');
-      this.showMap(mapEl);
+     // this.map = L.mapbox.map('map', 'juaneladio.jfcf9pdn');
+     // this.showMap(mapEl);
+      	// TO MAKE THE MAP APPEAR YOU MUST
+	// ADD YOUR ACCESS TOKEN FROM
+	// https://account.mapbox.com
+	mapboxgl.accessToken = 'pk.eyJ1IjoianVhbmVsYWRpbyIsImEiOiJRdWNPLUkwIn0.nkdQycJC2ay4ahm3aa8OHQ';
+        this.map = new mapboxgl.Map({
+          container: 'map', // container ID
+          // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+          style: 'mapbox://styles/mapbox/streets-v11', // style URL
+           center: [-77.058663, -11.982013], // starting position [lng, lat]
+          zoom: 13, // starting zoom
+          projection: 'globe' // display the map as a 3D globe
+        });
+        this.map.on('style.load', () => {
+          this.map.setFog({}); // Set the default atmosphere style
+        });
+
     },
 
     cleanMap: function(){
@@ -621,7 +640,7 @@
     addMarker: function(place, map){
       var lat = place.coordinatelat;
       var lng = place.coordinatelng;
-      L.mapbox.featureLayer({
+      /*L.mapbox.featureLayer({
         type: 'Feature',
         geometry: {
           type: 'Point',
@@ -634,7 +653,13 @@
         }
       }).addTo(map);
       map.setView([lat,lng], 15);
-      map.invalidateSize(false);
+      map.invalidateSize(false);*/
+      /*const*/ marker1 = new mapboxgl.Marker()
+.setLngLat([lng, lat])
+.addTo(map);
+map.setCenter([lng,lat]);
+      //map.setView([lat,lng], 15);
+      //this.map.invalidateSize(false);
     },
 
     showMap: function(el){
@@ -656,7 +681,11 @@
       // Adding new marker with current position (and different color)
       var lat = position.coords.latitude;
       var lng = position.coords.longitude;
-      L.mapbox.featureLayer({
+      /*const*/ marker1 = new mapboxgl.Marker()
+.setLngLat([lng, lat])
+.addTo(that.map);
+map.setCenter([lng,lat]);
+      /*L.mapbox.featureLayer({
         type: 'Feature',
         geometry: {
           type: 'Point',
@@ -680,7 +709,7 @@
       else if (min_blocks<=96)
       { that.map.setView([lat,lng], 11); }
       else
-      { that.map.setView([lat,lng], 10); }
+      { that.map.setView([lat,lng], 10); }*/
     }
   }
 })();
