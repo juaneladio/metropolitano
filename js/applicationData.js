@@ -83,46 +83,76 @@ categories: [
   },
   { name: "Regular D",
     directions: [
-    { name: "Central » Naranjal", days: [1,2,3,4,5], hours: ["05:35","09:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18], },
-    { name: "Naranjal » Central", days: [1,2,3,4,5], hours: ["05:00","09:30"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18], },
+    { name: "Central » Naranjal (Mañanas)", days: [1,2,3,4,5], hours: ["05:35","09:00"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18], },
+    { name: "Naranjal » Central (Mañanas)", days: [1,2,3,4,5], hours: ["05:00","09:30"], typeOfSchedule: "Intervals", stations: [0,1,2,3,4,5,6,7,8,9,10,12,13,14,18], },
     ]
   },
   { name: "Expreso 1",
     directions: [
-    { name: "Matellini » Naranjal", days: [1,2,3,4,5], hours: ["06:20","09:00","17:30","21:30"], typeOfSchedule: "Intervals", stations: [0,8,10,12,13,14,18,22,23,26,31,32,33,34,35,36,37], },
-    { name: "Naranjal » Matellini", days: [1,2,3,4,5], hours: ["05:30","08:55","16:35","21:15"], typeOfSchedule: "Intervals", stations: [0,8,10,12,13,14,18,22,23,26,31,32,33,34,35,36,37], },
+    { name: "Naranjal » Matellini (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:20"], typeOfSchedule: "Intervals", stations: [18,19,22,23,26,29,31,32,33,34,35,36,37], },
+    { name: "Matellini » Naranjal (Mañanas)", days: [1,2,3,4,5], hours: ["05:00","09:00"], typeOfSchedule: "Intervals", stations: [37,36,35,34,33,32,31,29,26,23,22,19,18], },
+    { name: "Naranjal » Matellini (Tardes)", days: [1,2,3,4,5], hours: ["17:30","21:30"], typeOfSchedule: "Intervals", stations: [18,19,22,23,26,28,29,31,32,33,34,35,36,37], },
+    { name: "Matellini » Naranjal (Tardes)", days: [1,2,3,4,5], hours: ["17:00","21:00"], typeOfSchedule: "Intervals", stations: [37,36,35,34,33,32,31,29,26,22,19,18], },
     ]
   },
   { name: "Expreso 2",
     directions: [
-    { name: "Plaza de Flores » Naranjal", days: [1,2,3,4,5], hours: ["06:15","09:05","17:00","21:15"], typeOfSchedule: "Intervals", stations: [0,5,8,10,18,22,23,26,30], },
-    { name: "Naranjal » Plaza de Flores", days: [1,2,3,4,5], hours: ["05:30","09:00","16:35","20:50"], typeOfSchedule: "Intervals", stations: [0,5,8,10,18,22,23,26,30], },
+    { name: "Naranjal » 28 de julio (Mañanas)", days: [1,2,3,4,5], hours: ["05:00","09:00"], typeOfSchedule: "Intervals", stations: [0,21,22,27,29], },
+    { name: "Plaza de Flores » Naranjal (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [30,28,26,23,22,18,14,10,8,5,1,0], },
+    { name: "Ricardo Palma » Naranjal (Tardes)", days: [1,2,3,4,5], hours: ["17:00","21:00"], typeOfSchedule: "Intervals", stations: [27,22,21,0], },
     ]
   },
   { name: "Expreso 3",
     directions: [
-    { name: "Benavides » Naranjal (Mañanas)", days: [1,2,3,4,5], hours: ["06:15","09:05"], typeOfSchedule: "Intervals", stations: [28,26,24,23,22,21,18,14,1,0], },
-    { name: "Naranjal » Benavides (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [28,26,24,23,22,21,18,8,3,1,0], },
-    { name: "Benavides » Naranjal (Tardes)", days: [1,2,3,4,5], hours: ["17:00","21:15"], typeOfSchedule: "Intervals", stations: [28,26,24,23,22,21,18,8,3,1,0], },
-    { name: "Naranjal » Benavides (Tardes)", days: [1,2,3,4,5], hours: ["16:35","20:50"], typeOfSchedule: "Intervals", stations: [28,26,24,23,22,21,18,14,1,0], },
+    { name: "Naranjal » 28 de Julio (Mañanas)", days: [1,2,3,4,5], hours: ["05:00","09:00"], typeOfSchedule: "Intervals", stations: [0,26,28,29], },
+    { name: "Benavides » Naranjal (Tardes)", days: [1,2,3,4,5], hours: ["17:00","21:00"], typeOfSchedule: "Intervals", stations: [28,26,0], },
     ]
   },
   { name: "Expreso 4",
     directions: [
-    { name: "Plaza de Flores » Naranjal", days: [6], hours: ["06:20","21:45"], typeOfSchedule: "Intervals", stations: [0,1,5,8,10,12,14,18,22,23,26,30], },
-    { name: "Naranjal » Plaza de Flores", days: [6], hours: ["06:00","21:10"], typeOfSchedule: "Intervals", stations: [0,1,5,8,10,12,14,18,22,23,26,30], },
+    { name: "Plaza de Flores » Naranjal", days: [6], hours: ["06:10","21:35"], typeOfSchedule: "Intervals", stations: [0,1,5,8,10,12,14,18,22,23,26,30], },
+    { name: "Naranjal » Plaza de Flores", days: [6], hours: ["06:00","21:00"], typeOfSchedule: "Intervals", stations: [0,1,5,8,10,12,14,18,22,23,26,30], },
     ]
   },
   { name: "Expreso 5",
     directions: [
-    { name: "Plaza de Flores » Naranjal", days: [1,2,3,4,5], hours: ["09:30","17:15"], typeOfSchedule: "Intervals", stations: [30,27,26,23,22,21,18,14,10,8,7,5,3,0], },
-    { name: "Naranjal » Plaza de Flores", days: [1,2,3,4,5], hours: ["09:00","16:30"], typeOfSchedule: "Intervals", stations: [30,27,26,23,22,21,18,14,8,5,3,0], },
+    { name: "Naranjal » Plaza de Flores", days: [1,2,3,4,5], hours: ["09:00","17:00"], typeOfSchedule: "Intervals", stations: [0,3,5,8,14,18,21,22,23,26,27,30], },
+    { name: "Plaza de Flores » Naranjal", days: [1,2,3,4,5], hours: ["09:00","17:00"], typeOfSchedule: "Intervals", stations: [30,27,26,23,22,21,18,14,10,8,7,5,3,0], },
     ]
   },
-  { name: "Súper Expreso (Mañanas)",
+  { name: "Expreso 6",
     directions: [
-    { name: "Plaza de Flores » Naranjal", days: [1,2,3,4,5], hours: ["07:10","09:35"], typeOfSchedule: "Intervals", stations: [0,18,23,26,30], },
-    { name: "Naranjal » Plaza de Flores", days: [1,2,3,4,5], hours: ["06:30","09:00"], typeOfSchedule: "Intervals", stations: [0,23,26,30], },
+    { name: "Izaguirre » Benavides (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [1,3,18,22,23,26,28,30], },
+    ]
+  },
+  { name: "Expreso 7",
+    directions: [
+    { name: "Tomás Valle » Angamos (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [5,18,22,23,26], },
+    ]
+  },
+  { name: "Expreso 8",
+    directions: [
+    { name: "Izaguirre » Plaza de Flores (Mañanas)", days: [1,2,3,4,5], hours: ["05:00","08:20"], typeOfSchedule: "Intervals", stations: [1,3,5,8,10,14,18,22,23,26,28,30], },
+    { name: "Plaza de Flores » Izaguirre (Tardes)", days: [1,2,3,4,5], hours: ["17:00","21:00"], typeOfSchedule: "Intervals", stations: [30,28,26,23,22,18,14,10,8,5,3,1], },
+    ]
+  },
+  { name: "Expreso 9",
+    directions: [
+    { name: "UNI » Benavides (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [8,10,23,26,28], },
+    ]
+  },
+  { name: "Súper Expreso",
+    directions: [
+    { name: "Naranjal » Plaza de Flores (Mañanas)", days: [1,2,3,4,5], hours: ["06:00","09:00"], typeOfSchedule: "Intervals", stations: [0,23,24,27], },
+    { name: "Plaza de Flores » Naranjal (Tardes)", days: [1,2,3,4,5], hours: ["17:00","21:00"], typeOfSchedule: "Intervals", stations: [24,23,0], },
+    ]
+  },
+  { name: "Súper Expreso Norte",
+    directions: [
+    { name: "Naranjal » Central (Mañanas)", days: [1,2,3,4,5], hours: ["05:00","09:00"], typeOfSchedule: "Intervals", stations: [0,12,13,14,18], },
+    { name: "Central » Naranjal (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [18,0], },
+    { name: "Naranjal » Central (Tardes)", days: [1,2,3,4,5], hours: ["17:00","21:00"], typeOfSchedule: "Intervals", stations: [0,18], },
+    { name: "Central » Naranjal (Tardes)", days: [1,2,3,4,5], hours: ["17:30","21:00"], typeOfSchedule: "Intervals", stations: [18,14,13,12,0], },
     ]
   },
   ],
