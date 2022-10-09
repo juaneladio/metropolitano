@@ -173,9 +173,9 @@ div[role="slider"] > label.icon {
 
 /* Custom style */
 
-form[role="dialog"][data-type="confirm"] > section {
+/*form[role="dialog"][data-type="confirm"] > section {
   overflow-y: hidden;
-}
+}*/
 
 div[role="slider"] > label.icon {
   background: no-repeat right top;
