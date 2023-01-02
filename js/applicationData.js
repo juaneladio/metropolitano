@@ -89,10 +89,10 @@ categories: [
   },
   { name: "Expreso 1",
     directions: [
-    { name: "Naranjal » Matellini (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:20"], typeOfSchedule: "Intervals", stations: [18,19,22,23,26,29,31,32,33,34,35,36,37], },
-    { name: "Matellini » Naranjal (Mañanas)", days: [1,2,3,4,5], hours: ["05:00","09:00"], typeOfSchedule: "Intervals", stations: [37,36,35,34,33,32,31,29,26,23,22,19,18], },
-    { name: "Naranjal » Matellini (Tardes)", days: [1,2,3,4,5], hours: ["17:30","21:30"], typeOfSchedule: "Intervals", stations: [18,19,22,23,26,28,29,31,32,33,34,35,36,37], },
-    { name: "Matellini » Naranjal (Tardes)", days: [1,2,3,4,5], hours: ["17:00","21:00"], typeOfSchedule: "Intervals", stations: [37,36,35,34,33,32,31,29,26,22,19,18], },
+    { name: "Central » Matellini (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:20"], typeOfSchedule: "Intervals", stations: [18,19,22,23,26,29,31,32,33,34,35,36,37], },
+    { name: "Matellini » Central (Mañanas)", days: [1,2,3,4,5], hours: ["05:00","09:00"], typeOfSchedule: "Intervals", stations: [37,36,35,34,33,32,31,29,26,23,22,19,18], },
+    { name: "Central » Matellini (Tardes)", days: [1,2,3,4,5], hours: ["17:30","21:30"], typeOfSchedule: "Intervals", stations: [18,19,22,23,26,28,29,31,32,33,34,35,36,37], },
+    { name: "Matellini » Central (Tardes)", days: [1,2,3,4,5], hours: ["17:00","21:00"], typeOfSchedule: "Intervals", stations: [37,36,35,34,33,32,31,29,27,26,22,19,18], },
     ]
   },
   { name: "Expreso 2",
@@ -122,7 +122,7 @@ categories: [
   },
   { name: "Expreso 6",
     directions: [
-    { name: "Izaguirre » Benavides (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [1,3,18,22,23,26,28,30], },
+    { name: "Izaguirre » Benavides (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [1,3,18,22,23,26,28], },
     ]
   },
   { name: "Expreso 7",
@@ -138,7 +138,7 @@ categories: [
   },
   { name: "Expreso 9",
     directions: [
-    { name: "UNI » Benavides (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [8,10,23,26,28], },
+    { name: "UNI » Benavides (Mañanas)", days: [1,2,3,4,5], hours: ["05:30","09:00"], typeOfSchedule: "Intervals", stations: [8,10,21,23,26,28], },
     ]
   },
   { name: "Súper Expreso",
